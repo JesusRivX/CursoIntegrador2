@@ -1,65 +1,29 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-
-const BackButton = () => {
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate("/login");
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleBack}
-      className="mb-6 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
-    >
-      ← Regresar
-    </button>
-  );
-};
+import { Routes, Route } from "react-router-dom";
+import StudentDashboard from "../pages/student/StudentDashboard";
+import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+import AdminDashboard from "../pages/admin/AdminDashboard";
+import StudentHome from "../pages/student/StudentHome";
 
 const PrivateRoutes = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <div>
-            <BackButton />
-            <h1>Aplicación privada</h1>
-          </div>
-        }
-      />
+      <Route path="/estudiante" element={<StudentDashboard />}>
+        <Route index element={<StudentHome />} />
+        <Route path="cursos" element={<h1>Mis cursos</h1>} />
+        <Route path="tareas" element={<h1>Tareas</h1>} />
+        <Route path="tutor" element={<h1>Tutor IA</h1>} />
+        <Route path="progreso" element={<h1>Mi progreso</h1>} />
+      </Route>
 
-      <Route
-        path="/estudiante"
-        element={
-          <div>
-            <BackButton />
-            <h1>Área del estudiante</h1>
-          </div>
-        }
-      />
+      <Route path="/docente" element={<TeacherDashboard />}>
+        <Route index element={<h1>Inicio del docente</h1>} />
+      </Route>
 
-      <Route
-        path="/docente"
-        element={
-          <div>
-            <BackButton />
-            <h1>Área del docente</h1>
-          </div>
-        }
-      />
-
-      <Route
-        path="/admin"
-        element={
-          <div>
-            <BackButton />
-            <h1>Área del administrador</h1>
-          </div>
-        }
-      />
+      <Route path="/admin" element={<AdminDashboard />}>
+        <Route index element={<h1>Inicio del administrador</h1>} />
+        <Route path="estudiantes" element={<h1>Estudiantes</h1>} />
+        <Route path="cursos" element={<h1>Cursos</h1>} />
+      </Route>
     </Routes>
   );
 };

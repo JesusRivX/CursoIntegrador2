@@ -39,7 +39,6 @@ const LoginForm = () => {
     },
   ];
 
-  // Manejar inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -49,7 +48,6 @@ const LoginForm = () => {
     }));
   };
 
-  // Manejar selección de rol
   const handleRoleChange = (rol) => {
     setFormData((prev) => ({
       ...prev,
@@ -85,19 +83,18 @@ const LoginForm = () => {
     sileo.success({
       title: "Login exitoso",
     });
-    console.log("Login exitoso:", usuarioEncontrado);
 
     switch (usuarioEncontrado.rol) {
       case "estudiante":
-        navigate("/app/estudiante");
+        navigate("/app/estudiante", { state: { user: usuarioEncontrado } });
         break;
 
       case "docente":
-        navigate("/app/docente");
+        navigate("/app/docente", { state: { user: usuarioEncontrado } });
         break;
 
       case "admin":
-        navigate("/app/admin");
+        navigate("/app/admin", { state: { user: usuarioEncontrado } });
         break;
 
       default:
