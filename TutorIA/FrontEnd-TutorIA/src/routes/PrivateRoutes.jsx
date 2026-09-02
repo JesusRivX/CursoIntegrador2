@@ -1,8 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import StudentDashboard from "../pages/student/StudentDashboard";
-import TeacherDashboard from "../pages/teacher/TeacherDashboard";
-import AdminDashboard from "../pages/admin/AdminDashboard";
+// import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+// import AdminDashboard from "../pages/admin/AdminDashboard";
 import StudentHome from "../pages/student/StudentHome";
+
+// import AdminHome from "../pages/admin/AdminHome";
+// import AdminUser from "../pages/admin/AdminUser";
 
 const PrivateRoutes = () => {
   return (
@@ -15,15 +18,15 @@ const PrivateRoutes = () => {
         <Route path="progreso" element={<h1>Mi progreso</h1>} />
       </Route>
 
-      <Route path="/docente" element={<TeacherDashboard />}>
+      {/* <Route path="/docente" element={<TeacherDashboard />}>
         <Route index element={<h1>Inicio del docente</h1>} />
       </Route>
 
       <Route path="/admin" element={<AdminDashboard />}>
-        <Route index element={<h1>Inicio del administrador</h1>} />
-        <Route path="estudiantes" element={<h1>Estudiantes</h1>} />
+        <Route index element={<AdminHome />} />
+        <Route path="usuarios" element={<AdminUser />} />
         <Route path="cursos" element={<h1>Cursos</h1>} />
-      </Route>
+      </Route> */}
     </Routes>
   );
 };
