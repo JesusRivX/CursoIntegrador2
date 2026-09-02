@@ -14,7 +14,7 @@ import {
 const LoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    rol: "estudiante",
+    rol: "Estudiante",
     codigo: "",
     password: "",
   });
@@ -23,18 +23,18 @@ const LoginForm = () => {
 
   const roles = [
     {
-      id: "estudiante",
+      id: "Estudiante",
       label: "Estudiante",
       icon: GraduationCap,
     },
     {
-      id: "docente",
+      id: "Docente",
       label: "Docente",
       icon: BookOpen,
     },
     {
-      id: "admin",
-      label: "Admin",
+      id: "Administrador",
+      label: "Administrador",
       icon: ShieldCheck,
     },
   ];
@@ -83,17 +83,18 @@ const LoginForm = () => {
     sileo.success({
       title: "Login exitoso",
     });
+    console.log("Login exitoso:", usuarioEncontrado);
 
     switch (usuarioEncontrado.rol) {
-      case "estudiante":
+      case "Estudiante":
         navigate("/app/estudiante", { state: { user: usuarioEncontrado } });
         break;
 
-      case "docente":
+      case "Docente":
         navigate("/app/docente", { state: { user: usuarioEncontrado } });
         break;
 
-      case "admin":
+      case "Administrador":
         navigate("/app/admin", { state: { user: usuarioEncontrado } });
         break;
 
