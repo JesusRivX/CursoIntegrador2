@@ -7,6 +7,7 @@ import StudentHome from "../pages/student/StudentHome";
 
 
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import AdminHome from "../pages/admin/AdminHome";
 import AdminUser from "../pages/admin/AdminUser";
 
 
@@ -29,6 +30,7 @@ const PrivateRoutes = () => {
 
       <Route element={<ProtectedRoute role="Administrador" />}>
         <Route path="admin" element={<AdminDashboard />}>
+          <Route index element={<AdminHome />} />
           <Route path="usuarios" element={<AdminUser />} />
         </Route>
       </Route>
