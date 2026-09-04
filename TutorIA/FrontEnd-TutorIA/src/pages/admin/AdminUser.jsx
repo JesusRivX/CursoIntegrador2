@@ -316,14 +316,14 @@ const AdminUsers = () => {
                     </p>
                 </div>
 
-                {/* <button
+                <button
                     type="button"
                     onClick={openCreateModal}
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-blue-700"
                 >
                     <UserPlus className="h-4 w-4" />
                     Nuevo usuario
-                </button> */}
+                </button>
             </section>
 
             <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
