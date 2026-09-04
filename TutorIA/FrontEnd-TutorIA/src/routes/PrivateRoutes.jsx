@@ -9,6 +9,7 @@ import StudentHome from "../pages/student/StudentHome";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminHome from "../pages/admin/AdminHome";
 import AdminUser from "../pages/admin/AdminUser";
+import AdminCourses from "../pages/admin/AdminCourses";
 
 
 const PrivateRoutes = () => {
@@ -32,6 +33,7 @@ const PrivateRoutes = () => {
         <Route path="admin" element={<AdminDashboard />}>
           <Route index element={<AdminHome />} />
           <Route path="usuarios" element={<AdminUser />} />
+          <Route path="cursos" element={<AdminCourses />} />
         </Route>
       </Route>
     </Routes>
