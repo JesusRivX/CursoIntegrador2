@@ -549,25 +549,25 @@ const AdminUsers = () => {
 
                                                 {/* EDITAR */}
 
-                                                {/* <button
+                                                <button
                                                     type="button"
                                                     onClick={() => openEditModal(user)}
                                                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
                                                     title="Editar usuario"
                                                 >
                                                     <Edit3 className="h-4 w-4" />
-                                                </button> */}
+                                                </button>
 
                                                 {/* ELIMINAR */}
 
-                                                {/* <button
+                                                <button
                                                     type="button"
                                                     onClick={() => handleDelete(user)}
                                                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-red-500"
                                                     title="Eliminar usuario"
                                                 >
                                                     <Trash2 className="h-4 w-4" />
-                                                </button> */}
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
