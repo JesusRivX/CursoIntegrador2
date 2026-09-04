@@ -19,6 +19,8 @@ const LoginForm = () => {
     password: "",
   });
 
+  console.log(formData);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const roles = [
@@ -80,22 +82,48 @@ const LoginForm = () => {
       return;
     }
 
+    if (usuarioEncontrado.estado !== "Activo") {
+      sileo.error({
+        title: "Usuario inactivo",
+        description:
+          "Tu cuenta se encuentra inactiva. Comunícate con el administrador.",
+      });
+      return;
+    }
+
     sileo.success({
       title: "Login exitoso",
     });
+
     console.log("Login exitoso:", usuarioEncontrado);
+
+    // ============================================================
+    // GUARDAR USUARIO SEGÚN EL ROL
+    // ============================================================
 
     switch (usuarioEncontrado.rol) {
       case "Estudiante":
-        navigate("/app/estudiante", { state: { user: usuarioEncontrado } });
+        localStorage.setItem("studentUser", JSON.stringify(usuarioEncontrado));
+
+        navigate("/app/estudiante", {
+          state: { user: usuarioEncontrado },
+        });
         break;
 
       case "Docente":
-        navigate("/app/docente", { state: { user: usuarioEncontrado } });
+        localStorage.setItem("teacherUser", JSON.stringify(usuarioEncontrado));
+
+        navigate("/app/docente", {
+          state: { user: usuarioEncontrado },
+        });
         break;
 
       case "Administrador":
-        navigate("/app/admin", { state: { user: usuarioEncontrado } });
+        localStorage.setItem("adminUser", JSON.stringify(usuarioEncontrado));
+
+        navigate("/app/admin", {
+          state: { user: usuarioEncontrado },
+        });
         break;
 
       default:
