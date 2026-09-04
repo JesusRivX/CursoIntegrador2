@@ -38,20 +38,20 @@ export const dashboardNavigation = {
             path: "/app/estudiante/cursos",
         },
         {
-            label: "Tareas",
+            label: "Práctica",
             icon: ClipboardCheck,
-            path: "/app/estudiante/tareas",
+            path: "/app/estudiante/practica",
         },
         {
             label: "Tutor IA",
             icon: Bot,
             path: "/app/estudiante/tutor",
         },
-        {
-            label: "Mi progreso",
-            icon: BarChart3,
-            path: "/app/estudiante/progreso",
-        },
+        // {
+        //   label: "Mi progreso",
+        //   icon: BarChart3,
+        //   path: "/app/estudiante/progreso",
+        // },
     ],
 
     docente: [
@@ -59,6 +59,11 @@ export const dashboardNavigation = {
             label: "Inicio",
             icon: LayoutDashboard,
             path: "/app/docente",
+        },
+        {
+            label: "Mis aulas",
+            icon: BarChart3,
+            path: "/app/docente/aulas",
         },
     ],
 };
