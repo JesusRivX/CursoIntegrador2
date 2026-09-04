@@ -320,14 +320,14 @@ const AdminCourses = () => {
                     </p>
                 </div>
 
-                {/* <button
+                <button
                     type="button"
                     onClick={openCreateModal}
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-blue-700"
                 >
                     <Plus className="h-4 w-4" />
                     Nuevo curso
-                </button> */}
+                </button>
             </section>
 
             {/* =====================================================
