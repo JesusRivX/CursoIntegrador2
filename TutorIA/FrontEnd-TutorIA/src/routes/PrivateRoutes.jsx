@@ -5,6 +5,7 @@ import ProtectedRoute from "../components/auth/ProtectedRoute";
 import StudentDashboard from "../pages/student/StudentDashboard";
 import StudentHome from "../pages/student/StudentHome";
 import StudentCourses from "../pages/student/StudentCourses";
+import StudentCourse from "../pages/student/StudentCourse";
 
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminHome from "../pages/admin/AdminHome";
@@ -22,7 +23,9 @@ const PrivateRoutes = () => {
         <Route path="estudiante" element={<StudentDashboard />}>
           <Route index element={<StudentHome />} />
 
-          <Route path="cursos" element={<StudentCourses />} />
+          <Route path="cursos" element={<StudentCourses />}>
+            <Route path=":courseId" element={<StudentCourse />} />
+          </Route>
         </Route>
       </Route>
 
