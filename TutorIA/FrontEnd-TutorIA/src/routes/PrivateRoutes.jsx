@@ -7,6 +7,7 @@ import StudentHome from "../pages/student/StudentHome";
 import StudentCourses from "../pages/student/StudentCourses";
 import StudentCourse from "../pages/student/StudentCourse";
 import StudentPractice from "../pages/student/StudentPractice";
+import StudentTutor from "../pages/student/StudentTutor";
 
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminHome from "../pages/admin/AdminHome";
@@ -28,6 +29,7 @@ const PrivateRoutes = () => {
             <Route path=":courseId" element={<StudentCourse />} />
           </Route>
           <Route path="practica" element={<StudentPractice />} />
+          <Route path="tutor" element={<StudentTutor />} />
         </Route>
       </Route>
 
