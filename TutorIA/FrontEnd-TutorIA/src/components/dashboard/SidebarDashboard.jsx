@@ -1,4 +1,4 @@
-import { PanelLeft, X } from "lucide-react";
+import { PanelLeft, X, LogOut } from "lucide-react";
 
 const SidebarDashboard = ({
   user,
@@ -9,6 +9,7 @@ const SidebarDashboard = ({
   setSidebarCollapsed,
   navigate,
   location,
+  handleLogout,
 }) => {
   const getInitials = (name) => {
     if (!name) return "";
@@ -268,11 +269,11 @@ const SidebarDashboard = ({
                 </p>
               </div>
 
-              {/* <button
-                                type="button"
-                                title="Cerrar sesión"
-                                onClick={handleLogout}
-                                className="
+              <button
+                type="button"
+                title="Cerrar sesión"
+                onClick={handleLogout}
+                className="
                   flex h-8 w-8 shrink-0 items-center justify-center
                   rounded-lg text-slate-400
                   transition-colors duration-200
@@ -281,9 +282,9 @@ const SidebarDashboard = ({
                   focus-visible:ring-2
                   focus-visible:ring-red-400/30
                 "
-                            >
-                                <LogOut className="h-4 w-4" />
-                            </button> */}
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
             </>
           )}
         </div>

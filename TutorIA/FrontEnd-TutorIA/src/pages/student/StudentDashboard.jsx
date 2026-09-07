@@ -21,6 +21,11 @@ const StudentDashboard = () => {
       }
     })();
 
+  const handleLogout = () => {
+    localStorage.removeItem("studentUser");
+    navigate("/");
+  };
+
   const navigation = dashboardNavigation.estudiante;
 
   return (
@@ -52,6 +57,7 @@ const StudentDashboard = () => {
           setSidebarCollapsed={setSidebarCollapsed}
           navigate={navigate}
           location={location}
+          handleLogout={handleLogout}
         />
 
         {/* ======================================================
