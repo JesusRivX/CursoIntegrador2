@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowDashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="620" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="24" font-weight="700" fill="#1e293b">Arquitectura de TutorIA Escolar</text>
+  <text x="500" y="66" text-anchor="middle" font-size="14" fill="#64748b">Aplicación web de tutoría escolar asistida por IA</text>
+
+  <!-- CLIENTE -->
+  <rect x="40" y="100" width="240" height="330" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="160" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8" letter-spacing="1">CAPA CLIENTE</text>
+
+  <rect x="62" y="146" width="196" height="86" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="160" y="172" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">Frontend SPA</text>
+  <text x="160" y="193" text-anchor="middle" font-size="13" fill="#475569">React 19 + Vite</text>
+  <text x="160" y="212" text-anchor="middle" font-size="13" fill="#475569">Tailwind CSS 4</text>
+
+  <rect x="62" y="248" width="196" height="70" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="160" y="272" text-anchor="middle" font-size="13" font-weight="700" fill="#1e293b">Enrutamiento</text>
+  <text x="160" y="292" text-anchor="middle" font-size="12" fill="#475569">React Router 7</text>
+  <text x="160" y="309" text-anchor="middle" font-size="12" fill="#475569">Rutas públicas / privadas</text>
+
+  <rect x="62" y="334" width="196" height="76" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="160" y="357" text-anchor="middle" font-size="13" font-weight="700" fill="#1e293b">Roles de usuario</text>
+  <text x="160" y="378" text-anchor="middle" font-size="12" fill="#475569">Estudiante · Docente</text>
+  <text x="160" y="396" text-anchor="middle" font-size="12" fill="#475569">Administrador</text>
+
+  <!-- SERVIDOR -->
+  <rect x="380" y="100" width="240" height="330" rx="14" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="500" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#b91c1c" letter-spacing="1">CAPA SERVIDOR</text>
+
+  <rect x="402" y="146" width="196" height="86" rx="10" fill="#ffffff" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="500" y="172" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">API REST</text>
+  <text x="500" y="193" text-anchor="middle" font-size="13" fill="#475569">Laravel 13</text>
+  <text x="500" y="212" text-anchor="middle" font-size="13" fill="#475569">PHP 8.3</text>
+
+  <rect x="402" y="248" width="196" height="70" rx="10" fill="#ffffff" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="500" y="272" text-anchor="middle" font-size="13" font-weight="700" fill="#1e293b">Autenticación</text>
+  <text x="500" y="292" text-anchor="middle" font-size="12" fill="#475569">Laravel Sanctum</text>
+  <text x="500" y="309" text-anchor="middle" font-size="12" fill="#475569">Tokens de acceso personal</text>
+
+  <rect x="402" y="334" width="196" height="76" rx="10" fill="#ffffff" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="500" y="357" text-anchor="middle" font-size="13" font-weight="700" fill="#1e293b">Documentación API</text>
+  <text x="500" y="378" text-anchor="middle" font-size="12" fill="#475569">Scramble (OpenAPI)</text>
+  <text x="500" y="396" text-anchor="middle" font-size="12" fill="#475569">Generada desde las rutas</text>
+
+  <!-- DATOS E IA -->
+  <rect x="720" y="100" width="240" height="330" rx="14" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="840" y="128" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d" letter-spacing="1">DATOS E INTELIGENCIA</text>
+
+  <rect x="742" y="146" width="196" height="86" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+  <text x="840" y="172" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">Base de datos</text>
+  <text x="840" y="193" text-anchor="middle" font-size="13" fill="#475569">MySQL</text>
+  <text x="840" y="212" text-anchor="middle" font-size="13" fill="#475569">Acceso vía Eloquent ORM</text>
+
+  <rect x="742" y="248" width="196" height="86" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+  <text x="840" y="274" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">Motor de IA</text>
+  <text x="840" y="295" text-anchor="middle" font-size="13" fill="#475569">Ollama · llama3.2</text>
+  <text x="840" y="314" text-anchor="middle" font-size="13" fill="#475569">Modelo ejecutado en local</text>
+
+  <rect x="742" y="350" width="196" height="60" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+  <text x="840" y="373" text-anchor="middle" font-size="13" font-weight="700" fill="#1e293b">Integración</text>
+  <text x="840" y="393" text-anchor="middle" font-size="12" fill="#475569">cloudstudio/ollama-laravel</text>
+
+  <!-- FLECHAS -->
+  <line x1="282" y1="189" x2="378" y2="189" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="330" y="177" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">HTTP</text>
+  <text x="330" y="207" text-anchor="middle" font-size="11" fill="#64748b">JSON</text>
+
+  <line x1="622" y1="189" x2="740" y2="189" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="681" y="177" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">SQL</text>
+
+  <line x1="622" y1="285" x2="740" y2="285" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrowDashed)"/>
+  <text x="681" y="273" text-anchor="middle" font-size="12" font-weight="600" fill="#64748b">Prompt</text>
+  <text x="681" y="303" text-anchor="middle" font-size="11" fill="#94a3b8">Respuesta</text>
+
+  <!-- LEYENDA -->
+  <rect x="40" y="466" width="920" height="120" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="64" y="494" font-size="13" font-weight="700" fill="#1e293b">Flujo principal</text>
+  <text x="64" y="519" font-size="12.5" fill="#475569">1. El estudiante interactúa con la SPA de React, que consume la API mediante peticiones HTTP con respuestas en JSON.</text>
+  <text x="64" y="541" font-size="12.5" fill="#475569">2. Laravel valida la sesión con Sanctum, aplica la lógica de negocio y persiste o consulta los datos en MySQL con Eloquent.</text>
+  <text x="64" y="563" font-size="12.5" fill="#475569">3. Ante una consulta al Tutor IA, Laravel envía el prompt a Ollama, que ejecuta el modelo llama3.2 en local y devuelve la respuesta.</text>
+</svg>
