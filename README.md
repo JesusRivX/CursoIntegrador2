@@ -9,18 +9,35 @@ adaptativos, pistas inteligentes y progreso visible para cada estudiante.
 
 ## Tabla de contenido
 
-- [El problema](#el-problema)
-- [La solución](#la-solución)
-- [Roles de usuario](#roles-de-usuario)
-- [Prototipo](#prototipo)
-- [Product Backlog](#product-backlog)
-- [Arquitectura](#arquitectura)
-- [Stack tecnológico](#stack-tecnológico)
-- [Estructura del repositorio](#estructura-del-repositorio)
-- [Flujo de trabajo con Git](#flujo-de-trabajo-con-git)
-- [Cómo levantar el proyecto](#cómo-levantar-el-proyecto)
-- [Estado del proyecto](#estado-del-proyecto)
-- [Equipo](#equipo)
+- [TutorIA Escolar](#tutoria-escolar)
+  - [Tabla de contenido](#tabla-de-contenido)
+  - [El problema](#el-problema)
+  - [La solución](#la-solución)
+  - [Roles de usuario](#roles-de-usuario)
+  - [Prototipo](#prototipo)
+  - [Product Backlog](#product-backlog)
+    - [ÉPICA-01: Autenticación de Usuarios](#épica-01-autenticación-de-usuarios)
+    - [ÉPICA-02: Gestión Académica](#épica-02-gestión-académica)
+    - [ÉPICA-03: Gestión de Contenido](#épica-03-gestión-de-contenido)
+    - [ÉPICA-04: Práctica y Evaluación](#épica-04-práctica-y-evaluación)
+    - [ÉPICA-05: Progreso Académico](#épica-05-progreso-académico)
+    - [ÉPICA-06: Tutor IA](#épica-06-tutor-ia)
+    - [ÉPICA-07: Paneles y Accesos](#épica-07-paneles-y-accesos)
+    - [ÉPICA-08: Gestión de Usuarios](#épica-08-gestión-de-usuarios)
+  - [Arquitectura](#arquitectura)
+  - [Stack tecnológico](#stack-tecnológico)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+  - [Estructura del repositorio](#estructura-del-repositorio)
+  - [Flujo de trabajo con Git](#flujo-de-trabajo-con-git)
+    - [Convención de ramas](#convención-de-ramas)
+  - [Cómo levantar el proyecto](#cómo-levantar-el-proyecto)
+    - [Requisitos](#requisitos)
+    - [Backend](#backend-1)
+    - [Frontend](#frontend-1)
+    - [Modelo de IA](#modelo-de-ia)
+  - [Estado del proyecto](#estado-del-proyecto)
+  - [Equipo](#equipo)
 
 ---
 
@@ -72,8 +89,6 @@ Prototipo de interfaz construido en Figma:
 ![Practicar](docs/img/04-practicar.png)
 ![Mi perfil](docs/img/05-mi-perfil.png)
 
-> Las capturas ya están incluidas en `docs/img/`. Si actualizas el prototipo, reemplaza
-> los archivos manteniendo los mismos nombres.
 
 ## Product Backlog
 
@@ -336,12 +351,10 @@ entorno.
 
 | Integrante | Rol |
 | --- | --- |
+| Jesús Rivera | Desarrollo |
+| Alonso Quispe | Desarrollo |
 | Renato Ninatanta | Desarrollo |
 | Ben Alanya | Desarrollo |
-| Jesús | Desarrollo |
-
-> Completa la tabla con los nombres y apellidos completos de todos los integrantes
-> antes de la exposición.
 
 ---
 
