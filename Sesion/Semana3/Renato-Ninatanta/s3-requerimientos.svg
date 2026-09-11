@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2320" width="1000" height="2320" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="h3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="2320" fill="#fffbf5"/>
+
+  <!-- ENCABEZADO -->
+  <rect x="0" y="0" width="1000" height="170" fill="url(#h3)"/>
+  <text x="500" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#fde68a" letter-spacing="3">PRODUCTO LIBRE · SESIÓN 03</text>
+  <text x="500" y="102" text-anchor="middle" font-size="36" font-weight="800" fill="#ffffff">LEVANTAMIENTO DE REQUERIMIENTOS</text>
+  <text x="500" y="134" text-anchor="middle" font-size="17" fill="#fef3c7">Funcionales, no funcionales e historias de usuario en ESTUD-IA</text>
+
+  <!-- 1. QUÉ ES -->
+  <circle cx="58" cy="230" r="15" fill="#d97706"/>
+  <text x="58" y="236" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">1</text>
+  <text x="86" y="237" font-size="24" font-weight="800" fill="#0f172a">¿Qué es un requerimiento?</text>
+
+  <rect x="40" y="258" width="920" height="104" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="64" y="288" font-size="13" font-weight="800" fill="#92400e" letter-spacing="1">SEGÚN LA IEEE</text>
+  <text x="64" y="316" font-size="15" fill="#78350f">Condición o capacidad que necesita el usuario para lograr un objetivo o solucionar un problema; o que debe</text>
+  <text x="64" y="340" font-size="15" fill="#78350f">tener el sistema para satisfacer un contrato o especificación. Describe los servicios del sistema y sus restricciones.</text>
+
+  <!-- 2. CARACTERÍSTICAS -->
+  <circle cx="58" cy="416" r="15" fill="#d97706"/>
+  <text x="58" y="422" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">2</text>
+  <text x="86" y="423" font-size="24" font-weight="800" fill="#0f172a">Las ocho características de un buen requerimiento</text>
+
+  <rect x="40" y="444" width="222" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="151" y="476" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Necesario</text>
+  <text x="151" y="500" text-anchor="middle" font-size="12.5" fill="#64748b">"¿Qué sería lo peor</text>
+  <text x="151" y="518" text-anchor="middle" font-size="12.5" fill="#64748b">de no incluirlo?"</text>
+
+  <rect x="272" y="444" width="222" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="383" y="476" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Priorizado</text>
+  <text x="383" y="500" text-anchor="middle" font-size="12.5" fill="#64748b">Esencial, deseado</text>
+  <text x="383" y="518" text-anchor="middle" font-size="12.5" fill="#64748b">u opcional</text>
+
+  <rect x="504" y="444" width="222" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="615" y="476" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Completo</text>
+  <text x="615" y="500" text-anchor="middle" font-size="12.5" fill="#64748b">Se entiende sin pedir</text>
+  <text x="615" y="518" text-anchor="middle" font-size="12.5" fill="#64748b">más detalles</text>
+
+  <rect x="736" y="444" width="224" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="848" y="476" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Verificable</text>
+  <text x="848" y="500" text-anchor="middle" font-size="12.5" fill="#64748b">Se puede comprobar</text>
+  <text x="848" y="518" text-anchor="middle" font-size="12.5" fill="#64748b">si se cumplió</text>
+
+  <rect x="40" y="542" width="222" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="151" y="574" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Modificable</text>
+  <text x="151" y="598" text-anchor="middle" font-size="12.5" fill="#64748b">Se puede cambiar sin</text>
+  <text x="151" y="616" text-anchor="middle" font-size="12.5" fill="#64748b">romper lo demás</text>
+
+  <rect x="272" y="542" width="222" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="383" y="574" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Consistente</text>
+  <text x="383" y="598" text-anchor="middle" font-size="12.5" fill="#64748b">No contradice a otro</text>
+  <text x="383" y="616" text-anchor="middle" font-size="12.5" fill="#64748b">requerimiento</text>
+
+  <rect x="504" y="542" width="222" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="615" y="574" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Factible</text>
+  <text x="615" y="598" text-anchor="middle" font-size="12.5" fill="#64748b">Cabe en presupuesto,</text>
+  <text x="615" y="616" text-anchor="middle" font-size="12.5" fill="#64748b">plazo y restricciones</text>
+
+  <rect x="736" y="542" width="224" height="88" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="848" y="574" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Correcto</text>
+  <text x="848" y="598" text-anchor="middle" font-size="12.5" fill="#64748b">Acordado entre partes</text>
+  <text x="848" y="616" text-anchor="middle" font-size="12.5" fill="#64748b">y con una sola idea</text>
+
+  <!-- 3. RF VS RNF -->
+  <circle cx="58" cy="692" r="15" fill="#d97706"/>
+  <text x="58" y="698" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">3</text>
+  <text x="86" y="699" font-size="24" font-weight="800" fill="#0f172a">Funcional frente a no funcional</text>
+
+  <rect x="40" y="720" width="452" height="286" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="40" y="720" width="452" height="48" rx="12" fill="#2563eb"/>
+  <rect x="40" y="750" width="452" height="18" fill="#2563eb"/>
+  <text x="266" y="751" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">REQUERIMIENTO FUNCIONAL</text>
+  <text x="266" y="794" text-anchor="middle" font-size="14" font-style="italic" fill="#1d4ed8">Lo que el sistema debe hacer</text>
+  <text x="66" y="828" font-size="13.5" fill="#475569">· Describe los servicios y funciones que provee.</text>
+  <text x="66" y="854" font-size="13.5" fill="#475569">· Define el comportamiento esperado.</text>
+  <text x="66" y="880" font-size="13.5" fill="#475569">· A veces indica lo que NO debe hacer.</text>
+  <line x1="66" y1="902" x2="466" y2="902" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="66" y="926" font-size="12.5" font-weight="800" fill="#94a3b8" letter-spacing="1">EN ESTUD-IA</text>
+  <text x="66" y="952" font-size="13.5" fill="#1e293b">El sistema permite al estudiante consultar</text>
+  <text x="66" y="972" font-size="13.5" fill="#1e293b">sus dudas al Tutor IA y recibir una respuesta.</text>
+  <text x="66" y="994" font-size="13" fill="#64748b">Se gestiona en el Product Backlog como HU.</text>
+
+  <rect x="508" y="720" width="452" height="286" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <rect x="508" y="720" width="452" height="48" rx="12" fill="#059669"/>
+  <rect x="508" y="750" width="452" height="18" fill="#059669"/>
+  <text x="734" y="751" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">REQUERIMIENTO NO FUNCIONAL</text>
+  <text x="734" y="794" text-anchor="middle" font-size="14" font-style="italic" fill="#047857">Bajo qué condiciones debe hacerlo</text>
+  <text x="534" y="828" font-size="13.5" fill="#475569">· Son limitaciones sobre esos servicios.</text>
+  <text x="534" y="854" font-size="13.5" fill="#475569">· Restringen la implementación del sistema.</text>
+  <text x="534" y="880" font-size="13.5" fill="#475569">· Rendimiento, seguridad, disponibilidad, uso.</text>
+  <line x1="534" y1="902" x2="934" y2="902" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="534" y="926" font-size="12.5" font-weight="800" fill="#94a3b8" letter-spacing="1">EN ESTUD-IA</text>
+  <text x="534" y="952" font-size="13.5" fill="#1e293b">El Tutor IA responde en menos de 5 segundos</text>
+  <text x="534" y="972" font-size="13.5" fill="#1e293b">y las contraseñas se almacenan cifradas.</text>
+  <text x="534" y="994" font-size="13" fill="#64748b">Se gestiona en la Definición de Hecho (DoD).</text>
+
+  <!-- 4. TÉCNICAS -->
+  <circle cx="58" cy="1068" r="15" fill="#d97706"/>
+  <text x="58" y="1074" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">4</text>
+  <text x="86" y="1075" font-size="24" font-weight="800" fill="#0f172a">Técnicas para levantar requerimientos</text>
+
+  <rect x="40" y="1096" width="146" height="62" rx="9" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="113" y="1133" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Entrevistas</text>
+
+  <rect x="196" y="1096" width="146" height="62" rx="9" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="269" y="1133" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Prototipado</text>
+
+  <rect x="352" y="1096" width="146" height="62" rx="9" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="425" y="1133" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Escenarios</text>
+
+  <rect x="508" y="1096" width="146" height="62" rx="9" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="581" y="1127" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Puntos de</text>
+  <text x="581" y="1145" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">vista</text>
+
+  <rect x="664" y="1096" width="146" height="62" rx="9" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="737" y="1127" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Tormenta</text>
+  <text x="737" y="1145" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">de ideas</text>
+
+  <rect x="820" y="1096" width="140" height="62" rx="9" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="890" y="1133" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Workshops</text>
+
+  <rect x="40" y="1170" width="920" height="58" rx="9" fill="#0f172a"/>
+  <text x="500" y="1196" text-anchor="middle" font-size="15" font-weight="700" fill="#fcd34d">La historia de usuario es la técnica más difundida en metodologías ágiles:</text>
+  <text x="500" y="1218" text-anchor="middle" font-size="14" fill="#cbd5e1">la conversación pasa a ser más importante que la formalización escrita.</text>
+
+  <!-- 5. APLICACIÓN -->
+  <rect x="0" y="1266" width="1000" height="56" fill="#b45309"/>
+  <text x="500" y="1302" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="1">APLICADO A ESTUD-IA</text>
+
+  <circle cx="58" cy="1378" r="15" fill="#d97706"/>
+  <text x="58" y="1384" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">5</text>
+  <text x="86" y="1385" font-size="24" font-weight="800" fill="#0f172a">Requerimientos del proyecto</text>
+
+  <rect x="40" y="1406" width="920" height="36" fill="#2563eb"/>
+  <text x="64" y="1430" font-size="13.5" font-weight="700" fill="#ffffff">RF</text>
+  <text x="128" y="1430" font-size="13.5" font-weight="700" fill="#ffffff">REQUERIMIENTOS FUNCIONALES</text>
+  <text x="760" y="1430" font-size="13.5" font-weight="700" fill="#ffffff">HU ASOCIADA</text>
+
+  <rect x="40" y="1442" width="920" height="34" fill="#ffffff"/>
+  <text x="64" y="1464" font-size="13" font-weight="700" fill="#2563eb">RF-01</text>
+  <text x="128" y="1464" font-size="13" fill="#1e293b">Autenticar al usuario según su rol: estudiante, docente o administrador</text>
+  <text x="760" y="1464" font-size="13" fill="#64748b">HU-01</text>
+
+  <rect x="40" y="1476" width="920" height="34" fill="#f8fafc"/>
+  <text x="64" y="1498" font-size="13" font-weight="700" fill="#2563eb">RF-02</text>
+  <text x="128" y="1498" font-size="13" fill="#1e293b">Mostrar al estudiante los cursos en los que está inscrito</text>
+  <text x="760" y="1498" font-size="13" fill="#64748b">HU-02</text>
+
+  <rect x="40" y="1510" width="920" height="34" fill="#ffffff"/>
+  <text x="64" y="1532" font-size="13" font-weight="700" fill="#2563eb">RF-03</text>
+  <text x="128" y="1532" font-size="13" fill="#1e293b">Permitir resolver ejercicios prácticos y registrar el resultado</text>
+  <text x="760" y="1532" font-size="13" fill="#64748b">HU-04 · HU-07</text>
+
+  <rect x="40" y="1544" width="920" height="34" fill="#f8fafc"/>
+  <text x="64" y="1566" font-size="13" font-weight="700" fill="#2563eb">RF-04</text>
+  <text x="128" y="1566" font-size="13" fill="#1e293b">Permitir consultar al Tutor IA y solicitar pistas durante un ejercicio</text>
+  <text x="760" y="1566" font-size="13" fill="#64748b">HU-05 · HU-06</text>
+
+  <rect x="40" y="1578" width="920" height="34" fill="#ffffff"/>
+  <text x="64" y="1600" font-size="13" font-weight="700" fill="#2563eb">RF-05</text>
+  <text x="128" y="1600" font-size="13" fill="#1e293b">Mostrar el avance de aprendizaje por materia</text>
+  <text x="760" y="1600" font-size="13" fill="#64748b">HU-08</text>
+
+  <rect x="40" y="1640" width="920" height="36" fill="#059669"/>
+  <text x="64" y="1664" font-size="13.5" font-weight="700" fill="#ffffff">RNF</text>
+  <text x="128" y="1664" font-size="13.5" font-weight="700" fill="#ffffff">REQUERIMIENTOS NO FUNCIONALES</text>
+  <text x="760" y="1664" font-size="13.5" font-weight="700" fill="#ffffff">CATEGORÍA</text>
+
+  <rect x="40" y="1676" width="920" height="34" fill="#ffffff"/>
+  <text x="64" y="1698" font-size="13" font-weight="700" fill="#059669">RNF-01</text>
+  <text x="128" y="1698" font-size="13" fill="#1e293b">El Tutor IA devuelve una respuesta en menos de 5 segundos</text>
+  <text x="760" y="1698" font-size="13" fill="#64748b">Rendimiento</text>
+
+  <rect x="40" y="1710" width="920" height="34" fill="#f8fafc"/>
+  <text x="64" y="1732" font-size="13" font-weight="700" fill="#059669">RNF-02</text>
+  <text x="128" y="1732" font-size="13" fill="#1e293b">Las contraseñas se almacenan cifradas y nunca se devuelven en la API</text>
+  <text x="760" y="1732" font-size="13" fill="#64748b">Seguridad</text>
+
+  <rect x="40" y="1744" width="920" height="34" fill="#ffffff"/>
+  <text x="64" y="1766" font-size="13" font-weight="700" fill="#059669">RNF-03</text>
+  <text x="128" y="1766" font-size="13" fill="#1e293b">El modelo se ejecuta en local, sin enviar datos del estudiante a terceros</text>
+  <text x="760" y="1766" font-size="13" fill="#64748b">Privacidad</text>
+
+  <rect x="40" y="1778" width="920" height="34" fill="#f8fafc"/>
+  <text x="64" y="1800" font-size="13" font-weight="700" fill="#059669">RNF-04</text>
+  <text x="128" y="1800" font-size="13" fill="#1e293b">La interfaz es utilizable desde un celular de 360 px de ancho</text>
+  <text x="760" y="1800" font-size="13" fill="#64748b">Usabilidad</text>
+
+  <rect x="40" y="1812" width="920" height="34" fill="#ffffff"/>
+  <text x="64" y="1834" font-size="13" font-weight="700" fill="#059669">RNF-05</text>
+  <text x="128" y="1834" font-size="13" fill="#1e293b">El acceso a cada módulo se restringe según el rol del usuario</text>
+  <text x="760" y="1834" font-size="13" fill="#64748b">Seguridad</text>
+
+  <!-- 6. FORMATO HU -->
+  <circle cx="58" cy="1906" r="15" fill="#d97706"/>
+  <text x="58" y="1912" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">6</text>
+  <text x="86" y="1913" font-size="24" font-weight="800" fill="#0f172a">Del requerimiento a la historia de usuario</text>
+
+  <rect x="40" y="1934" width="920" height="150" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  <text x="66" y="1966" font-size="13" font-weight="800" fill="#94a3b8" letter-spacing="1">RF-04 CONVERTIDO EN HISTORIA</text>
+  <text x="66" y="1998" font-size="16" fill="#1e293b"><tspan font-weight="700" fill="#b45309">Como</tspan> estudiante, <tspan font-weight="700" fill="#b45309">quiero</tspan> pedir una pista al Tutor IA mientras resuelvo un ejercicio,</text>
+  <text x="66" y="2024" font-size="16" fill="#1e293b"><tspan font-weight="700" fill="#b45309">para</tspan> avanzar por mi cuenta sin que me den la respuesta.</text>
+  <line x1="66" y1="2044" x2="934" y2="2044" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="66" y="2070" font-size="13.5" fill="#475569"><tspan font-weight="700">Dado</tspan> un ejercicio abierto, <tspan font-weight="700">cuando</tspan> el estudiante pide una pista, <tspan font-weight="700">entonces</tspan> recibe una orientación sin la solución.</text>
+
+  <rect x="40" y="2106" width="920" height="96" rx="12" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="64" y="2138" font-size="15" font-weight="800" fill="#92400e">La diferencia que importa</text>
+  <text x="64" y="2164" font-size="14.5" fill="#78350f">El RF dice qué debe hacer el sistema; la HU dice quién lo necesita y para qué. Sin esa segunda parte,</text>
+  <text x="64" y="2185" font-size="14.5" fill="#78350f">el equipo construye funciones correctas que no resuelven el problema de nadie.</text>
+
+  <!-- PIE -->
+  <rect x="0" y="2234" width="1000" height="86" fill="#0f172a"/>
+  <text x="500" y="2268" text-anchor="middle" font-size="14" fill="#94a3b8">ESTUD-IA · Grupo 6 · Sección 31738</text>
+  <text x="500" y="2294" text-anchor="middle" font-size="14" fill="#64748b">Curso Integrador II: Software — Universidad Tecnológica del Perú</text>
+</svg>
