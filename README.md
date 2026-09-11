@@ -38,6 +38,10 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
     - [Product Owner](#product-owner)
     - [Scrum Master](#scrum-master)
     - [Developers](#developers)
+  - [Product Backlog](#product-backlog)
+    - [Resumen del Product Backlog](#resumen-del-product-backlog)
+    - [Épicas](#épicas)
+    - [Product Backlog completo](#product-backlog-completo)
   - [Product Goal](#product-goal)
   - [Sprints](#sprints)
   - [Primer Sprint](#primer-sprint)
@@ -47,38 +51,34 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
     - [Sprint Goal del Primer Sprint](#sprint-goal-del-primer-sprint)
   - [Sprint Backlog](#sprint-backlog)
   - [Definition of Done](#definition-of-done)
-- [5. Product Backlog](#5-product-backlog)
-  - [Resumen del Product Backlog](#resumen-del-product-backlog)
-  - [Épicas](#épicas)
-  - [Product Backlog completo](#product-backlog-completo)
-- [6. Tecnologías y herramientas](#6-tecnologías-y-herramientas)
+- [5. Tecnologías y herramientas](#5-tecnologías-y-herramientas)
   - [Front-End](#front-end)
   - [Back-End](#back-end)
   - [Base de datos](#base-de-datos)
   - [Inteligencia Artificial](#inteligencia-artificial)
   - [Herramientas de desarrollo](#herramientas-de-desarrollo)
-- [7. Arquitectura](#7-arquitectura)
+- [6. Arquitectura](#6-arquitectura)
   - [Diagrama de arquitectura](#diagrama-de-arquitectura)
   - [Componentes principales](#componentes-principales)
     - [Front-End](#front-end-1)
     - [Back-End](#back-end-1)
     - [Base de datos](#base-de-datos-1)
     - [Inteligencia Artificial](#inteligencia-artificial-1)
-- [8. Estructura del repositorio](#8-estructura-del-repositorio)
-- [9. Control de versiones y GitFlow](#9-control-de-versiones-y-gitflow)
+- [7. Estructura del repositorio](#7-estructura-del-repositorio)
+- [8. Control de versiones y GitFlow](#8-control-de-versiones-y-gitflow)
   - [Flujo de trabajo](#flujo-de-trabajo)
   - [GitFlow del proyecto](#gitflow-del-proyecto)
   - [Convención de ramas](#convención-de-ramas)
   - [Pull Requests](#pull-requests)
   - [Registro de Riesgos](#registro-de-riesgos)
   - [Catalogo de KPI y SLI](#catalogo-de-kpi-y-sli)
-- [10. Cómo ejecutar el proyecto](#10-cómo-ejecutar-el-proyecto)
+- [9. Cómo ejecutar el proyecto](#9-cómo-ejecutar-el-proyecto)
   - [Requisitos previos](#requisitos-previos)
-  - [Clonar el repositorio](#1-clonar-el-repositorio)
-  - [Configurar el Back-End](#2-configurar-el-back-end)
+  - [Clonar el repositorio](#clonar-el-repositorio)
+  - [Configurar el Back-End](#configurar-el-back-end)
   - [Configurar la base de datos](#configurar-la-base-de-datos)
-  - [Configurar el Front-End](#3-configurar-el-front-end)
-  - [Configurar el Tutor IA](#4-configurar-el-tutor-ia)
+  - [Configurar el Front-End](#configurar-el-front-end)
+  - [Configurar el Tutor IA](#configurar-el-tutor-ia)
 
 ---
 
@@ -114,6 +114,8 @@ La propuesta se centra en cuatro elementos:
 - **Ejercicios interactivos:** permiten practicar y comprobar los conocimientos adquiridos.
 - **Tutor IA:** permite realizar preguntas y recibir orientación durante el aprendizaje.
 - **Seguimiento del progreso:** permite visualizar resultados y avance académico.
+
+![Problema y Solucion](docs/img/solucion.jpeg)
 
 La finalidad no es reemplazar al docente, sino proporcionar al estudiante una herramienta de apoyo que pueda utilizar cuando necesite practicar, reforzar un tema o resolver una duda.
 
@@ -269,6 +271,45 @@ Los Developers participan en el análisis, diseño, desarrollo, pruebas e integr
 
 En este proyecto, algunos integrantes pueden asumir más de una responsabilidad debido al tamaño reducido del equipo.
 
+## Product Backlog
+
+El Product Backlog reúne las funcionalidades necesarias para desarrollar ESTUD-IA y permite ordenar el trabajo según su prioridad y valor para el producto.
+
+Actualmente está compuesto por:
+* 19 Historias de Usuario
+* 8 Épicas
+* 76 Story Points
+
+Las Historias de Usuario fueron priorizadas considerando principalmente el valor que aportan al estudiante y la evolución necesaria para construir progresivamente la plataforma.
+
+### Resumen del Product Backlog
+
+| Prioridad | Historias | Puntos |
+| :--- | :--- | :--- |
+| Alta | 8 | 40 |
+| Media | 2 | 5 |
+| Baja | 9 | 31 |
+| **Total** | **19** | **76** |
+
+### Épicas
+
+| Épica | Funcionalidad principal |
+| :--- | :--- |
+| Autenticación de Usuarios | Inicio y cierre de sesión. |
+| Gestión Académica | Consulta y administración de cursos. |
+| Gestión de Contenido | Consulta de contenidos educativos. |
+| Práctica y Evaluación | Resolución y consulta de resultados de ejercicios. |
+| Progreso Académico | Consulta del avance de aprendizaje. |
+| Tutor IA | Consultas y solicitud de pistas. |
+| Paneles y Accesos | Información diferenciada según el rol. |
+| Gestión de Usuarios | Consulta, registro y actualización de usuarios. |
+
+### Product Backlog completo
+
+[Ver Product Backlog e Historias de Usuario](https://utpedupe-my.sharepoint.com/:x:/g/personal/u21213646_utp_edu_pe/IQAbAZzNbjATQJbXT9jw_o-iAYPzDHymYvWIFzLT875iL4A?e=jtmpc3)
+
+El archivo contiene el detalle de las Historias de Usuario y sus criterios de aceptación.
+
 ## Product Goal
 
 El **Product Goal** de ESTUD-IA es:
@@ -375,46 +416,7 @@ Como mínimo:
 
 ---
 
-## 5. Product Backlog
-
-El Product Backlog reúne las funcionalidades necesarias para desarrollar ESTUD-IA y permite ordenar el trabajo según su prioridad y valor para el producto.
-
-Actualmente está compuesto por:
-* 19 Historias de Usuario
-* 8 Épicas
-* 76 Story Points
-
-Las Historias de Usuario fueron priorizadas considerando principalmente el valor que aportan al estudiante y la evolución necesaria para construir progresivamente la plataforma.
-
-### Resumen del Product Backlog
-
-| Prioridad | Historias | Puntos |
-| :--- | :--- | :--- |
-| Alta | 8 | 40 |
-| Media | 2 | 5 |
-| Baja | 9 | 31 |
-| **Total** | **19** | **76** |
-
-### Épicas
-
-| Épica | Funcionalidad principal |
-| :--- | :--- |
-| Autenticación de Usuarios | Inicio y cierre de sesión. |
-| Gestión Académica | Consulta y administración de cursos. |
-| Gestión de Contenido | Consulta de contenidos educativos. |
-| Práctica y Evaluación | Resolución y consulta de resultados de ejercicios. |
-| Progreso Académico | Consulta del avance de aprendizaje. |
-| Tutor IA | Consultas y solicitud de pistas. |
-| Paneles y Accesos | Información diferenciada según el rol. |
-| Gestión de Usuarios | Consulta, registro y actualización de usuarios. |
-
-### Product Backlog completo
-
-[Ver Product Backlog e Historias de Usuario](https://utpedupe-my.sharepoint.com/:x:/g/personal/u21213646_utp_edu_pe/IQAbAZzNbjATQJbXT9jw_o-iAYPzDHymYvWIFzLT875iL4A?e=jtmpc3)
-
-El archivo contiene el detalle de las Historias de Usuario y sus criterios de aceptación.
-
-## 6. Tecnologías y herramientas
+## 5. Tecnologías y herramientas
 
 ESTUD-IA utiliza tecnologías web que permiten separar la interfaz, la lógica de negocio, la persistencia de información y el componente de Inteligencia Artificial.
 
@@ -475,7 +477,7 @@ La integración completa del Tutor IA se encuentra en proceso de desarrollo.
 | **Figma** | Diseño y prototipado de interfaces. |
 | **Google Stitch** | Apoyo en exploración y generación de interfaces mediante IA. |
 
-## 7. Arquitectura
+## 6. Arquitectura
 
 ESTUD-IA utiliza una arquitectura web separada por responsabilidades.
 
@@ -503,7 +505,7 @@ MySQL permite almacenar y relacionar la información necesaria para el funcionam
 #### Inteligencia Artificial
 Ollama permite ejecutar el modelo de IA localmente y utilizarlo como parte del Tutor IA.
 
-## 8. Estructura del repositorio
+## 7. Estructura del repositorio
 
 El repositorio se divide principalmente entre el Front-End, Back-End y documentación.
 
@@ -513,7 +515,7 @@ El repositorio se divide principalmente entre el Front-End, Back-End y documenta
 
 ---
 
-## 9. Control de versiones y GitFlow
+## 8. Control de versiones y GitFlow
 
 El equipo utiliza Git y GitHub para controlar las versiones del código, gestionar las Historias de Usuario y revisar los cambios antes de integrarlos.
 
@@ -575,7 +577,7 @@ Se seleccionaron indicadores que representan tanto el valor de negocio (KPI) com
 
 ---
 
-## 10. Cómo ejecutar el proyecto
+## 9. Cómo ejecutar el proyecto
 
 ### Requisitos previos
 
@@ -590,14 +592,14 @@ Antes de ejecutar el proyecto se necesita tener instalado:
 
 **Importante:** El proyecto no utiliza Docker.
 
-### - Clonar el repositorio
+### Clonar el repositorio
 
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd ESTUD-IA
 ```
 
-### - Configurar el Back-End
+### Configurar el Back-End
 
 Ingresar a la carpeta del Back-End:
 
@@ -623,7 +625,7 @@ Generar la clave de la aplicación:
 php artisan key:generate
 ```
 
-### - Configurar la base de datos
+### Configurar la base de datos
 
 Crear una base de datos MySQL y configurar las credenciales en el archivo `.env`:
 
@@ -650,7 +652,7 @@ php artisan serve
 
 La API estará disponible en: `http://localhost:8000`
 
-### - Configurar el Front-End
+### Configurar el Front-End
 
 En otra terminal, ingresar a la carpeta del Front-End:
 
@@ -672,7 +674,7 @@ npm run dev
 
 La aplicación estará disponible en: `http://localhost:5173`
 
-### - Configurar el Tutor IA
+### Configurar el Tutor IA
 
 Para utilizar el modelo local de Inteligencia Artificial:
 
