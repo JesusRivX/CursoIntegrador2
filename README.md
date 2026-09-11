@@ -70,9 +70,9 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
   - [GitFlow del proyecto](#gitflow-del-proyecto)
   - [Convención de ramas](#convención-de-ramas)
   - [Pull Requests](#pull-requests)
-  - [Registro de Riesgos](#registro-de-riesgos)
-  - [Catalogo de KPI y SLI](#catalogo-de-kpi-y-sli)
-- [9. Cómo ejecutar el proyecto](#9-cómo-ejecutar-el-proyecto)
+- [9. Registro de Riesgos](#9-registro-de-riesgos)
+- [10. Catalogo de KPI y SLI](#10-catalogo-de-kpi-y-sli)
+- [11. Cómo ejecutar el proyecto](#11-cómo-ejecutar-el-proyecto)
   - [Requisitos previos](#requisitos-previos)
   - [Clonar el repositorio](#clonar-el-repositorio)
   - [Configurar el Back-End](#configurar-el-back-end)
@@ -559,7 +559,7 @@ Cada Pull Request debe describir el cambio realizado y relacionarse con la Histo
 
 La revisión por otro integrante ayuda a detectar errores y mantener una mejor calidad del código.
 
-### Registro de Riesgos
+## 9. Registro de Riesgos
 
 El registro de riesgos permite mantener identificadas las situaciones que requieren 
 seguimiento durante el proyecto. Para cada riesgo se establece una probabilidad y 
@@ -569,7 +569,7 @@ alcance, plazo, calidad o seguridad de la aplicación.
 
 ![Tabla de Riesgos](docs/img/tabla-riesgos.png)
 
-### Catalogo de KPI y SLI
+## 10. Catalogo de KPI y SLI
 
 Se seleccionaron indicadores que representan tanto el valor de negocio (KPI) como el nivel técnico del servicio (SLI), evitando tratar todo dato disponible como si fuera un indicador clave.
 
@@ -577,7 +577,7 @@ Se seleccionaron indicadores que representan tanto el valor de negocio (KPI) com
 
 ---
 
-## 9. Cómo ejecutar el proyecto
+## 11. Cómo ejecutar el proyecto
 
 ### Requisitos previos
 
