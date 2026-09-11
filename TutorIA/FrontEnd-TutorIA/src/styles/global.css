@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+[data-sileo-viewport="true"] {
+  z-index: 9999 !important;
+}

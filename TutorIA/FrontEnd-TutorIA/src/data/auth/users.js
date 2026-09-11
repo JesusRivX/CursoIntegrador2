@@ -54,7 +54,6 @@ export const users = [
     nivel: "Secundaria",
     grado: "4to",
     cursos: [1, 2, 3, 4],
-    estado: "Activo",
+    estado: "Inactivo",
   },
 ];
-

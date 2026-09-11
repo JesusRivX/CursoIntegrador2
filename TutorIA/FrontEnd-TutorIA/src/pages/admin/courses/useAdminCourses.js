@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { sileo } from "sileo";
 import { courses as cursosIniciales } from "../../../data/academic/courses";
 
 const initialForm = {
@@ -54,10 +55,6 @@ const useAdminCourses = () => {
     (course) => course.estado === "Activo",
   ).length;
 
-  const inactiveCourses = courses.filter(
-    (course) => course.estado === "Inactivo",
-  ).length;
-
   const primaryCourses = courses.filter(
     (course) => course.nivel === "Primaria",
   ).length;
@@ -68,10 +65,12 @@ const useAdminCourses = () => {
 
   const openCreateModal = () => {
     setEditingCourse(null);
+
     setForm({
       ...initialForm,
       temas: [],
     });
+
     setNewTopic("");
     setIsModalOpen(true);
   };
@@ -119,7 +118,14 @@ const useAdminCourses = () => {
   const handleAddTopic = () => {
     const topicName = newTopic.trim();
 
-    if (!topicName) return;
+    if (!topicName) {
+      sileo.warning({
+        title: "Tema vacío",
+        description: "Ingresa un nombre para el tema.",
+      });
+
+      return;
+    }
 
     const topic = {
       id: Date.now(),
@@ -132,6 +138,11 @@ const useAdminCourses = () => {
     }));
 
     setNewTopic("");
+
+    sileo.success({
+      title: "Tema agregado",
+      description: `El tema "${topicName}" fue agregado al curso.`,
+    });
   };
 
   const handleDeleteTopic = (topicId) => {
@@ -139,23 +150,40 @@ const useAdminCourses = () => {
       ...currentForm,
       temas: currentForm.temas.filter((topic) => topic.id !== topicId),
     }));
+
+    sileo.success({
+      title: "Tema eliminado",
+      description: "El tema fue eliminado correctamente.",
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!form.nombre.trim()) {
-      alert("Ingresa el nombre del curso.");
+      sileo.error({
+        title: "Nombre requerido",
+        description: "Ingresa el nombre del curso.",
+      });
+
       return;
     }
 
     if (!form.codigo.trim()) {
-      alert("Ingresa el código del curso.");
+      sileo.error({
+        title: "Código requerido",
+        description: "Ingresa el código del curso.",
+      });
+
       return;
     }
 
     if (!form.descripcion.trim()) {
-      alert("Ingresa una descripción.");
+      sileo.error({
+        title: "Descripción requerida",
+        description: "Ingresa una descripción.",
+      });
+
       return;
     }
 
@@ -176,6 +204,11 @@ const useAdminCourses = () => {
             : course,
         ),
       );
+
+      sileo.success({
+        title: "Curso actualizado",
+        description: `El curso "${form.nombre.trim()}" fue actualizado correctamente.`,
+      });
     } else {
       const newCourse = {
         id: Date.now(),
@@ -189,6 +222,11 @@ const useAdminCourses = () => {
       };
 
       setCourses((currentCourses) => [...currentCourses, newCourse]);
+
+      sileo.success({
+        title: "Curso creado",
+        description: `El curso "${newCourse.nombre}" fue creado correctamente.`,
+      });
     }
 
     closeModal();
@@ -208,6 +246,11 @@ const useAdminCourses = () => {
     if (selectedCourse?.id === course.id) {
       closeDetailModal();
     }
+
+    sileo.success({
+      title: "Curso eliminado",
+      description: `El curso "${course.nombre}" fue eliminado correctamente.`,
+    });
   };
 
   const toggleCourseStatus = (course) => {
@@ -230,31 +273,11 @@ const useAdminCourses = () => {
         estado: newStatus,
       }));
     }
-  };
 
-  const showAllCourses = () => {
-    setLevelFilter("Todos");
-    setStatusFilter("Todos");
-  };
-
-  const showActiveCourses = () => {
-    setStatusFilter("Activo");
-    setLevelFilter("Todos");
-  };
-
-  const showInactiveCourses = () => {
-    setStatusFilter("Inactivo");
-    setLevelFilter("Todos");
-  };
-
-  const showPrimaryCourses = () => {
-    setLevelFilter("Primaria");
-    setStatusFilter("Todos");
-  };
-
-  const showSecondaryCourses = () => {
-    setLevelFilter("Secundaria");
-    setStatusFilter("Todos");
+    sileo.success({
+      title: `Curso ${newStatus.toLowerCase()}`,
+      description: `El curso "${course.nombre}" ahora está ${newStatus.toLowerCase()}.`,
+    });
   };
 
   const getLevelStyles = (level) => {
@@ -287,7 +310,6 @@ const useAdminCourses = () => {
 
     totalCourses,
     activeCourses,
-    inactiveCourses,
     primaryCourses,
     secondaryCourses,
 
@@ -314,12 +336,6 @@ const useAdminCourses = () => {
     handleSubmit,
     handleDelete,
     toggleCourseStatus,
-
-    showAllCourses,
-    showActiveCourses,
-    showInactiveCourses,
-    showPrimaryCourses,
-    showSecondaryCourses,
 
     getLevelStyles,
     getStatusStyles,

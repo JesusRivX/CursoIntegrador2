@@ -20,34 +20,25 @@ const AdminUsers = () => {
   const {
     filteredUsers,
     stats,
-
     search,
     setSearch,
-
     roleFilter,
     setRoleFilter,
-
     isModalOpen,
     isDetailModalOpen,
-
     editingUser,
     selectedUser,
-
     form,
     showPassword,
-
     openCreateModal,
     openEditModal,
     closeModal,
-
     openDetailModal,
     closeDetailModal,
-
     handleFormChange,
     handleRoleChange,
     handleCourseToggle,
     togglePasswordVisibility,
-
     handleSubmit,
     handleDelete,
   } = useAdminUsers();
@@ -56,13 +47,10 @@ const AdminUsers = () => {
     switch (role) {
       case "Estudiante":
         return "bg-blue-50 text-blue-600";
-
       case "Docente":
         return "bg-violet-50 text-violet-600";
-
       case "Administrador":
         return "bg-emerald-50 text-emerald-600";
-
       default:
         return "bg-slate-50 text-slate-600";
     }
@@ -72,13 +60,10 @@ const AdminUsers = () => {
     switch (role) {
       case "Estudiante":
         return Users;
-
       case "Docente":
         return GraduationCap;
-
       case "Administrador":
         return ShieldCheck;
-
       default:
         return Users;
     }
@@ -106,8 +91,6 @@ const AdminUsers = () => {
 
   return (
     <div className="space-y-5 pb-8">
-      {/* HEADER */}
-
       <section className="flex flex-col gap-5 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-600">
@@ -134,18 +117,9 @@ const AdminUsers = () => {
         </button>
       </section>
 
-      {/* ESTADÍSTICAS */}
-
+      {/* Estadísticas */}
       <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-        <button
-          type="button"
-          onClick={() => setRoleFilter("Todos")}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            roleFilter === "Todos"
-              ? "border-blue-200 ring-2 ring-blue-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
             <Users className="h-5 w-5" />
           </div>
@@ -155,17 +129,9 @@ const AdminUsers = () => {
           <p className="mt-1 text-2xl font-bold text-slate-900">
             {stats.total}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => setRoleFilter("Estudiante")}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            roleFilter === "Estudiante"
-              ? "border-blue-200 ring-2 ring-blue-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
             <Users className="h-5 w-5" />
           </div>
@@ -175,17 +141,9 @@ const AdminUsers = () => {
           <p className="mt-1 text-2xl font-bold text-slate-900">
             {stats.estudiantes}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => setRoleFilter("Docente")}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            roleFilter === "Docente"
-              ? "border-violet-200 ring-2 ring-violet-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
             <GraduationCap className="h-5 w-5" />
           </div>
@@ -195,17 +153,9 @@ const AdminUsers = () => {
           <p className="mt-1 text-2xl font-bold text-slate-900">
             {stats.docentes}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => setRoleFilter("Administrador")}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            roleFilter === "Administrador"
-              ? "border-emerald-200 ring-2 ring-emerald-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
             <ShieldCheck className="h-5 w-5" />
           </div>
@@ -217,11 +167,10 @@ const AdminUsers = () => {
           <p className="mt-1 text-2xl font-bold text-slate-900">
             {stats.administradores}
           </p>
-        </button>
+        </div>
       </section>
 
-      {/* TABLA */}
-
+      {/* Tabla */}
       <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
         <div className="border-b border-slate-100 p-5 sm:p-6">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -243,11 +192,8 @@ const AdminUsers = () => {
               className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-600 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
             >
               <option value="Todos">Todos los roles</option>
-
               <option value="Estudiante">Estudiantes</option>
-
               <option value="Docente">Docentes</option>
-
               <option value="Administrador">Administradores</option>
             </select>
           </div>
@@ -329,7 +275,6 @@ const AdminUsers = () => {
                         )}`}
                       >
                         <RoleIcon className="h-3.5 w-3.5" />
-
                         {user.rol}
                       </span>
                     </td>
@@ -408,8 +353,7 @@ const AdminUsers = () => {
         </div>
       </section>
 
-      {/* MODAL CREAR / EDITAR */}
-
+      {/* Modal crear / editar */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm">
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl">
@@ -461,9 +405,7 @@ const AdminUsers = () => {
                   className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
                 >
                   <option value="Estudiante">Estudiante</option>
-
                   <option value="Docente">Docente</option>
-
                   <option value="Administrador">Administrador</option>
                 </select>
               </div>
@@ -488,8 +430,6 @@ const AdminUsers = () => {
                   className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
                 />
               </div>
-
-              {/* ESTUDIANTE */}
 
               {form.rol === "Estudiante" && (
                 <div className="space-y-5 rounded-2xl border border-blue-100 bg-blue-50/50 p-4">
@@ -521,9 +461,7 @@ const AdminUsers = () => {
                       className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-50"
                     >
                       <option value="">Selecciona un nivel</option>
-
                       <option value="Primaria">Primaria</option>
-
                       <option value="Secundaria">Secundaria</option>
                     </select>
                   </div>
@@ -540,17 +478,11 @@ const AdminUsers = () => {
                       className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-50"
                     >
                       <option value="">Selecciona un grado</option>
-
                       <option value="1ro">1ro</option>
-
                       <option value="2do">2do</option>
-
                       <option value="3ro">3ro</option>
-
                       <option value="4to">4to</option>
-
                       <option value="5to">5to</option>
-
                       <option value="6to">6to</option>
                     </select>
                   </div>
@@ -595,8 +527,6 @@ const AdminUsers = () => {
                 </div>
               )}
 
-              {/* DOCENTE */}
-
               {form.rol === "Docente" && (
                 <div className="space-y-5 rounded-2xl border border-violet-100 bg-violet-50/50 p-4">
                   <div className="flex items-center gap-2">
@@ -627,9 +557,7 @@ const AdminUsers = () => {
                       className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-50"
                     >
                       <option value="">Selecciona un nivel</option>
-
                       <option value="Primaria">Primaria</option>
-
                       <option value="Secundaria">Secundaria</option>
                     </select>
                   </div>
@@ -651,8 +579,6 @@ const AdminUsers = () => {
                 </div>
               )}
 
-              {/* ESTADO */}
-
               <div>
                 <label className="mb-2 block text-xs font-bold text-slate-600">
                   Estado
@@ -665,12 +591,9 @@ const AdminUsers = () => {
                   className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-50"
                 >
                   <option value="Activo">Activo</option>
-
                   <option value="Inactivo">Inactivo</option>
                 </select>
               </div>
-
-              {/* CONTRASEÑA */}
 
               <div>
                 <label className="mb-2 block text-xs font-bold text-slate-600">
@@ -701,8 +624,6 @@ const AdminUsers = () => {
                 </div>
               </div>
 
-              {/* BOTONES */}
-
               <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
                 <button
                   type="button"
@@ -724,8 +645,7 @@ const AdminUsers = () => {
         </div>
       )}
 
-      {/* MODAL DETALLES */}
-
+      {/* Modal detalles */}
       {isDetailModalOpen && selectedUser && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm">
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl">
@@ -758,8 +678,6 @@ const AdminUsers = () => {
             </div>
 
             <div className="space-y-5 p-6">
-              {/* PERFIL */}
-
               <div className="flex items-center gap-4 rounded-2xl bg-slate-50 p-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-lg font-bold text-slate-600 shadow-sm">
                   {selectedUser.nombre.charAt(0).toUpperCase()}
@@ -775,8 +693,6 @@ const AdminUsers = () => {
                   </p>
                 </div>
               </div>
-
-              {/* INFORMACIÓN GENERAL */}
 
               <div>
                 <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">
@@ -800,7 +716,6 @@ const AdminUsers = () => {
                             )}`}
                           >
                             <RoleIcon className="h-3.5 w-3.5" />
-
                             {selectedUser.rol}
                           </span>
                         );
@@ -833,8 +748,6 @@ const AdminUsers = () => {
                   </div>
                 </div>
               </div>
-
-              {/* ESTUDIANTE */}
 
               {selectedUser.rol === "Estudiante" && (
                 <div>
@@ -889,8 +802,6 @@ const AdminUsers = () => {
                 </div>
               )}
 
-              {/* DOCENTE */}
-
               {selectedUser.rol === "Docente" && (
                 <div>
                   <div className="mb-3 flex items-center gap-2">
@@ -921,8 +832,6 @@ const AdminUsers = () => {
                 </div>
               )}
 
-              {/* ADMINISTRADOR */}
-
               {selectedUser.rol === "Administrador" && (
                 <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-4">
                   <div className="flex items-center gap-3">
@@ -942,8 +851,6 @@ const AdminUsers = () => {
                   </div>
                 </div>
               )}
-
-              {/* CERRAR */}
 
               <div className="border-t border-slate-100 pt-5">
                 <button

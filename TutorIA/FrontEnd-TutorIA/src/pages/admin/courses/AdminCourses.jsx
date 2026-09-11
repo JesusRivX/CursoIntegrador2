@@ -2,7 +2,6 @@ import {
   BookOpen,
   BookMarked,
   CheckCircle2,
-  CircleOff,
   Edit3,
   Eye,
   Layers3,
@@ -10,6 +9,7 @@ import {
   Search,
   Trash2,
   X,
+  CircleOff,
 } from "lucide-react";
 
 import useAdminCourses from "./useAdminCourses";
@@ -27,7 +27,6 @@ const AdminCourses = () => {
 
     totalCourses,
     activeCourses,
-    inactiveCourses,
     primaryCourses,
     secondaryCourses,
 
@@ -54,12 +53,6 @@ const AdminCourses = () => {
     handleSubmit,
     handleDelete,
     toggleCourseStatus,
-
-    showAllCourses,
-    showActiveCourses,
-    showInactiveCourses,
-    showPrimaryCourses,
-    showSecondaryCourses,
 
     getLevelStyles,
     getStatusStyles,
@@ -93,16 +86,8 @@ const AdminCourses = () => {
         </button>
       </section>
 
-      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
-        <button
-          type="button"
-          onClick={showAllCourses}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            levelFilter === "Todos" && statusFilter === "Todos"
-              ? "border-blue-200 ring-2 ring-blue-50"
-              : "border-slate-200/80"
-          }`}
-        >
+      <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
             <BookOpen className="h-5 w-5" />
           </div>
@@ -112,17 +97,9 @@ const AdminCourses = () => {
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             {totalCourses}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={showActiveCourses}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            statusFilter === "Activo"
-              ? "border-emerald-200 ring-2 ring-emerald-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
             <CheckCircle2 className="h-5 w-5" />
           </div>
@@ -132,37 +109,9 @@ const AdminCourses = () => {
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             {activeCourses}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={showInactiveCourses}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            statusFilter === "Inactivo"
-              ? "border-slate-300 ring-2 ring-slate-100"
-              : "border-slate-200/80"
-          }`}
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-            <CircleOff className="h-5 w-5" />
-          </div>
-
-          <p className="mt-4 text-xs font-medium text-slate-400">Inactivos</p>
-
-          <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-            {inactiveCourses}
-          </p>
-        </button>
-
-        <button
-          type="button"
-          onClick={showPrimaryCourses}
-          className={`rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
-            levelFilter === "Primaria"
-              ? "border-blue-200 ring-2 ring-blue-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
             <BookMarked className="h-5 w-5" />
           </div>
@@ -172,17 +121,9 @@ const AdminCourses = () => {
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             {primaryCourses}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={showSecondaryCourses}
-          className={`col-span-2 rounded-2xl border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:col-span-1 ${
-            levelFilter === "Secundaria"
-              ? "border-violet-200 ring-2 ring-violet-50"
-              : "border-slate-200/80"
-          }`}
-        >
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
             <Layers3 className="h-5 w-5" />
           </div>
@@ -192,7 +133,7 @@ const AdminCourses = () => {
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
             {secondaryCourses}
           </p>
-        </button>
+        </div>
       </section>
 
       <section className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">

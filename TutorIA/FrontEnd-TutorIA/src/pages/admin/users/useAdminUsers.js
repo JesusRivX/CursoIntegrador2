@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { sileo } from "sileo";
 import { users as initialUsers } from "../../../data/auth/users";
 
 const createEmptyForm = () => ({
@@ -62,9 +63,9 @@ const validateUserForm = (form) => {
 };
 
 const buildUserData = (form) => ({
-  nombre: form.nombre,
+  nombre: form.nombre.trim(),
   rol: form.rol,
-  codigo: form.codigo,
+  codigo: form.codigo.trim(),
   password: form.password,
   estado: form.estado,
 
@@ -145,8 +146,11 @@ const useAdminUsers = () => {
   const stats = useMemo(
     () => ({
       total: users.length,
+
       estudiantes: users.filter((user) => user.rol === "Estudiante").length,
+
       docentes: users.filter((user) => user.rol === "Docente").length,
+
       administradores: users.filter((user) => user.rol === "Administrador")
         .length,
     }),
@@ -211,6 +215,7 @@ const useAdminUsers = () => {
 
       return {
         ...currentForm,
+
         cursos: isSelected
           ? currentForm.cursos.filter((item) => item !== courseId)
           : [...currentForm.cursos, courseId],
@@ -229,14 +234,24 @@ const useAdminUsers = () => {
     };
 
     setUsers((currentUsers) => [...currentUsers, newUser]);
+
+    sileo.success({
+      title: "Usuario creado",
+      description: `El usuario "${newUser.nombre}" fue creado correctamente.`,
+    });
   };
 
   const updateUser = (userId, formData) => {
+    const updatedUser = buildUpdatedUser(editingUser, formData);
+
     setUsers((currentUsers) =>
-      currentUsers.map((user) =>
-        user.id === userId ? buildUpdatedUser(user, formData) : user,
-      ),
+      currentUsers.map((user) => (user.id === userId ? updatedUser : user)),
     );
+
+    sileo.success({
+      title: "Usuario actualizado",
+      description: `Los datos de "${updatedUser.nombre}" fueron actualizados correctamente.`,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -245,7 +260,11 @@ const useAdminUsers = () => {
     const validationError = validateUserForm(form);
 
     if (validationError) {
-      alert(validationError);
+      sileo.error({
+        title: "Datos incompletos",
+        description: validationError,
+      });
+
       return;
     }
 
@@ -268,11 +287,21 @@ const useAdminUsers = () => {
     setUsers((currentUsers) =>
       currentUsers.filter((currentUser) => currentUser.id !== user.id),
     );
+
+    if (selectedUser?.id === user.id) {
+      closeDetailModal();
+    }
+
+    sileo.success({
+      title: "Usuario eliminado",
+      description: `El usuario "${user.nombre}" fue eliminado correctamente.`,
+    });
   };
 
   return {
     users,
     filteredUsers,
+
     stats,
 
     search,
@@ -300,6 +329,7 @@ const useAdminUsers = () => {
     handleFormChange,
     handleRoleChange,
     handleCourseToggle,
+
     togglePasswordVisibility,
 
     handleSubmit,

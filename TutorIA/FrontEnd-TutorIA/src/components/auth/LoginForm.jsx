@@ -1,7 +1,3 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { sileo } from "sileo";
-import { users } from "../../data/auth/users";
 import {
   GraduationCap,
   BookOpen,
@@ -11,17 +7,17 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import useLoginForm from "./useLoginForm";
+
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    rol: "Estudiante",
-    codigo: "",
-    password: "",
-  });
-
-  console.log(formData);
-
-  const [showPassword, setShowPassword] = useState(false);
+  const {
+    formData,
+    showPassword,
+    handleChange,
+    handleRoleChange,
+    togglePasswordVisibility,
+    handleSubmit,
+  } = useLoginForm();
 
   const roles = [
     {
@@ -41,101 +37,10 @@ const LoginForm = () => {
     },
   ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleRoleChange = (rol) => {
-    setFormData((prev) => ({
-      ...prev,
-      rol,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (Object.values(formData).some((value) => !value.trim())) {
-      sileo.error({
-        title: "Campos incompletos",
-        description: "Por favor, completa todos los campos para continuar.",
-      });
-      return;
-    }
-
-    const usuarioEncontrado = users.find(
-      (user) =>
-        user.rol === formData.rol &&
-        user.codigo === formData.codigo &&
-        user.password === formData.password,
-    );
-
-    if (!usuarioEncontrado) {
-      sileo.error({
-        title: "Credenciales incorrectas",
-      });
-      return;
-    }
-
-    if (usuarioEncontrado.estado !== "Activo") {
-      sileo.error({
-        title: "Usuario inactivo",
-        description:
-          "Tu cuenta se encuentra inactiva. Comunícate con el administrador.",
-      });
-      return;
-    }
-
-    sileo.success({
-      title: "Login exitoso",
-    });
-
-    console.log("Login exitoso:", usuarioEncontrado);
-
-    // ============================================================
-    // GUARDAR USUARIO SEGÚN EL ROL
-    // ============================================================
-
-    switch (usuarioEncontrado.rol) {
-      case "Estudiante":
-        localStorage.setItem("studentUser", JSON.stringify(usuarioEncontrado));
-
-        navigate("/app/estudiante", {
-          state: { user: usuarioEncontrado },
-        });
-        break;
-
-      case "Docente":
-        localStorage.setItem("teacherUser", JSON.stringify(usuarioEncontrado));
-
-        navigate("/app/docente", {
-          state: { user: usuarioEncontrado },
-        });
-        break;
-
-      case "Administrador":
-        localStorage.setItem("adminUser", JSON.stringify(usuarioEncontrado));
-
-        navigate("/app/admin", {
-          state: { user: usuarioEncontrado },
-        });
-        break;
-
-      default:
-        console.log("Rol no válido");
-    }
-  };
-
   return (
     <div className="relative min-h-screen bg-[url('../../public/fondo_login.webp')] bg-cover bg-center bg-no-repeat text-slate-800 before:absolute before:inset-0 before:bg-white/70">
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-6 py-10">
         <div className="grid w-full items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Informacion */}
           <section className="mx-auto hidden w-full max-w-xl lg:block">
             <div className="mb-8 flex items-center gap-5">
               <img
@@ -176,7 +81,6 @@ const LoginForm = () => {
             </div>
           </section>
 
-          {/* Formulario */}
           <section className="mx-auto w-full max-w-md">
             <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/60 sm:p-9">
               <div className="mb-7">
@@ -207,6 +111,7 @@ const LoginForm = () => {
                         }`}
                       >
                         <Icon className="h-5 w-5" />
+
                         {role.label}
                       </button>
                     );
@@ -214,7 +119,6 @@ const LoginForm = () => {
                 </div>
               </div>
 
-              {/* Formulario */}
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label
@@ -256,7 +160,7 @@ const LoginForm = () => {
 
                     <button
                       type="button"
-                      onClick={() => setShowPassword((prev) => !prev)}
+                      onClick={togglePasswordVisibility}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-blue-600"
                       aria-label={
                         showPassword
