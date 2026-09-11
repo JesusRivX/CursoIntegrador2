@@ -47,39 +47,38 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
     - [Sprint Goal del Primer Sprint](#sprint-goal-del-primer-sprint)
   - [Sprint Backlog](#sprint-backlog)
   - [Definition of Done](#definition-of-done)
-  - [5. Product Backlog](#5-product-backlog)
-    - [Resumen del Product Backlog](#resumen-del-product-backlog)
-    - [Épicas](#épicas)
-    - [Product Backlog completo](#product-backlog-completo)
-  - [6. Tecnologías y herramientas](#6-tecnologías-y-herramientas)
-    - [Front-End](#front-end)
-    - [Back-End](#back-end)
-    - [Base de datos](#base-de-datos)
-    - [Inteligencia Artificial](#inteligencia-artificial)
-    - [Herramientas de desarrollo](#herramientas-de-desarrollo)
-  - [7. Arquitectura](#7-arquitectura)
-    - [Diagrama de arquitectura](#diagrama-de-arquitectura)
-    - [Componentes principales](#componentes-principales)
-      - [Front-End](#front-end-1)
-      - [Back-End](#back-end-1)
-      - [Base de datos](#base-de-datos-1)
-      - [Inteligencia Artificial](#inteligencia-artificial-1)
-  - [8. Estructura del repositorio](#8-estructura-del-repositorio)
-  - [9. Control de versiones y GitFlow](#9-control-de-versiones-y-gitflow)
-    - [Flujo de trabajo](#flujo-de-trabajo)
-    - [GitFlow del proyecto](#gitflow-del-proyecto)
-    - [Convención de ramas](#convención-de-ramas)
-    - [Pull Requests](#pull-requests)
-    - [Registro de Riesgos](#registro-de-riesgos)
-    - [Catalogo de KPI y SLI](#catalogo-de-kpi-y-sli)
-  - [10. Cómo ejecutar el proyecto](#10-cómo-ejecutar-el-proyecto)
-    - [Requisitos previos](#requisitos-previos)
-    - [1. Clonar el repositorio](#1-clonar-el-repositorio)
-    - [2. Configurar el Back-End](#2-configurar-el-back-end)
-      - [Configurar la base de datos](#configurar-la-base-de-datos)
-    - [3. Configurar el Front-End](#3-configurar-el-front-end)
-    - [4. Configurar el Tutor IA](#4-configurar-el-tutor-ia)
-  - [Equipo](#equipo)
+- [5. Product Backlog](#5-product-backlog)
+  - [Resumen del Product Backlog](#resumen-del-product-backlog)
+  - [Épicas](#épicas)
+  - [Product Backlog completo](#product-backlog-completo)
+- [6. Tecnologías y herramientas](#6-tecnologías-y-herramientas)
+  - [Front-End](#front-end)
+  - [Back-End](#back-end)
+  - [Base de datos](#base-de-datos)
+  - [Inteligencia Artificial](#inteligencia-artificial)
+  - [Herramientas de desarrollo](#herramientas-de-desarrollo)
+- [7. Arquitectura](#7-arquitectura)
+  - [Diagrama de arquitectura](#diagrama-de-arquitectura)
+  - [Componentes principales](#componentes-principales)
+    - [Front-End](#front-end-1)
+    - [Back-End](#back-end-1)
+    - [Base de datos](#base-de-datos-1)
+    - [Inteligencia Artificial](#inteligencia-artificial-1)
+- [8. Estructura del repositorio](#8-estructura-del-repositorio)
+- [9. Control de versiones y GitFlow](#9-control-de-versiones-y-gitflow)
+  - [Flujo de trabajo](#flujo-de-trabajo)
+  - [GitFlow del proyecto](#gitflow-del-proyecto)
+  - [Convención de ramas](#convención-de-ramas)
+  - [Pull Requests](#pull-requests)
+  - [Registro de Riesgos](#registro-de-riesgos)
+  - [Catalogo de KPI y SLI](#catalogo-de-kpi-y-sli)
+- [10. Cómo ejecutar el proyecto](#10-cómo-ejecutar-el-proyecto)
+  - [Requisitos previos](#requisitos-previos)
+  - [Clonar el repositorio](#1-clonar-el-repositorio)
+  - [Configurar el Back-End](#2-configurar-el-back-end)
+  - [Configurar la base de datos](#configurar-la-base-de-datos)
+  - [Configurar el Front-End](#3-configurar-el-front-end)
+  - [Configurar el Tutor IA](#4-configurar-el-tutor-ia)
 
 ---
 
@@ -508,37 +507,7 @@ Ollama permite ejecutar el modelo de IA localmente y utilizarlo como parte del T
 
 El repositorio se divide principalmente entre el Front-End, Back-End y documentación.
 
-```text
-ESTUD-IA/
-│
-├── Backend-TutorIA/
-│   ├── app/
-│   │   ├── Http/
-│   │   │   └── Controllers/
-│   │   ├── Models/
-│   │   └── Providers/
-│   │
-│   ├── database/
-│   │   ├── migrations/
-│   │   └── seeders/
-│   │
-│   ├── routes/
-│   │   ├── api.php
-│   │   └── web.php
-│   │
-│   └── tests/
-│
-├── FrontEnd-TutorIA/
-│   ├── src/
-│   │   ├── routes/
-│   │   ├── styles/
-│   │   └── assets/
-│   │
-│   └── public/
-│
-└── docs/
-    └── img/
-```
+![Estructura del Repositorio](docs/img/estructura_repositorio.jpeg)
 
 > **Nota:** La separación de directorios permite trabajar de forma independiente en cada capa de la aplicación y facilita la integración continua del proyecto.
 
@@ -560,7 +529,7 @@ Este flujo permite relacionar cada cambio realizado en el código con una funcio
 
 El siguiente diagrama representa el flujo de trabajo utilizado por el equipo durante el desarrollo.
 
-![GitFlow](docs/img/git_flow.jpeg)
+![GitFlow](docs/img/git-flow.jpeg)
 
 El flujo busca que los cambios pasen por una revisión antes de incorporarse a las ramas principales del proyecto.
 
@@ -621,14 +590,14 @@ Antes de ejecutar el proyecto se necesita tener instalado:
 
 **Importante:** El proyecto no utiliza Docker.
 
-### 1. Clonar el repositorio
+### - Clonar el repositorio
 
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd ESTUD-IA
 ```
 
-### 2. Configurar el Back-End
+### - Configurar el Back-End
 
 Ingresar a la carpeta del Back-End:
 
@@ -654,7 +623,7 @@ Generar la clave de la aplicación:
 php artisan key:generate
 ```
 
-#### Configurar la base de datos
+### - Configurar la base de datos
 
 Crear una base de datos MySQL y configurar las credenciales en el archivo `.env`:
 
@@ -681,7 +650,7 @@ php artisan serve
 
 La API estará disponible en: `http://localhost:8000`
 
-### 3. Configurar el Front-End
+### - Configurar el Front-End
 
 En otra terminal, ingresar a la carpeta del Front-End:
 
@@ -703,7 +672,7 @@ npm run dev
 
 La aplicación estará disponible en: `http://localhost:5173`
 
-### 4. Configurar el Tutor IA
+### - Configurar el Tutor IA
 
 Para utilizar el modelo local de Inteligencia Artificial:
 
@@ -718,15 +687,6 @@ ollama serve
 ```
 
 Una vez configurado, Laravel podrá comunicarse con Ollama para procesar las consultas del Tutor IA.
-
-## Equipo
-
-| Integrante | Rol |
-| --- | --- |
-| Jesús Rivera | Desarrollo |
-| Alonso Quispe | Desarrollo |
-| Renato Ninatanta | Desarrollo |
-| Ben Alanya | Desarrollo |
 
 ---
 
