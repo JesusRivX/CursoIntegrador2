@@ -70,6 +70,8 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
     - [GitFlow del proyecto](#gitflow-del-proyecto)
     - [Convención de ramas](#convención-de-ramas)
     - [Pull Requests](#pull-requests)
+    - [Registro de Riesgos](#registro-de-riesgos)
+    - [Catalogo de KPI y SLI](#catalogo-de-kpi-y-sli)
   - [10. Cómo ejecutar el proyecto](#10-cómo-ejecutar-el-proyecto)
     - [Requisitos previos](#requisitos-previos)
     - [1. Clonar el repositorio](#1-clonar-el-repositorio)
@@ -550,17 +552,7 @@ Cada Historia de Usuario se relaciona con un Issue y se desarrolla en una rama i
 
 ### Flujo de trabajo
 
-```mermaid
-graph TD
-    HU[Historia de Usuario] --> Issue[Issue]
-    Issue --> Rama[Rama]
-    Rama --> Commits[Commits]
-    Commits --> PR1[Pull Request]
-    PR1 --> Develop[develop]
-    Develop --> PR2[Pull Request]
-    PR2 --> Main[main]
-    Main --> Despliegue[Despliegue]
-```
+![Flujo de trabajo](docs/img/flujo-trabajo.png)
 
 Este flujo permite relacionar cada cambio realizado en el código con una funcionalidad concreta del Product Backlog.
 
@@ -589,18 +581,28 @@ Los Pull Requests permiten revisar los cambios antes de integrarlos.
 
 El flujo utilizado es:
 
-```mermaid
-graph TD
-    RamaHU[Rama de Historia de Usuario] --> PR1[Pull Request]
-    PR1 --> Develop[develop]
-    Develop --> Validacion[Validación]
-    Validacion --> PR2[Pull Request]
-    PR2 --> Main[main]
-```
+![Flujo de Pull Requests](docs/img/flujo-pull-request.png)
+
 
 Cada Pull Request debe describir el cambio realizado y relacionarse con la Historia de Usuario o Issue correspondiente.
 
 La revisión por otro integrante ayuda a detectar errores y mantener una mejor calidad del código.
+
+### Registro de Riesgos
+
+El registro de riesgos permite mantener identificadas las situaciones que requieren 
+seguimiento durante el proyecto. Para cada riesgo se establece una probabilidad y 
+un impacto, utilizando una escala de 1 a 5. El nivel se obtiene multiplicando ambos 
+valores, lo que permite priorizar los riesgos que podrían afectar en mayor medida el 
+alcance, plazo, calidad o seguridad de la aplicación.
+
+![Tabla de Riesgos](docs/img/tabla-riesgos.png)
+
+### Catalogo de KPI y SLI
+
+Se seleccionaron indicadores que representan tanto el valor de negocio (KPI) como el nivel técnico del servicio (SLI), evitando tratar todo dato disponible como si fuera un indicador clave.
+
+![Tabla de KPI](docs/img/tabla-kpi.png)
 
 ---
 
