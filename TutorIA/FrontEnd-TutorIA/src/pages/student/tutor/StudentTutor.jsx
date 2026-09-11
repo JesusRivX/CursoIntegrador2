@@ -1,133 +1,28 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  Bot,
-  CheckCircle2,
-  Lightbulb,
-  MessageCircle,
-  Send,
-  Sparkles,
-  User,
-} from "lucide-react";
+import { Bot, Lightbulb, Send, User } from "lucide-react";
+
+import useStudentTutor from "./useStudentTutor";
 
 const StudentTutor = () => {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [isTyping, setIsTyping] = useState(false);
-
-  const messagesEndRef = useRef(null);
-
-  // ============================================================
-  // SCROLL AUTOMÁTICO DEL CHAT
-  // ============================================================
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-    });
-  }, [messages, isTyping]);
-
-  // ============================================================
-  // SUGERENCIAS
-  // ============================================================
-
-  const suggestions = [
-    {
-      icon: Lightbulb,
-      title: "Explícame un tema",
-      text: "Aprende un concepto paso a paso.",
-      message: "Explícame un tema",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Ayúdame con un ejercicio",
-      text: "Resolvamos un ejercicio juntos.",
-      message: "Ayúdame con un ejercicio",
-    },
-    {
-      icon: Sparkles,
-      title: "Quiero practicar",
-      text: "Pon a prueba tus conocimientos.",
-      message: "Quiero practicar",
-    },
-    {
-      icon: MessageCircle,
-      title: "Hazme una pregunta",
-      text: "Comprueba cuánto sabes.",
-      message: "Hazme una pregunta",
-    },
-  ];
-
-  // ============================================================
-  // USAR SUGERENCIA
-  // ============================================================
-
-  const handleSuggestion = (suggestion) => {
-    setMessage(suggestion);
-  };
-
-  // ============================================================
-  // ENVIAR MENSAJE
-  // ============================================================
-
-  const sendMessage = () => {
-    const cleanMessage = message.trim();
-
-    if (!cleanMessage || isTyping) {
-      return;
-    }
-
-    const userMessage = {
-      id: Date.now(),
-      role: "user",
-      text: cleanMessage,
-    };
-
-    setMessages((current) => [...current, userMessage]);
-    setMessage("");
-    setIsTyping(true);
-
-    // ==========================================================
-    // RESPUESTA TEMPORAL
-    // Aquí posteriormente conectaremos tu backend / modelo IA.
-    // ==========================================================
-
-    setTimeout(() => {
-      const assistantMessage = {
-        id: Date.now() + 1,
-        role: "assistant",
-        text: "Entendido. Soy tu Tutor IA. Aquí conectaremos posteriormente el modelo de inteligencia artificial para responder tus preguntas, explicar conceptos y ayudarte a resolver ejercicios.",
-      };
-
-      setMessages((current) => [...current, assistantMessage]);
-      setIsTyping(false);
-    }, 900);
-  };
+  const {
+    message,
+    setMessage,
+    messages,
+    isTyping,
+    messagesEndRef,
+    suggestions,
+    handleSuggestion,
+    sendMessage,
+    handleKeyDown,
+  } = useStudentTutor();
 
   return (
     <div className="flex h-[calc(100vh-80px)] min-h-0 w-full flex-col overflow-hidden bg-[#f7f9fc]">
-      {/* ======================================================
-          CONTENEDOR PRINCIPAL
-      ====================================================== */}
-
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        {/* ====================================================
-            ÁREA DE CONVERSACIÓN
-        ==================================================== */}
-
         <main className="min-h-0 flex-1 overflow-hidden">
           <div className="h-full overflow-y-auto overscroll-contain">
             {messages.length === 0 ? (
-              /* ==================================================
-                 PANTALLA INICIAL
-              ================================================== */
-
               <div className="flex min-h-full items-center justify-center px-5 py-8 sm:px-8">
                 <div className="w-full max-w-5xl">
-                  {/* ==================================================
-                      PRESENTACIÓN
-                  ================================================== */}
-
                   <div className="mx-auto max-w-2xl text-center">
                     <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[26px] bg-slate-950 text-white shadow-xl shadow-blue-100">
                       <div className="absolute inset-0 rounded-[26px] bg-blue-600 opacity-20 blur-xl" />
@@ -144,10 +39,6 @@ const StudentTutor = () => {
                       cualquier tema que quieras comprender mejor.
                     </p>
                   </div>
-
-                  {/* ==================================================
-                      SUGERENCIAS
-                  ================================================== */}
 
                   <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                     {suggestions.map((suggestion) => {
@@ -176,10 +67,6 @@ const StudentTutor = () => {
                     })}
                   </div>
 
-                  {/* ==================================================
-                      MENSAJE INFORMATIVO
-                  ================================================== */}
-
                   <div className="mx-auto mt-8 flex max-w-2xl items-center justify-center gap-3 rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-center">
                     <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white text-blue-600 shadow-sm">
                       <Lightbulb className="h-3.5 w-3.5" />
@@ -193,10 +80,6 @@ const StudentTutor = () => {
                 </div>
               </div>
             ) : (
-              /* ==================================================
-                 MENSAJES
-              ================================================== */
-
               <div className="mx-auto w-full max-w-5xl space-y-6 px-5 py-6 sm:px-8 lg:px-10 lg:py-8">
                 {messages.map((item) => (
                   <div
@@ -205,19 +88,11 @@ const StudentTutor = () => {
                       item.role === "user" ? "justify-end" : "justify-start"
                     }`}
                   >
-                    {/* ==================================================
-                        AVATAR IA
-                    ================================================== */}
-
                     {item.role === "assistant" && (
                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm">
                         <Bot className="h-4 w-4" />
                       </div>
                     )}
-
-                    {/* ==================================================
-                        MENSAJE
-                    ================================================== */}
 
                     <div
                       className={`max-w-[85%] rounded-[22px] px-4 py-3.5 text-xs leading-6 sm:max-w-[75%] sm:text-sm ${
@@ -229,10 +104,6 @@ const StudentTutor = () => {
                       {item.text}
                     </div>
 
-                    {/* ==================================================
-                        AVATAR USUARIO
-                    ================================================== */}
-
                     {item.role === "user" && (
                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                         <User className="h-4 w-4" />
@@ -240,10 +111,6 @@ const StudentTutor = () => {
                     )}
                   </div>
                 ))}
-
-                {/* ==================================================
-                    ESCRIBIENDO
-                ================================================== */}
 
                 {isTyping && (
                   <div className="flex items-start gap-3">
@@ -254,9 +121,7 @@ const StudentTutor = () => {
                     <div className="rounded-[22px] rounded-bl-md border border-slate-200 bg-white px-5 py-4 shadow-sm">
                       <div className="flex items-center gap-1.5">
                         <span className="h-2 w-2 animate-bounce rounded-full bg-blue-300 [animation-delay:-0.3s]" />
-
                         <span className="h-2 w-2 animate-bounce rounded-full bg-blue-500 [animation-delay:-0.15s]" />
-
                         <span className="h-2 w-2 animate-bounce rounded-full bg-blue-600" />
                       </div>
                     </div>
@@ -269,26 +134,17 @@ const StudentTutor = () => {
           </div>
         </main>
 
-        {/* ====================================================
-            INPUT
-        ==================================================== */}
-
         <footer className="shrink-0 border-t border-slate-200 bg-white px-4 py-3 sm:px-8 sm:py-4">
           <div className="mx-auto w-full max-w-5xl">
             <div className="flex items-end gap-2 rounded-[22px] border border-slate-200 bg-[#f7f9fc] p-2 transition-all focus-within:border-blue-300 focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50">
               <textarea
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" && !event.shiftKey) {
-                    event.preventDefault();
-                    sendMessage();
-                  }
-                }}
+                onKeyDown={handleKeyDown}
                 placeholder="Escribe tu pregunta..."
                 rows={1}
                 disabled={isTyping}
-                className="max-h-32 min-h-[42px] flex-1 resize-none bg-transparent px-3 py-2.5 text-xs leading-5 text-slate-700 outline-none placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm"
+                className="max-h-32 min-h-10.5 flex-1 resize-none bg-transparent px-3 py-2.5 text-xs leading-5 text-slate-700 outline-none placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm"
               />
 
               <button

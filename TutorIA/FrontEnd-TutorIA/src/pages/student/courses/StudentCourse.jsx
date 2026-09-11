@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,59 +11,19 @@ import {
   Target,
 } from "lucide-react";
 
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-
-import { courses } from "../../data/academic/courses";
+import useStudentCourse from "./useStudentCourse";
 
 const StudentCourse = () => {
-  const navigate = useNavigate();
-
-  const { user, selectedCourse } = useOutletContext();
-
-  const { courseId } = useParams();
-
-  // ============================================================
-  // CURSO
-  // ============================================================
-
-  const course = useMemo(() => {
-    if (selectedCourse) {
-      return selectedCourse;
-    }
-
-    if (!user || !courseId) {
-      return null;
-    }
-
-    const assignedCourseIds = Array.isArray(user.cursos) ? user.cursos : [];
-
-    return (
-      courses.find(
-        (item) =>
-          item.id === Number(courseId) &&
-          assignedCourseIds.includes(item.id) &&
-          item.nivel === user.nivel &&
-          item.grado === user.grado,
-      ) || null
-    );
-  }, [selectedCourse, user, courseId]);
-
-  // ============================================================
-  // PROGRESO
-  // ============================================================
-
-  const courseProgress = 72;
-
-  const topicProgress = {
-    1: 88,
-    2: 62,
-    3: 48,
-    4: 25,
-  };
-
-  // ============================================================
-  // SI NO EXISTE EL CURSO
-  // ============================================================
+  const {
+    course,
+    courseProgress,
+    completedTopics,
+    inProgressTopics,
+    materialCount,
+    getTopicProgress,
+    goToCourses,
+    goToTopic,
+  } = useStudentCourse();
 
   if (!course) {
     return (
@@ -85,7 +43,7 @@ const StudentCourse = () => {
 
           <button
             type="button"
-            onClick={() => navigate("/app/estudiante/cursos")}
+            onClick={goToCourses}
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-600"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -96,32 +54,12 @@ const StudentCourse = () => {
     );
   }
 
-  // ============================================================
-  // ESTADÍSTICAS
-  // ============================================================
-
-  const completedTopics = course.temas.filter(
-    (topic) => (topicProgress[topic.id] || 0) >= 80,
-  ).length;
-
-  const inProgressTopics = course.temas.filter((topic) => {
-    const progress = topicProgress[topic.id] || 0;
-
-    return progress > 0 && progress < 80;
-  }).length;
-
-  const materialCount = course.temas.filter((topic) => topic.pdf).length;
-
   return (
     <div className="space-y-6 pb-12">
-      {/* ======================================================
-          BOTÓN VOLVER
-      ====================================================== */}
-
       <div>
         <button
           type="button"
-          onClick={() => navigate("/app/estudiante/cursos")}
+          onClick={goToCourses}
           className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
         >
           <ArrowLeft className="h-4 w-4 transition group-hover:-translate-x-0.5" />
@@ -129,23 +67,13 @@ const StudentCourse = () => {
         </button>
       </div>
 
-      {/* ======================================================
-          HEADER DEL CURSO
-      ====================================================== */}
-
       <section className="relative overflow-hidden rounded-[30px] bg-slate-950 p-6 shadow-xl sm:p-8 lg:p-9">
-        {/* DECORACIÓN */}
-
         <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
 
         <div className="absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-violet-500/10 blur-3xl" />
 
         <div className="relative z-10">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center">
-            {/* ==================================================
-          INFORMACIÓN DEL CURSO
-      ================================================== */}
-
             <div className="max-w-4xl">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[10px] font-bold tracking-wide text-blue-200 backdrop-blur">
                 <Sparkles className="h-3.5 w-3.5" />
@@ -164,18 +92,14 @@ const StudentCourse = () => {
                 {course.descripcion}
               </p>
 
-              {/* INFORMACIÓN */}
-
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
                   <GraduationCap className="h-4 w-4 text-blue-300" />
-
                   {course.nivel}
                 </span>
 
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
                   <BookOpen className="h-4 w-4 text-violet-300" />
-
                   {course.grado}
                 </span>
 
@@ -186,13 +110,7 @@ const StudentCourse = () => {
               </div>
             </div>
 
-            {/* ==================================================
-          PROGRESO
-      ================================================== */}
-
-            <div className="rounded-[24px] border border-white/10 bg-white/[0.08] p-5 shadow-lg backdrop-blur-xl sm:p-6">
-              {/* CABECERA */}
-
+            <div className="rounded-3xl border border-white/10 bg-white/8 p-5 shadow-lg backdrop-blur-xl sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-wider text-blue-200">
@@ -208,8 +126,6 @@ const StudentCourse = () => {
                   <Target className="h-5 w-5" />
                 </div>
               </div>
-
-              {/* PORCENTAJE */}
 
               <div className="mt-6 flex items-end justify-between">
                 <div>
@@ -231,16 +147,12 @@ const StudentCourse = () => {
                 </div>
               </div>
 
-              {/* BARRA */}
-
               <div className="mt-5 h-3 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-violet-400 shadow-lg shadow-blue-500/20 transition-all duration-500"
+                  className="h-full rounded-full bg-linear-to-r from-blue-400 via-blue-500 to-violet-400 shadow-lg shadow-blue-500/20 transition-all duration-500"
                   style={{ width: `${courseProgress}%` }}
                 />
               </div>
-
-              {/* MENSAJE */}
 
               <div className="mt-4 flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -254,13 +166,7 @@ const StudentCourse = () => {
         </div>
       </section>
 
-      {/* ======================================================
-          RESUMEN
-      ====================================================== */}
-
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {/* TEMAS */}
-
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
             <BookOpen className="h-5 w-5" />
@@ -272,8 +178,6 @@ const StudentCourse = () => {
             {course.temas.length}
           </p>
         </div>
-
-        {/* COMPLETADOS */}
 
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
@@ -287,8 +191,6 @@ const StudentCourse = () => {
           </p>
         </div>
 
-        {/* EN PROGRESO */}
-
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
             <Clock3 className="h-5 w-5" />
@@ -300,8 +202,6 @@ const StudentCourse = () => {
             {inProgressTopics}
           </p>
         </div>
-
-        {/* MATERIALES */}
 
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-500">
@@ -316,13 +216,7 @@ const StudentCourse = () => {
         </div>
       </section>
 
-      {/* ======================================================
-          TEMAS
-      ====================================================== */}
-
       <section className="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-sm">
-        {/* HEADER */}
-
         <div className="border-b border-slate-100 px-5 py-6 sm:px-7">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -348,33 +242,22 @@ const StudentCourse = () => {
           </div>
         </div>
 
-        {/* LISTA */}
-
         <div className="p-4 sm:p-7">
           <div className="relative">
-            {/* Línea vertical */}
-
-            <div className="absolute bottom-8 left-[22px] top-8 hidden w-px bg-slate-200 sm:block" />
+            <div className="absolute bottom-8 left-5.5 top-8 hidden w-px bg-slate-200 sm:block" />
 
             <div className="space-y-4">
               {course.temas.map((topic, index) => {
-                const progress = topicProgress[topic.id] || 0;
-
+                const progress = getTopicProgress(topic.id);
                 const completed = progress >= 80;
 
                 return (
                   <button
                     key={topic.id}
                     type="button"
-                    onClick={() =>
-                      navigate(
-                        `/app/estudiante/cursos/${course.id}/temas/${topic.id}`,
-                      )
-                    }
+                    onClick={() => goToTopic(topic.id)}
                     className="group relative flex w-full gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md sm:p-5"
                   >
-                    {/* NÚMERO */}
-
                     <div
                       className={`relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
                         completed
@@ -390,8 +273,6 @@ const StudentCourse = () => {
                         </span>
                       )}
                     </div>
-
-                    {/* CONTENIDO */}
 
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -416,20 +297,16 @@ const StudentCourse = () => {
                         </span>
                       </div>
 
-                      {/* PROGRESO DEL TEMA */}
-
                       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-100">
                         <div
                           className={`h-full rounded-full transition-all ${
                             completed
                               ? "bg-emerald-500"
-                              : "bg-gradient-to-r from-blue-500 to-violet-500"
+                              : "bg-linear-to-r from-blue-500 to-violet-500"
                           }`}
                           style={{ width: `${progress}%` }}
                         />
                       </div>
-
-                      {/* FOOTER */}
 
                       <div className="mt-3 flex flex-wrap items-center gap-3">
                         {topic.pdf && (
@@ -445,8 +322,6 @@ const StudentCourse = () => {
                         </span>
                       </div>
                     </div>
-
-                    {/* FLECHA */}
 
                     <ChevronRight className="mt-1 hidden h-5 w-5 shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-500 sm:block" />
                   </button>

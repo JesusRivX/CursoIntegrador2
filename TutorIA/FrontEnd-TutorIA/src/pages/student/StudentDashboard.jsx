@@ -1,40 +1,24 @@
-import { useState } from "react";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
-import { dashboardNavigation } from "../../config/dashboardNavigation";
+import { Outlet } from "react-router-dom";
 import SidebarDashboard from "../../components/dashboard/SidebarDashboard";
 import HeaderDashboard from "../../components/dashboard/HeaderDashboard";
+import useStudentDashboard from "./useStudentDashboard";
 
 const StudentDashboard = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  const user =
-    location.state?.user ??
-    (() => {
-      try {
-        return JSON.parse(localStorage.getItem("studentUser") || "null");
-      } catch {
-        return null;
-      }
-    })();
-
-  const handleLogout = () => {
-    localStorage.removeItem("studentUser");
-    navigate("/");
-  };
-
-  const navigation = dashboardNavigation.estudiante;
+  const {
+    user,
+    navigation,
+    navigate,
+    location,
+    sidebarOpen,
+    setSidebarOpen,
+    sidebarCollapsed,
+    setSidebarCollapsed,
+    handleLogout,
+  } = useStudentDashboard();
 
   return (
     <div className="h-screen overflow-hidden bg-[#f7f9fc] text-slate-800">
       <div className="flex h-full">
-        {/* ======================================================
-            OVERLAY MOBILE
-        ====================================================== */}
-
         {sidebarOpen && (
           <button
             type="button"
@@ -43,10 +27,6 @@ const StudentDashboard = () => {
             className="fixed inset-0 z-40 bg-slate-950/30 backdrop-blur-sm lg:hidden"
           />
         )}
-
-        {/* ======================================================
-            SIDEBAR
-        ====================================================== */}
 
         <SidebarDashboard
           user={user}
@@ -59,10 +39,6 @@ const StudentDashboard = () => {
           location={location}
           handleLogout={handleLogout}
         />
-
-        {/* ======================================================
-            CONTENIDO
-        ====================================================== */}
 
         <div className="flex min-w-0 flex-1 flex-col">
           <HeaderDashboard

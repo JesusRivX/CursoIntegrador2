@@ -18,9 +18,9 @@ import {
   Zap,
 } from "lucide-react";
 
-import { users } from "../../data/auth/users";
-import { courses } from "../../data/academic/courses";
-import { questionBank } from "../../data/academic/questionBank";
+import { users } from "../../../data/auth/users";
+import { courses } from "../../../data/academic/courses";
+import { questionBank } from "../../../data/academic/questionBank";
 
 const StudentPractice = () => {
   const navigate = useNavigate();
