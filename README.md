@@ -74,11 +74,11 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
   - [Catalogo de KPI y SLI](#catalogo-de-kpi-y-sli)
 - [10. Cómo ejecutar el proyecto](#10-cómo-ejecutar-el-proyecto)
   - [Requisitos previos](#requisitos-previos)
-  - [1. Clonar el repositorio](#1-clonar-el-repositorio)
-  - [2. Configurar el Back-End](#2-configurar-el-back-end)
-    - [Configurar la base de datos](#configurar-la-base-de-datos)
-  - [3. Configurar el Front-End](#3-configurar-el-front-end)
-  - [4. Configurar el Tutor IA](#4-configurar-el-tutor-ia)
+  - [Clonar el repositorio](#1-clonar-el-repositorio)
+  - [Configurar el Back-End](#2-configurar-el-back-end)
+  - [Configurar la base de datos](#configurar-la-base-de-datos)
+  - [Configurar el Front-End](#3-configurar-el-front-end)
+  - [Configurar el Tutor IA](#4-configurar-el-tutor-ia)
 
 ---
 
@@ -590,14 +590,14 @@ Antes de ejecutar el proyecto se necesita tener instalado:
 
 **Importante:** El proyecto no utiliza Docker.
 
-### 1. Clonar el repositorio
+### - Clonar el repositorio
 
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd ESTUD-IA
 ```
 
-### 2. Configurar el Back-End
+### - Configurar el Back-End
 
 Ingresar a la carpeta del Back-End:
 
@@ -623,7 +623,7 @@ Generar la clave de la aplicación:
 php artisan key:generate
 ```
 
-#### Configurar la base de datos
+### - Configurar la base de datos
 
 Crear una base de datos MySQL y configurar las credenciales en el archivo `.env`:
 
@@ -650,7 +650,7 @@ php artisan serve
 
 La API estará disponible en: `http://localhost:8000`
 
-### 3. Configurar el Front-End
+### - Configurar el Front-End
 
 En otra terminal, ingresar a la carpeta del Front-End:
 
@@ -672,7 +672,7 @@ npm run dev
 
 La aplicación estará disponible en: `http://localhost:5173`
 
-### 4. Configurar el Tutor IA
+### - Configurar el Tutor IA
 
 Para utilizar el modelo local de Inteligencia Artificial:
 
