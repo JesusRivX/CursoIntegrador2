@@ -8,7 +8,7 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
 
 **Curso Integrador II: Software** — Universidad Tecnológica del Perú
 
-[Estud-IA](https://estud-ia.netlify.app/ )
+[Estud-IA](https://estud-ia-integrador.vercel.app/)
 
 ---
 
