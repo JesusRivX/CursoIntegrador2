@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2200" width="1000" height="2200" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="h4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="2200" fill="#faf9ff"/>
+
+  <!-- ENCABEZADO -->
+  <rect x="0" y="0" width="1000" height="170" fill="url(#h4)"/>
+  <text x="500" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#ddd6fe" letter-spacing="3">PRODUCTO LIBRE · SESIÓN 04</text>
+  <text x="500" y="102" text-anchor="middle" font-size="36" font-weight="800" fill="#ffffff">GESTIÓN TRADICIONAL Y SCRUM</text>
+  <text x="500" y="134" text-anchor="middle" font-size="17" fill="#ede9fe">Dos formas de gestionar un proyecto y cuándo conviene cada una</text>
+
+  <!-- 1. LA PREGUNTA -->
+  <rect x="40" y="212" width="920" height="88" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="500" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">No existe un enfoque mejor que el otro en abstracto.</text>
+  <text x="500" y="276" text-anchor="middle" font-size="15" fill="#475569">Lo que decide es cuánta incertidumbre tiene el proyecto y qué tan probable es que los requisitos cambien.</text>
+
+  <!-- 2. COMPARATIVA -->
+  <circle cx="58" cy="356" r="15" fill="#7c3aed"/>
+  <text x="58" y="362" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">1</text>
+  <text x="86" y="363" font-size="24" font-weight="800" fill="#0f172a">Diferencias clave</text>
+
+  <rect x="40" y="384" width="920" height="42" fill="#0f172a"/>
+  <text x="64" y="411" font-size="13.5" font-weight="700" fill="#94a3b8">ASPECTO</text>
+  <text x="356" y="411" font-size="13.5" font-weight="700" fill="#a78bfa">SCRUM  ·  ÁGIL</text>
+  <text x="672" y="411" font-size="13.5" font-weight="700" fill="#7dd3fc">TRADICIONAL  ·  PREDICTIVO</text>
+
+  <rect x="40" y="426" width="920" height="58" fill="#ffffff"/>
+  <text x="64" y="452" font-size="14" font-weight="700" fill="#0f172a">Planificación</text>
+  <text x="356" y="452" font-size="13.5" fill="#334155">Iterativa, por sprints de 2 a 4</text>
+  <text x="356" y="471" font-size="13.5" fill="#334155">semanas</text>
+  <text x="672" y="452" font-size="13.5" fill="#334155">Detallada y completa desde el</text>
+  <text x="672" y="471" font-size="13.5" fill="#334155">inicio del proyecto</text>
+
+  <rect x="40" y="484" width="920" height="58" fill="#f5f3ff"/>
+  <text x="64" y="510" font-size="14" font-weight="700" fill="#0f172a">Roles</text>
+  <text x="356" y="510" font-size="13.5" fill="#334155">Product Owner, Scrum Master</text>
+  <text x="356" y="529" font-size="13.5" fill="#334155">y equipo autoorganizado</text>
+  <text x="672" y="510" font-size="13.5" fill="#334155">Gerente de proyecto con</text>
+  <text x="672" y="529" font-size="13.5" fill="#334155">autoridad centralizada</text>
+
+  <rect x="40" y="542" width="920" height="58" fill="#ffffff"/>
+  <text x="64" y="568" font-size="14" font-weight="700" fill="#0f172a">Entregas</text>
+  <text x="356" y="568" font-size="13.5" fill="#334155">Incrementales: un avance</text>
+  <text x="356" y="587" font-size="13.5" fill="#334155">funcional cada sprint</text>
+  <text x="672" y="568" font-size="13.5" fill="#334155">Una sola entrega final al cierre</text>
+  <text x="672" y="587" font-size="13.5" fill="#334155">de todas las fases</text>
+
+  <rect x="40" y="600" width="920" height="58" fill="#f5f3ff"/>
+  <text x="64" y="626" font-size="14" font-weight="700" fill="#0f172a">Cambios</text>
+  <text x="356" y="626" font-size="13.5" fill="#334155">Se aceptan e incorporan</text>
+  <text x="356" y="645" font-size="13.5" fill="#334155">durante el proyecto</text>
+  <text x="672" y="626" font-size="13.5" fill="#334155">Se controlan mediante solicitudes</text>
+  <text x="672" y="645" font-size="13.5" fill="#334155">formales de cambio</text>
+
+  <rect x="40" y="658" width="920" height="58" fill="#ffffff"/>
+  <text x="64" y="684" font-size="14" font-weight="700" fill="#0f172a">Documentación</text>
+  <text x="356" y="684" font-size="13.5" fill="#334155">Ligera: historias de usuario</text>
+  <text x="356" y="703" font-size="13.5" fill="#334155">y backlog</text>
+  <text x="672" y="684" font-size="13.5" fill="#334155">Extensa: acta, WBS, cronograma</text>
+  <text x="672" y="703" font-size="13.5" fill="#334155">y especificaciones</text>
+
+  <rect x="40" y="716" width="920" height="58" fill="#f5f3ff"/>
+  <text x="64" y="742" font-size="14" font-weight="700" fill="#0f172a">Medición del avance</text>
+  <text x="356" y="742" font-size="13.5" fill="#334155">Incremento funcionando al final</text>
+  <text x="356" y="761" font-size="13.5" fill="#334155">de cada sprint</text>
+  <text x="672" y="742" font-size="13.5" fill="#334155">Porcentaje de tareas completadas</text>
+  <text x="672" y="761" font-size="13.5" fill="#334155">contra el cronograma base</text>
+
+  <!-- 3. CUÁNDO CONVIENE -->
+  <circle cx="58" cy="836" r="15" fill="#7c3aed"/>
+  <text x="58" y="842" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">2</text>
+  <text x="86" y="843" font-size="24" font-weight="800" fill="#0f172a">¿Cuándo conviene cada uno?</text>
+
+  <rect x="40" y="864" width="452" height="226" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="40" y="864" width="452" height="46" rx="12" fill="#7c3aed"/>
+  <rect x="40" y="892" width="452" height="18" fill="#7c3aed"/>
+  <text x="266" y="894" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">ELIGE SCRUM SI…</text>
+  <text x="66" y="942" font-size="13.5" fill="#334155">· Los requisitos no están del todo claros.</text>
+  <text x="66" y="972" font-size="13.5" fill="#334155">· El usuario necesita ver algo pronto.</text>
+  <text x="66" y="1002" font-size="13.5" fill="#334155">· El producto es nuevo o exploratorio.</text>
+  <text x="66" y="1032" font-size="13.5" fill="#334155">· El equipo puede autoorganizarse.</text>
+  <text x="66" y="1062" font-size="13.5" fill="#334155">· Es probable que el alcance cambie.</text>
+
+  <rect x="508" y="864" width="452" height="226" rx="12" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+  <rect x="508" y="864" width="452" height="46" rx="12" fill="#0284c7"/>
+  <rect x="508" y="892" width="452" height="18" fill="#0284c7"/>
+  <text x="734" y="894" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">ELIGE TRADICIONAL SI…</text>
+  <text x="534" y="942" font-size="13.5" fill="#334155">· El alcance está cerrado por contrato.</text>
+  <text x="534" y="972" font-size="13.5" fill="#334155">· Hay exigencias regulatorias estrictas.</text>
+  <text x="534" y="1002" font-size="13.5" fill="#334155">· El costo del error es muy alto.</text>
+  <text x="534" y="1032" font-size="13.5" fill="#334155">· Ya se hizo algo casi idéntico antes.</text>
+  <text x="534" y="1062" font-size="13.5" fill="#334155">· Las fechas son fijas e innegociables.</text>
+
+  <!-- 4. MIGRAR -->
+  <circle cx="58" cy="1152" r="15" fill="#7c3aed"/>
+  <text x="58" y="1158" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">3</text>
+  <text x="86" y="1159" font-size="24" font-weight="800" fill="#0f172a">Qué se necesita para migrar de Scrum a tradicional</text>
+
+  <rect x="40" y="1180" width="452" height="110" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <circle cx="72" cy="1212" r="15" fill="#ede9fe"/>
+  <text x="72" y="1218" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">1</text>
+  <text x="98" y="1218" font-size="15" font-weight="700" fill="#0f172a">Nuevo liderazgo</text>
+  <text x="66" y="1246" font-size="13" fill="#475569">Un gerente de proyecto con autoridad total sobre</text>
+  <text x="66" y="1266" font-size="13" fill="#475569">las decisiones, en lugar de los roles compartidos.</text>
+
+  <rect x="508" y="1180" width="452" height="110" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <circle cx="540" cy="1212" r="15" fill="#ede9fe"/>
+  <text x="540" y="1218" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">2</text>
+  <text x="566" y="1218" font-size="15" font-weight="700" fill="#0f172a">Planificación completa</text>
+  <text x="534" y="1246" font-size="13" fill="#475569">Un plan detallado de alcance, cronograma y costo</text>
+  <text x="534" y="1266" font-size="13" fill="#475569">antes de iniciar la ejecución (línea base).</text>
+
+  <rect x="40" y="1302" width="452" height="110" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <circle cx="72" cy="1334" r="15" fill="#ede9fe"/>
+  <text x="72" y="1340" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">3</text>
+  <text x="98" y="1340" font-size="15" font-weight="700" fill="#0f172a">WBS y cronograma</text>
+  <text x="66" y="1368" font-size="13" fill="#475569">Estructura de descomposición del trabajo y un</text>
+  <text x="66" y="1388" font-size="13" fill="#475569">cronograma tipo Gantt con fechas fijas.</text>
+
+  <rect x="508" y="1302" width="452" height="110" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <circle cx="540" cy="1334" r="15" fill="#ede9fe"/>
+  <text x="540" y="1340" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">4</text>
+  <text x="566" y="1340" font-size="15" font-weight="700" fill="#0f172a">Control de cambios</text>
+  <text x="534" y="1368" font-size="13" fill="#475569">Un proceso formal de solicitudes evaluado por un</text>
+  <text x="534" y="1388" font-size="13" fill="#475569">comité de control de cambios (CCB).</text>
+
+  <rect x="40" y="1424" width="452" height="110" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <circle cx="72" cy="1456" r="15" fill="#ede9fe"/>
+  <text x="72" y="1462" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">5</text>
+  <text x="98" y="1462" font-size="15" font-weight="700" fill="#0f172a">Documentación formal</text>
+  <text x="66" y="1490" font-size="13" fill="#475569">Acta de constitución, especificaciones detalladas</text>
+  <text x="66" y="1510" font-size="13" fill="#475569">e informes de estado periódicos.</text>
+
+  <rect x="508" y="1424" width="452" height="110" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <circle cx="540" cy="1456" r="15" fill="#ede9fe"/>
+  <text x="540" y="1462" text-anchor="middle" font-size="14" font-weight="800" fill="#6d28d9">6</text>
+  <text x="566" y="1462" font-size="15" font-weight="700" fill="#0f172a">Capacitación del equipo</text>
+  <text x="534" y="1490" font-size="13" fill="#475569">Entrenar al equipo y a los stakeholders en la nueva</text>
+  <text x="534" y="1510" font-size="13" fill="#475569">metodología y sus herramientas.</text>
+
+  <!-- 5. QUÉ SE PIERDE -->
+  <rect x="40" y="1566" width="920" height="104" rx="12" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="64" y="1598" font-size="15" font-weight="800" fill="#b91c1c">Lo que se pierde al migrar</text>
+  <text x="64" y="1626" font-size="14.5" fill="#7f1d1d">La retroalimentación temprana. En el enfoque predictivo el usuario ve el producto al final, cuando corregir</text>
+  <text x="64" y="1648" font-size="14.5" fill="#7f1d1d">un error de entendimiento cuesta mucho más que en el primer sprint.</text>
+
+  <!-- 6. CASO TUTORIA -->
+  <rect x="0" y="1704" width="1000" height="56" fill="#4c1d95"/>
+  <text x="500" y="1740" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="1">EL CASO DE ESTUD-IA</text>
+
+  <circle cx="58" cy="1816" r="15" fill="#7c3aed"/>
+  <text x="58" y="1822" text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">4</text>
+  <text x="86" y="1823" font-size="24" font-weight="800" fill="#0f172a">Por qué el proyecto usa Scrum</text>
+
+  <rect x="40" y="1844" width="298" height="140" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="189" y="1880" text-anchor="middle" font-size="15" font-weight="800" fill="#6d28d9">Producto exploratorio</text>
+  <text x="189" y="1912" text-anchor="middle" font-size="13" fill="#475569">Nadie en el equipo había</text>
+  <text x="189" y="1932" text-anchor="middle" font-size="13" fill="#475569">integrado un modelo de IA</text>
+  <text x="189" y="1952" text-anchor="middle" font-size="13" fill="#475569">antes: el alcance real solo</text>
+  <text x="189" y="1972" text-anchor="middle" font-size="13" fill="#475569">se descubre construyendo.</text>
+
+  <rect x="351" y="1844" width="298" height="140" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="500" y="1880" text-anchor="middle" font-size="15" font-weight="800" fill="#6d28d9">Alcance cambiante</text>
+  <text x="500" y="1912" text-anchor="middle" font-size="13" fill="#475569">De 19 historias, solo 8 son</text>
+  <text x="500" y="1932" text-anchor="middle" font-size="13" fill="#475569">de prioridad alta. El resto</text>
+  <text x="500" y="1952" text-anchor="middle" font-size="13" fill="#475569">puede reordenarse según</text>
+  <text x="500" y="1972" text-anchor="middle" font-size="13" fill="#475569">lo que se aprenda.</text>
+
+  <rect x="662" y="1844" width="298" height="140" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="811" y="1880" text-anchor="middle" font-size="15" font-weight="800" fill="#6d28d9">Equipo pequeño</text>
+  <text x="811" y="1912" text-anchor="middle" font-size="13" fill="#475569">Cuatro integrantes que se</text>
+  <text x="811" y="1932" text-anchor="middle" font-size="13" fill="#475569">coordinan directamente,</text>
+  <text x="811" y="1952" text-anchor="middle" font-size="13" fill="#475569">sin necesidad de una</text>
+  <text x="811" y="1972" text-anchor="middle" font-size="13" fill="#475569">jerarquía formal.</text>
+
+  <rect x="40" y="2008" width="920" height="88" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="64" y="2040" font-size="15" font-weight="800" fill="#5b21b6">La conclusión</text>
+  <text x="64" y="2068" font-size="14.5" fill="#4c1d95">ESTUD-IA tiene incertidumbre alta y fechas académicas fijas. Por eso conviene un enfoque híbrido: Scrum para</text>
+  <text x="64" y="2089" font-size="14.5" fill="#4c1d95">construir el producto, y un cronograma tipo Gantt para responder ante los hitos de entrega del curso.</text>
+
+  <!-- PIE -->
+  <rect x="0" y="2114" width="1000" height="86" fill="#0f172a"/>
+  <text x="500" y="2148" text-anchor="middle" font-size="14" fill="#94a3b8">ESTUD-IA · Grupo 6 · Sección 31738</text>
+  <text x="500" y="2174" text-anchor="middle" font-size="14" fill="#64748b">Curso Integrador II: Software — Universidad Tecnológica del Perú</text>
+</svg>
