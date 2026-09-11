@@ -1,298 +1,660 @@
-# TutorIA Escolar
+# ESTUD-IA
 
-Plataforma web de tutoría escolar asistida por inteligencia artificial: ejercicios
-adaptativos, pistas inteligentes y progreso visible para cada estudiante.
+Sistema Inteligente de Apoyo Pedagógico y Gestión del Aprendizaje para Instituciones Educativas
+
+**ESTUD-IA** es una plataforma web de acompañamiento pedagógico que busca apoyar a los estudiantes dentro y fuera del aula mediante contenidos educativos, ejercicios interactivos, seguimiento del progreso y un **Tutor de Inteligencia Artificial**.
+
+La propuesta está orientada principalmente a estudiantes que presentan dificultades de aprendizaje en áreas como **Matemática y Comprensión Lectora**, brindándoles la posibilidad de aprender y practicar a su propio ritmo.
 
 **Curso Integrador II: Software** — Universidad Tecnológica del Perú
+
+[Estud-IA](https://estud-ia.netlify.app/ )
 
 ---
 
 ## Tabla de contenido
 
-- [TutorIA Escolar](#tutoria-escolar)
+- [ESTUD-IA](#estud-ia)
   - [Tabla de contenido](#tabla-de-contenido)
-  - [El problema](#el-problema)
-  - [La solución](#la-solución)
-  - [Roles de usuario](#roles-de-usuario)
-  - [Prototipo](#prototipo)
-  - [Product Backlog](#product-backlog)
-    - [ÉPICA-01: Autenticación de Usuarios](#épica-01-autenticación-de-usuarios)
-    - [ÉPICA-02: Gestión Académica](#épica-02-gestión-académica)
-    - [ÉPICA-03: Gestión de Contenido](#épica-03-gestión-de-contenido)
-    - [ÉPICA-04: Práctica y Evaluación](#épica-04-práctica-y-evaluación)
-    - [ÉPICA-05: Progreso Académico](#épica-05-progreso-académico)
-    - [ÉPICA-06: Tutor IA](#épica-06-tutor-ia)
-    - [ÉPICA-07: Paneles y Accesos](#épica-07-paneles-y-accesos)
-    - [ÉPICA-08: Gestión de Usuarios](#épica-08-gestión-de-usuarios)
-  - [Arquitectura](#arquitectura)
-  - [Stack tecnológico](#stack-tecnológico)
-    - [Frontend](#frontend)
-    - [Backend](#backend)
-  - [Estructura del repositorio](#estructura-del-repositorio)
-  - [Flujo de trabajo con Git](#flujo-de-trabajo-con-git)
+- [1. Sobre el proyecto](#1-sobre-el-proyecto)
+  - [Problema identificado](#problema-identificado)
+  - [Propuesta de solución](#propuesta-de-solución)
+  - [Objetivo](#objetivo)
+  - [Características principales](#características-principales)
+    - [Para estudiantes](#para-estudiantes)
+    - [Para docentes](#para-docentes)
+    - [Para administradores](#para-administradores)
+- [2. Usuarios del sistema](#2-usuarios-del-sistema)
+- [3. Experiencia y diseño de interfaces](#3-experiencia-y-diseño-de-interfaces)
+  - [Google Stitch: exploración inicial](#google-stitch-exploración-inicial)
+    - [Proyecto en Google Stitch](#proyecto-en-google-stitch)
+  - [Figma: prototipo de la aplicación](#figma-prototipo-de-la-aplicación)
+    - [Prototipo](#prototipo)
+  - [Interfaces principales](#interfaces-principales)
+    - [Capturas de las interfaces](#capturas-de-las-interfaces)
+- [4. Metodología Scrum](#4-metodología-scrum)
+  - [Equipo Scrum](#equipo-scrum)
+  - [Responsabilidades](#responsabilidades)
+    - [Product Owner](#product-owner)
+    - [Scrum Master](#scrum-master)
+    - [Developers](#developers)
+  - [Product Goal](#product-goal)
+  - [Sprints](#sprints)
+  - [Primer Sprint](#primer-sprint)
+    - [Rol Estudiante](#rol-estudiante)
+    - [Rol Administrador](#rol-administrador)
+  - [Sprint Goal](#sprint-goal)
+    - [Sprint Goal del Primer Sprint](#sprint-goal-del-primer-sprint)
+  - [Sprint Backlog](#sprint-backlog)
+  - [Definition of Done](#definition-of-done)
+  - [5. Product Backlog](#5-product-backlog)
+    - [Resumen del Product Backlog](#resumen-del-product-backlog)
+    - [Épicas](#épicas)
+    - [Product Backlog completo](#product-backlog-completo)
+  - [6. Tecnologías y herramientas](#6-tecnologías-y-herramientas)
+    - [Front-End](#front-end)
+    - [Back-End](#back-end)
+    - [Base de datos](#base-de-datos)
+    - [Inteligencia Artificial](#inteligencia-artificial)
+    - [Herramientas de desarrollo](#herramientas-de-desarrollo)
+  - [7. Arquitectura](#7-arquitectura)
+    - [Diagrama de arquitectura](#diagrama-de-arquitectura)
+    - [Componentes principales](#componentes-principales)
+      - [Front-End](#front-end-1)
+      - [Back-End](#back-end-1)
+      - [Base de datos](#base-de-datos-1)
+      - [Inteligencia Artificial](#inteligencia-artificial-1)
+  - [8. Estructura del repositorio](#8-estructura-del-repositorio)
+  - [9. Control de versiones y GitFlow](#9-control-de-versiones-y-gitflow)
+    - [Flujo de trabajo](#flujo-de-trabajo)
+    - [GitFlow del proyecto](#gitflow-del-proyecto)
     - [Convención de ramas](#convención-de-ramas)
-  - [Cómo levantar el proyecto](#cómo-levantar-el-proyecto)
-    - [Requisitos](#requisitos)
-    - [Backend](#backend-1)
-    - [Frontend](#frontend-1)
-    - [Modelo de IA](#modelo-de-ia)
-  - [Estado del proyecto](#estado-del-proyecto)
+    - [Pull Requests](#pull-requests)
+  - [10. Cómo ejecutar el proyecto](#10-cómo-ejecutar-el-proyecto)
+    - [Requisitos previos](#requisitos-previos)
+    - [1. Clonar el repositorio](#1-clonar-el-repositorio)
+    - [2. Configurar el Back-End](#2-configurar-el-back-end)
+      - [Configurar la base de datos](#configurar-la-base-de-datos)
+    - [3. Configurar el Front-End](#3-configurar-el-front-end)
+    - [4. Configurar el Tutor IA](#4-configurar-el-tutor-ia)
   - [Equipo](#equipo)
 
 ---
 
-## El problema
+# 1. Sobre el proyecto
 
-En un aula, un docente atiende a decenas de estudiantes al mismo tiempo. Cuando un
-estudiante se traba en un ejercicio, rara vez recibe ayuda en ese momento: espera al
-siguiente turno, a la próxima clase o simplemente abandona el tema. El resultado es
-que las brechas de aprendizaje se acumulan sin que nadie las detecte a tiempo.
+ESTUD-IA nace como una propuesta para brindar **acompañamiento académico personalizado** a estudiantes que necesitan reforzar sus conocimientos dentro y/o fuera del horario habitual de clases.
 
-Al docente le falta visibilidad: sin datos de dónde se traban sus estudiantes, no
-puede reforzar los temas correctos.
+La aplicación combina contenidos educativos, ejercicios interactivos, seguimiento del progreso y un Tutor IA que puede responder dudas y proporcionar orientación durante el aprendizaje.
 
-## La solución
+El proyecto considera también las diferencias de acceso tecnológico existentes entre contextos urbanos y rurales. Por ello, se busca que la plataforma sea **responsive, ligera, sencilla de utilizar y adaptable a diferentes dispositivos**.
 
-TutorIA acompaña al estudiante fuera del horario de clase con tres piezas:
+![Vista general de ESTUD-IA](docs/img/hero-estud-ia.png)
 
-1. **Tutor conversacional.** Un asistente que responde dudas y explica temas en el
-   momento en que aparecen, sin que el estudiante tenga que esperar.
-2. **Práctica con pistas.** Ejercicios donde el tutor entrega pistas graduales en
-   lugar de la respuesta, para que el estudiante llegue solo al resultado.
-3. **Progreso visible.** Avance por materia, racha de días, porcentaje de aciertos y
-   logros, tanto para el estudiante como para el docente.
+## Problema identificado
 
-## Roles de usuario
+En un aula, un docente debe atender a varios estudiantes al mismo tiempo. Cuando un estudiante tiene dificultades para comprender un tema o resolver un ejercicio, no siempre puede recibir ayuda inmediatamente.
 
-| Rol | Qué puede hacer |
+Esto puede provocar que las dudas se acumulen, aparezcan vacíos de aprendizaje y el estudiante pierda motivación para continuar.
+
+Por otro lado, el docente puede tener dificultades para identificar rápidamente qué temas están generando mayores problemas en sus estudiantes.
+
+En este contexto, se identifica la necesidad de contar con una herramienta que permita al estudiante **continuar aprendiendo de manera autónoma**, recibir apoyo cuando tenga dudas y visualizar su rendimiento.
+
+![Problema y oportunidad](docs/img/problema-solucion.png)
+
+## Propuesta de solución
+
+ESTUD-IA funciona como un **acompañante pedagógico integral** dentro y fuera del aula.
+
+La propuesta se centra en cuatro elementos:
+
+- **Contenidos educativos:** organizados por cursos y materias.
+- **Ejercicios interactivos:** permiten practicar y comprobar los conocimientos adquiridos.
+- **Tutor IA:** permite realizar preguntas y recibir orientación durante el aprendizaje.
+- **Seguimiento del progreso:** permite visualizar resultados y avance académico.
+
+La finalidad no es reemplazar al docente, sino proporcionar al estudiante una herramienta de apoyo que pueda utilizar cuando necesite practicar, reforzar un tema o resolver una duda.
+
+## Objetivo
+
+Desarrollar una plataforma web de apoyo pedagógico que permita a estudiantes de instituciones educativas consultar contenidos, practicar mediante ejercicios interactivos y recibir orientación de un Tutor IA adaptativo, favoreciendo el aprendizaje autónomo y el seguimiento del progreso académico.
+
+## Características principales
+
+### Para estudiantes
+
+- Consultar cursos disponibles.
+- Consultar contenidos de los cursos.
+- Resolver ejercicios prácticos.
+- Consultar dudas al Tutor IA.
+- Revisar resultados.
+- Consultar su progreso académico.
+
+### Para docentes
+
+- Consultar los cursos asignados.
+- Consultar métricas generales de desempeño de sus aulas.
+- Actualizar el contenido de cada curso.
+
+### Para administradores
+
+- Consultar usuarios.
+- Registrar usuarios.
+- Actualizar información de usuarios.
+- Consultar cursos.
+- Registrar cursos.
+- Consultar el panel administrativo.
+
+---
+
+# 2. Usuarios del sistema
+
+ESTUD-IA contempla tres roles principales:
+
+| Rol | Funcionalidades principales |
 | --- | --- |
-| **Estudiante** | Consultar sus cursos y contenidos, resolver ejercicios, pedir ayuda y pistas al Tutor IA, revisar resultados y su avance. |
-| **Docente** | Consultar los cursos que tiene asignados y las métricas de desempeño de sus aulas. |
-| **Administrador** | Gestionar usuarios y cursos, y consultar el panel administrativo de la plataforma. |
+| **Estudiante** | Consulta cursos y contenidos, resuelve ejercicios, consulta al Tutor IA, solicita pistas, revisa resultados y consulta su progreso. |
+| **Docente** | Consulta cursos asignados y métricas generales de desempeño de sus aulas. |
+| **Administrador** | Gestiona usuarios y cursos, además de consultar información general de la plataforma. |
 
-## Prototipo
+![Roles de usuario](docs/img/roles-usuario.png)
 
-Prototipo de interfaz construido en Figma:
-[TutorIA Escolar — UI/UX Brief](https://www.figma.com/make/t1DSBAAx1dcnDfEv4YV5Y3/TutorIA-Escolar-UI-UX-Brief)
+---
 
-| Pantalla | Descripción |
+# 3. Experiencia y diseño de interfaces
+
+El diseño de ESTUD-IA se trabajó previamente a la implementación, con el objetivo de definir la estructura de las pantallas, la navegación y la experiencia que tendría cada tipo de usuario.
+
+Durante esta etapa se utilizaron **Google Stitch** y **Figma** con diferentes propósitos. Primero se realizaron exploraciones visuales y bocetos iniciales para plantear las principales ideas de la interfaz. Posteriormente, estas propuestas se organizaron y llevaron a un prototipo navegable en Figma.
+
+Los principales criterios considerados fueron:
+
+- Diseño **mobile first**.
+- Adaptación responsive.
+- Navegación sencilla e intuitiva.
+- Buena legibilidad y contraste.
+- Componentes visuales consistentes.
+- Estados de carga, error y éxito.
+- Interfaz sencilla para facilitar el uso por parte de los estudiantes.
+
+## Google Stitch: exploración inicial
+
+**Google Stitch** se utilizó durante las primeras etapas del proyecto como herramienta de apoyo para explorar rápidamente diferentes propuestas de interfaz mediante Inteligencia Artificial.
+
+A partir de estas exploraciones se obtuvieron **bocetos y mockups iniciales** que ayudaron al equipo a visualizar cómo podrían organizarse las principales pantallas de ESTUD-IA antes de definir el diseño final.
+
+Esta etapa permitió probar diferentes distribuciones, estilos y elementos de la interfaz de manera rápida, utilizando las propuestas generadas como referencia para continuar con el diseño.
+
+### Proyecto en Google Stitch
+
+[Ver exploraciones iniciales de ESTUD-IA en Google Stitch](https://stitch.withgoogle.com/projects/12456477824584293891)
+
+![Exploración inicial de interfaces con Google Stitch](docs/img/google-stitch.png)
+
+## Figma: prototipo de la aplicación
+
+Después de la etapa de exploración inicial, **Figma** se utilizó para estructurar y consolidar las propuestas de diseño en un **prototipo navegable**.
+
+En Figma se definieron las principales pantallas, componentes visuales y flujos de navegación de ESTUD-IA, permitiendo simular la interacción del usuario antes de comenzar la implementación.
+
+El prototipo sirvió como referencia visual para el desarrollo del Front-End y permitió validar la organización de las interfaces y los principales recorridos de usuario.
+
+### Prototipo
+
+[Ver prototipo de ESTUD-IA en Figma](https://www.figma.com/make/t1DSBAAx1dcnDfEv4YV5Y3/TutorIA-Escolar-UI-UX-Brief)
+
+![Prototipo navegable de ESTUD-IA en Figma](docs/img/01-login.png)
+
+## Interfaces principales
+
+Las principales interfaces consideradas para el proyecto son:
+
+| Interfaz | Descripción |
 | --- | --- |
-| Inicio de sesión | Acceso diferenciado por rol (Estudiante, Docente, Admin) y opción de SSO con Google. |
-| Panel del estudiante | Continuidad de la sesión anterior, nivel y XP, racha, aciertos y progreso por materia. |
-| Tutor IA | Chat con el tutor "Búho", con modos Explicar, Practicar y Pistas. |
-| Practicar | Ejercicios de opción múltiple con avance por serie e indicador de materia. |
-| Mi perfil | Progreso detallado por materia y logros desbloqueados. |
+| **Inicio de sesión** | Permite al usuario ingresar a la plataforma según su rol. |
+| **Panel del estudiante** | Presenta el progreso, continuidad de aprendizaje y principales indicadores. |
+| **Tutor IA** | Permite realizar consultas y recibir orientación. |
+| **Práctica** | Permite resolver ejercicios y solicitar pistas. |
+| **Resultados** | Permite revisar el desempeño obtenido en los ejercicios. |
+| **Mi perfil** | Presenta información relacionada con el progreso y logros. |
+| **Panel docente** | Permite consultar cursos y métricas de las aulas. |
+| **Panel administrativo** | Permite consultar información general y gestionar usuarios y cursos. |
 
-![Inicio de sesión](docs/img/01-login.png)
+### Capturas de las interfaces
+
 ![Panel del estudiante](docs/img/02-panel-estudiante.png)
+
 ![Tutor IA](docs/img/03-tutor-ia.png)
-![Practicar](docs/img/04-practicar.png)
+
+![Práctica](docs/img/04-practicar.png)
+
 ![Mi perfil](docs/img/05-mi-perfil.png)
 
+---
 
-## Product Backlog
+# 4. Metodología Scrum
 
-19 historias de usuario agrupadas en 8 épicas. La priorización sigue el valor para el
-estudiante: primero el acceso, el contenido y el tutor; después la gestión
-administrativa.
+El desarrollo de ESTUD-IA utiliza **Scrum** como marco de trabajo para organizar las actividades del equipo y avanzar de manera incremental.
 
-### ÉPICA-01: Autenticación de Usuarios
+La metodología permite dividir el desarrollo en periodos de trabajo, priorizar las funcionalidades más importantes y revisar continuamente el avance del producto.
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 1 | Autenticar usuario en la plataforma | Alta | 5 |
-| 9 | Finalizar sesión de usuario | Media | 2 |
+## Equipo Scrum
 
-### ÉPICA-02: Gestión Académica
+El equipo de ESTUD-IA está conformado por:
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 2 | Consultar cursos disponibles | Alta | 3 |
-| 17 | Consultar catálogo de cursos | Baja | 3 |
-| 18 | Registrar nuevo curso | Baja | 5 |
-| 19 | Actualizar información de curso | Baja | 3 |
+| Integrante | Rol | Responsabilidad principal |
+| --- | --- | --- |
+| **Alonso Quispe** | Product Owner / Developer | Priorizar el Product Backlog, representar las necesidades del producto y participar en el desarrollo. |
+| **Jesús Rivera** | Scrum Master / Developer | Facilitar la organización del equipo, apoyar el proceso Scrum y participar en el desarrollo. |
+| **Ben Alanya** | Developer | Analizar, desarrollar, probar e integrar las funcionalidades asignadas. |
+| **Renato Ninatanta** | Developer | Analizar, desarrollar, probar e integrar las funcionalidades asignadas. |
 
-### ÉPICA-03: Gestión de Contenido
+![Equipo Scrum](docs/img/equipo-scrum.png)
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 3 | Consultar contenidos del curso | Alta | 5 |
+## Responsabilidades
 
-### ÉPICA-04: Práctica y Evaluación
+### Product Owner
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 4 | Resolver ejercicios prácticos del curso | Alta | 5 |
-| 7 | Consultar resultados de ejercicios | Alta | 3 |
+El Product Owner se encarga principalmente de mantener y priorizar el Product Backlog, buscando que el equipo trabaje primero en las funcionalidades que generan mayor valor para ESTUD-IA.
 
-### ÉPICA-05: Progreso Académico
+### Scrum Master
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 8 | Consultar avance de aprendizaje | Alta | 3 |
+El Scrum Master facilita la organización del equipo, ayuda a mantener el proceso Scrum y apoya en la identificación y solución de impedimentos.
 
-### ÉPICA-06: Tutor IA
+### Developers
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 5 | Realizar consultas al Tutor IA | Alta | 8 |
-| 6 | Solicitar pistas al Tutor IA durante los ejercicios | Alta | 8 |
+Los Developers participan en el análisis, diseño, desarrollo, pruebas e integración de las funcionalidades seleccionadas para cada Sprint.
 
-### ÉPICA-07: Paneles y Accesos
+En este proyecto, algunos integrantes pueden asumir más de una responsabilidad debido al tamaño reducido del equipo.
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 10 | Consultar información del panel principal | Media | 3 |
-| 14 | Consultar cursos asignados | Baja | 3 |
-| 15 | Consultar métricas de sus aulas | Baja | 5 |
-| 16 | Consultar información del panel administrativo | Baja | 3 |
+## Product Goal
 
-### ÉPICA-08: Gestión de Usuarios
+El **Product Goal** de ESTUD-IA es:
 
-| ID | Historia de usuario | Prioridad | Puntos |
-| --- | --- | --- | --- |
-| 11 | Consultar listado de usuarios | Baja | 3 |
-| 12 | Registrar nuevo usuario | Baja | 3 |
-| 13 | Actualizar información de usuario | Baja | 3 |
+> **Permitir que alumnos urbanos y rurales revisen temas de estudio organizados por materias y resuelvan ejercicios interactivos a su propio ritmo, apoyándose en un Tutor de Inteligencia Artificial adaptativa que responde dudas y proporciona retroalimentación inmediata.**
 
-**Resumen de la priorización**
+Este objetivo orienta las decisiones del proyecto y permite determinar qué funcionalidades aportan directamente al propósito de la aplicación.
+
+![Product Goal](docs/img/product-goal.png)
+
+## Sprints
+
+El desarrollo se organiza mediante Sprints, buscando entregar avances progresivos en lugar de construir todo el sistema de manera aislada.
+
+La planificación general considera:
+
+| Etapa | Enfoque |
+| --- | --- |
+| **Primer Sprint** | Construcción inicial del Front-End y flujos principales. |
+| **Segundo Sprint** | Desarrollo del Back-End y servicios necesarios. |
+| **Tercer Sprint** | Integración entre Front-End y Back-End. |
+| **Sprint final** | Pruebas, mejoras, correcciones y preparación del despliegue. |
+
+El objetivo es evitar desarrollar todos los componentes por separado y realizar la integración únicamente al final.
+
+## Primer Sprint
+
+El primer Sprint se enfoca principalmente en los roles de **Estudiante y Administrador**, priorizando la construcción de las interfaces y los principales flujos de interacción de la aplicación.
+
+En esta primera etapa se trabaja principalmente el **Front-End**, dejando preparada la estructura visual para que las funcionalidades puedan conectarse posteriormente con el Back-End.
+
+### Rol Estudiante
+
+Para el estudiante se priorizan las funcionalidades relacionadas directamente con el aprendizaje y la práctica:
+
+| Historia | Funcionalidad | Prioridad |
+| --- | --- | --- |
+| **HU-01** | Iniciar sesión | Alta |
+| **HU-02** | Consultar cursos disponibles | Alta |
+| **HU-03** | Consultar contenido del curso | Alta |
+| **HU-04** | Resolver ejercicios prácticos | Alta |
+| **HU-05** | Consultar al Tutor IA | Alta |
+| **HU-06** | Solicitar pistas durante los ejercicios | Alta |
+| **HU-07** | Consultar resultados de ejercicios | Alta |
+| **HU-08** | Consultar progreso de aprendizaje | Alta |
+| **HU-10** | Consultar panel principal | Media |
+
+Estas funcionalidades permiten construir el recorrido principal del estudiante dentro de ESTUD-IA: ingresar a la plataforma, consultar sus cursos, estudiar contenidos, practicar, recibir apoyo del Tutor IA y revisar su progreso.
+
+![Primer Sprint - Estudiante](docs/img/primer-sprint-estudiante.png)
+
+### Rol Administrador
+
+Para el administrador se consideran inicialmente las funcionalidades necesarias para gestionar la información básica de la plataforma:
+
+| Historia | Funcionalidad | Prioridad |
+| --- | --- | --- |
+| **HU-11** | Consultar usuarios | Baja |
+| **HU-12** | Registrar usuario | Baja |
+| **HU-13** | Actualizar información de usuario | Baja |
+| **HU-17** | Consultar catálogo de cursos | Baja |
+| **HU-18** | Registrar curso | Baja |
+| **HU-19** | Actualizar información de curso | Baja |
+| **HU-16** | Consultar panel administrativo | Baja |
+
+Estas funcionalidades permiten establecer la estructura inicial para que el administrador pueda consultar y gestionar usuarios y cursos desde la plataforma.
+
+![Primer Sprint - Administrador](docs/img/primer-sprint-administrador.png)
+
+## Sprint Goal
+
+Cada Sprint cuenta con un objetivo que permite al equipo mantener el foco durante el periodo de desarrollo.
+
+### Sprint Goal del Primer Sprint
+
+> **Construir la base visual y los principales flujos de interacción de ESTUD-IA para los roles de estudiante y administrador, dejando preparada la estructura del Front-End para su posterior integración con el Back-End.**
+
+El objetivo de esta primera etapa no es completar toda la aplicación, sino construir una base funcional y visual que permita continuar con el desarrollo en los siguientes Sprints.
+
+## Sprint Backlog
+
+El Sprint Backlog contiene las Historias de Usuario seleccionadas para el Sprint y las tareas necesarias para desarrollarlas.
+
+Para el Primer Sprint, el trabajo se organiza principalmente en dos grupos:
+
+- **Estudiante:** funcionalidades relacionadas con el acceso, aprendizaje, práctica, Tutor IA y seguimiento del progreso.
+- **Administrador:** funcionalidades relacionadas con la gestión inicial de usuarios, cursos y panel administrativo.
+
+El equipo utiliza **GitHub Projects** para organizar y visualizar el trabajo del Sprint, permitiendo identificar las tareas pendientes, en desarrollo y terminadas.
+
+![Sprint Backlog](docs/img/sprint-backlog.png)
+
+## Definition of Done
+
+Una Historia de Usuario se considera terminada cuando cumple las condiciones establecidas por el equipo.
+
+Como mínimo:
+* La funcionalidad fue desarrollada.
+* Cumple los criterios de aceptación.
+* Fue revisada por otro integrante.
+* No presenta errores conocidos que impidan su funcionamiento.
+* Los cambios fueron integrados correctamente.
+* La funcionalidad puede demostrarse.
+
+---
+
+## 5. Product Backlog
+
+El Product Backlog reúne las funcionalidades necesarias para desarrollar ESTUD-IA y permite ordenar el trabajo según su prioridad y valor para el producto.
+
+Actualmente está compuesto por:
+* 19 Historias de Usuario
+* 8 Épicas
+* 76 Story Points
+
+Las Historias de Usuario fueron priorizadas considerando principalmente el valor que aportan al estudiante y la evolución necesaria para construir progresivamente la plataforma.
+
+### Resumen del Product Backlog
 
 | Prioridad | Historias | Puntos |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Alta | 8 | 40 |
 | Media | 2 | 5 |
 | Baja | 9 | 31 |
 | **Total** | **19** | **76** |
 
-## Arquitectura
+### Épicas
 
-![Arquitectura de TutorIA](docs/img/arquitectura.png)
+| Épica | Funcionalidad principal |
+| :--- | :--- |
+| Autenticación de Usuarios | Inicio y cierre de sesión. |
+| Gestión Académica | Consulta y administración de cursos. |
+| Gestión de Contenido | Consulta de contenidos educativos. |
+| Práctica y Evaluación | Resolución y consulta de resultados de ejercicios. |
+| Progreso Académico | Consulta del avance de aprendizaje. |
+| Tutor IA | Consultas y solicitud de pistas. |
+| Paneles y Accesos | Información diferenciada según el rol. |
+| Gestión de Usuarios | Consulta, registro y actualización de usuarios. |
 
-La solución se separa en tres capas:
+### Product Backlog completo
 
-**Capa cliente.** Aplicación de una sola página (SPA) construida con React y servida
-por Vite. Consume la API mediante peticiones HTTP con respuestas en JSON. El
-enrutamiento distingue rutas públicas (inicio de sesión) de rutas privadas, y la
-interfaz se adapta según el rol del usuario.
+[Ver Product Backlog e Historias de Usuario](https://utpedupe-my.sharepoint.com/:x:/g/personal/u21213646_utp_edu_pe/IQAbAZzNbjATQJbXT9jw_o-iAYPzDHymYvWIFzLT875iL4A?e=jtmpc3)
 
-**Capa servidor.** API REST en Laravel que concentra la lógica de negocio. Laravel
-Sanctum resuelve la autenticación mediante tokens, y Scramble genera la documentación
-OpenAPI a partir de las propias rutas, de modo que la documentación no se desactualiza
-respecto del código.
+El archivo contiene el detalle de las Historias de Usuario y sus criterios de aceptación.
 
-**Capa de datos e inteligencia.** MySQL persiste usuarios, cursos, contenidos,
-ejercicios y progreso, con acceso mediante el ORM Eloquent. Las consultas al Tutor IA
-se envían a Ollama, que ejecuta el modelo llama3.2 de forma local; la integración se
-hace con el paquete `cloudstudio/ollama-laravel`.
+## 6. Tecnologías y herramientas
 
-Ejecutar el modelo en local, y no contra un servicio externo de pago, mantiene el
-costo operativo en cero y evita que los datos de los estudiantes salgan de la
-infraestructura propia.
+ESTUD-IA utiliza tecnologías web que permiten separar la interfaz, la lógica de negocio, la persistencia de información y el componente de Inteligencia Artificial.
 
-## Stack tecnológico
+### Front-End
 
-### Frontend
+| Tecnología | Uso |
+| :--- | :--- |
+| **React** | Construcción de interfaces mediante componentes reutilizables. |
+| **Vite** | Entorno de desarrollo y construcción del Front-End. |
+| **Tailwind CSS** | Diseño y estilos de la interfaz. |
+| **React Router** | Gestión de rutas y navegación. |
+| **Axios** | Comunicación HTTP con el Back-End. |
+| **Lucide React** | Iconografía de la aplicación. |
 
-| Tecnología | Versión | Por qué |
-| --- | --- | --- |
-| React | 19 | Componentes reutilizables y ecosistema amplio; el equipo ya lo conoce. |
-| Vite | 8 | Arranque y recarga en caliente muy rápidos durante el desarrollo. |
-| Tailwind CSS | 4 | Estilos consistentes sin mantener hojas de estilo separadas. |
-| React Router | 7 | Separación de rutas públicas y privadas. |
-| Axios | 1.19 | Cliente HTTP con interceptores para adjuntar el token de sesión. |
-| Lucide React | 1.33 | Íconos ligeros y coherentes con el prototipo. |
+### Back-End
 
-### Backend
+| Tecnología | Uso |
+| :--- | :--- |
+| **Laravel** | Desarrollo de la API y lógica de negocio. |
+| **PHP** | Lenguaje utilizado en el Back-End. |
+| **Laravel Sanctum** | Autenticación de usuarios. |
+| **Scramble** | Documentación de la API mediante OpenAPI. |
+| **PhpUnit** | Pruebas automatizadas. |
 
-| Tecnología | Versión | Por qué |
-| --- | --- | --- |
-| Laravel | 13 | Framework maduro con ORM, migraciones y autenticación integrados. |
-| PHP | 8.3 | Requisito del framework. |
-| Laravel Sanctum | 4 | Autenticación por tokens pensada para SPA, sin montar OAuth completo. |
-| MySQL | — | Modelo relacional adecuado para usuarios, cursos y progreso. |
-| Scramble | 0.13 | Documentación OpenAPI generada automáticamente desde las rutas. |
-| Ollama (llama3.2) | — | Modelo ejecutado en local: sin costo por consulta y sin enviar datos afuera. |
-| Pest | 5 | Pruebas con sintaxis legible. |
-| Laravel Pint | 1.27 | Formato de código uniforme en todo el equipo. |
+### Base de datos
 
-## Estructura del repositorio
+| Tecnología | Uso |
+| :--- | :--- |
+| **MySQL** | Persistencia de usuarios, cursos, contenidos, ejercicios y progreso. |
 
-```
-TutorIA/
-├── Backend-TutorIA/          API REST en Laravel
+La base de datos utiliza un modelo relacional debido a la relación existente entre usuarios, roles, cursos, contenidos, ejercicios y resultados.
+
+### Inteligencia Artificial
+
+Para el componente de Tutor IA se contempla el uso de:
+
+| Tecnología | Uso |
+| :--- | :--- |
+| **Ollama** | Ejecución local del modelo de Inteligencia Artificial. |
+| **llama3.2** | Modelo utilizado para las consultas del Tutor IA. |
+| **cloudstudio/ollama-laravel** | Integración entre Laravel y Ollama. |
+
+La ejecución local del modelo busca reducir los costos de operación y evitar que las consultas educativas tengan que enviarse a un servicio externo.
+
+La integración completa del Tutor IA se encuentra en proceso de desarrollo.
+
+![Integración del Tutor IA](docs/img/flujo-de-ia.png)
+
+### Herramientas de desarrollo
+
+| Herramienta | Uso |
+| :--- | :--- |
+| **Visual Studio Code** | Desarrollo del código fuente de la aplicación. |
+| **Git** | Control de versiones. |
+| **GitHub** | Repositorio y colaboración del equipo. |
+| **GitHub Issues** | Gestión de Historias de Usuario y tareas. |
+| **GitHub Projects** | Organización y seguimiento del trabajo. |
+| **Figma** | Diseño y prototipado de interfaces. |
+| **Google Stitch** | Apoyo en exploración y generación de interfaces mediante IA. |
+
+## 7. Arquitectura
+
+ESTUD-IA utiliza una arquitectura web separada por responsabilidades.
+
+La solución está compuesta principalmente por:
+* **Front-End:** desarrollado con React.
+* **Back-End:** desarrollado con Laravel.
+* **Base de datos:** MySQL.
+* **Inteligencia Artificial:** servicio local mediante Ollama.
+
+### Diagrama de arquitectura
+
+![Arquitectura del Proyecto](docs/img/arquitectura.png)
+
+### Componentes principales
+
+#### Front-End
+El Front-End se encarga de presentar la interfaz al usuario, gestionar la navegación y consumir los servicios proporcionados por el Back-End.
+
+#### Back-End
+El Back-End concentra la lógica de negocio, autenticación, validaciones y comunicación con la base de datos y el servicio de Inteligencia Artificial.
+
+#### Base de datos
+MySQL permite almacenar y relacionar la información necesaria para el funcionamiento de la plataforma.
+
+#### Inteligencia Artificial
+Ollama permite ejecutar el modelo de IA localmente y utilizarlo como parte del Tutor IA.
+
+## 8. Estructura del repositorio
+
+El repositorio se divide principalmente entre el Front-End, Back-End y documentación.
+
+```text
+ESTUD-IA/
+│
+├── Backend-TutorIA/
 │   ├── app/
-│   │   ├── Http/Controllers/
+│   │   ├── Http/
+│   │   │   └── Controllers/
 │   │   ├── Models/
 │   │   └── Providers/
+│   │
 │   ├── database/
 │   │   ├── migrations/
 │   │   └── seeders/
+│   │
 │   ├── routes/
 │   │   ├── api.php
 │   │   └── web.php
+│   │
 │   └── tests/
-├── FrontEnd-TutorIA/         SPA en React
+│
+├── FrontEnd-TutorIA/
 │   ├── src/
 │   │   ├── routes/
 │   │   ├── styles/
 │   │   └── assets/
+│   │
 │   └── public/
-└── docs/                     Documentación y recursos de la expo
+│
+└── docs/
     └── img/
 ```
 
-## Flujo de trabajo con Git
+> **Nota:** La separación de directorios permite trabajar de forma independiente en cada capa de la aplicación y facilita la integración continua del proyecto.
 
-El equipo trabaja con **GitHub Flow**: una rama `main` siempre estable y ramas cortas
-por cada cambio.
+---
 
+## 9. Control de versiones y GitFlow
+
+El equipo utiliza Git y GitHub para controlar las versiones del código, gestionar las Historias de Usuario y revisar los cambios antes de integrarlos.
+
+Cada Historia de Usuario se relaciona con un Issue y se desarrolla en una rama independiente.
+
+### Flujo de trabajo
+
+```mermaid
+graph TD
+    HU[Historia de Usuario] --> Issue[Issue]
+    Issue --> Rama[Rama]
+    Rama --> Commits[Commits]
+    Commits --> PR1[Pull Request]
+    PR1 --> Develop[develop]
+    Develop --> PR2[Pull Request]
+    PR2 --> Main[main]
+    Main --> Despliegue[Despliegue]
 ```
-main ──────●────────────●─────────────●──────▶
-            \          /  \          /
-             ●────────●    ●────────●
-          feature/login   feature/tutor-ia
-```
 
-1. **Issue.** Cada historia de usuario del backlog se registra como issue.
-2. **Rama.** Se crea una rama desde `main` con nombre descriptivo:
-   `feature/hu-05-consultas-tutor-ia`, `fix/validacion-login`.
-3. **Commits.** Mensajes en imperativo y en español, describiendo el cambio:
-   `Agregar endpoint de consulta al tutor`.
-4. **Pull Request.** Al terminar, se abre un PR hacia `main` describiendo qué
-   resuelve y a qué issue corresponde.
-5. **Revisión.** Otro integrante revisa el PR. No se aprueba el propio trabajo.
-6. **Merge.** Aprobado el PR, se integra a `main` y se cierra el issue.
+Este flujo permite relacionar cada cambio realizado en el código con una funcionalidad concreta del Product Backlog.
 
-`main` está protegida: no se hace push directo, todo entra por Pull Request.
+### GitFlow del proyecto
+
+El siguiente diagrama representa el flujo de trabajo utilizado por el equipo durante el desarrollo.
+
+![GitFlow](docs/img/git_flow.jpeg)
+
+El flujo busca que los cambios pasen por una revisión antes de incorporarse a las ramas principales del proyecto.
 
 ### Convención de ramas
 
-| Prefijo | Uso |
-| --- | --- |
-| `feature/` | Nueva funcionalidad del backlog. |
-| `fix/` | Corrección de un error. |
-| `docs/` | Cambios de documentación. |
-| `refactor/` | Reorganización de código sin cambiar comportamiento. |
+El equipo utiliza una nomenclatura para identificar el propósito de cada rama:
 
-## Cómo levantar el proyecto
+| Prefijo | Uso | Ejemplo |
+| :--- | :--- | :--- |
+| feature/ | Nueva funcionalidad del backlog. | feature/hu-05-tutor-ia |
+| fix/ | Corrección de errores. | fix/validacion-login |
+| docs/ | Cambios en documentación. | docs/readme |
+| refactor/ | Reorganización del código sin cambiar su comportamiento. | refactor/api-auth |
 
-### Requisitos
+### Pull Requests
 
-- PHP 8.3 o superior, con Composer
-- Node.js 20 o superior, con npm
-- MySQL
-- [Ollama](https://ollama.com) instalado, con el modelo `llama3.2` descargado
+Los Pull Requests permiten revisar los cambios antes de integrarlos.
 
-### Backend
+El flujo utilizado es:
+
+```mermaid
+graph TD
+    RamaHU[Rama de Historia de Usuario] --> PR1[Pull Request]
+    PR1 --> Develop[develop]
+    Develop --> Validacion[Validación]
+    Validacion --> PR2[Pull Request]
+    PR2 --> Main[main]
+```
+
+Cada Pull Request debe describir el cambio realizado y relacionarse con la Historia de Usuario o Issue correspondiente.
+
+La revisión por otro integrante ayuda a detectar errores y mantener una mejor calidad del código.
+
+---
+
+## 10. Cómo ejecutar el proyecto
+
+### Requisitos previos
+
+Antes de ejecutar el proyecto se necesita tener instalado:
+
+* PHP 8.3 o superior.
+* Composer.
+* Node.js 20 o superior.
+* npm.
+* MySQL.
+* Ollama, para la funcionalidad de Inteligencia Artificial.
+
+**Importante:** El proyecto no utiliza Docker.
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd ESTUD-IA
+```
+
+### 2. Configurar el Back-End
+
+Ingresar a la carpeta del Back-End:
 
 ```bash
 cd Backend-TutorIA
+```
+
+Instalar las dependencias:
+
+```bash
 composer install
+```
+
+Crear el archivo de configuración:
+
+```bash
 cp .env.example .env
+```
+
+Generar la clave de la aplicación:
+
+```bash
 php artisan key:generate
 ```
 
-Configura la conexión a la base de datos en `.env`:
+#### Configurar la base de datos
+
+Crear una base de datos MySQL y configurar las credenciales en el archivo `.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -303,49 +665,57 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Luego ejecuta las migraciones y levanta el servidor:
+Ejecutar las migraciones:
 
 ```bash
 php artisan migrate
+```
+
+Iniciar el servidor del Back-End:
+
+```bash
 php artisan serve
 ```
 
-La API queda disponible en `http://localhost:8000`.
+La API estará disponible en: `http://localhost:8000`
 
-### Frontend
+### 3. Configurar el Front-End
+
+En otra terminal, ingresar a la carpeta del Front-End:
 
 ```bash
 cd FrontEnd-TutorIA
+```
+
+Instalar las dependencias:
+
+```bash
 npm install
+```
+
+Iniciar el servidor de desarrollo:
+
+```bash
 npm run dev
 ```
 
-La aplicación queda disponible en `http://localhost:5173`.
+La aplicación estará disponible en: `http://localhost:5173`
 
-### Modelo de IA
+### 4. Configurar el Tutor IA
+
+Para utilizar el modelo local de Inteligencia Artificial:
 
 ```bash
 ollama pull llama3.2
+```
+
+Luego iniciar Ollama:
+
+```bash
 ollama serve
 ```
 
-## Estado del proyecto
-
-El proyecto se encuentra en la **Unidad 1** del curso: análisis, diseño y montaje del
-entorno.
-
-| Entregable | Estado |
-| --- | --- |
-| Análisis del problema y requerimientos | Completado |
-| Product Backlog con historias de usuario | Completado |
-| Prototipo de interfaz en Figma | Completado |
-| Selección tecnológica y arquitectura | Completado |
-| Estructura de repositorio y GitHub Flow | Completado |
-| Estructura base del Backend (Laravel) | En curso |
-| Estructura base del Frontend (React) | En curso |
-| Endpoints de la API | Pendiente |
-| Integración con Ollama | Pendiente |
-| Interfaces del prototipo llevadas a código | Pendiente |
+Una vez configurado, Laravel podrá comunicarse con Ollama para procesar las consultas del Tutor IA.
 
 ## Equipo
 
