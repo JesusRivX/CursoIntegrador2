@@ -10,6 +10,10 @@ import StudentPractice from "../pages/student/practice/StudentPractice";
 import StudentTutor from "../pages/student/tutor/StudentTutor";
 import StudentTopic from "../pages/student/courses/StudentTopic";
 
+import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+import TeacherHome from "../pages/teacher/TeacherHome";
+import TeacherCourse from "../pages/teacher/TeacherCourse";
+
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminHome from "../pages/admin/home/AdminHome";
 import AdminUser from "../pages/admin/users/AdminUser";
@@ -28,6 +32,13 @@ const PrivateRoutes = () => {
           </Route>
           <Route path="practica" element={<StudentPractice />} />
           <Route path="tutor" element={<StudentTutor />} />
+        </Route>
+      </Route>
+
+      <Route element={<ProtectedRoute role="Docente" />}>
+        <Route path="docente" element={<TeacherDashboard />}>
+          <Route index element={<TeacherHome />} />
+          <Route path="cursos/:courseId" element={<TeacherCourse />} />
         </Route>
       </Route>
 
