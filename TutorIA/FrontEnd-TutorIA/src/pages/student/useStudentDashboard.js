@@ -4,7 +4,7 @@ import { dashboardNavigation } from "../../config/dashboardNavigation";
 
 const getStudentUser = () => {
   try {
-    const storedUser = localStorage.getItem("studentUser");
+    const storedUser = localStorage.getItem("authUser");
     return storedUser ? JSON.parse(storedUser) : null;
   } catch {
     return null;
@@ -22,7 +22,8 @@ const useStudentDashboard = () => {
   const navigation = dashboardNavigation.estudiante;
 
   const handleLogout = () => {
-    localStorage.removeItem("studentUser");
+    localStorage.removeItem("authUser");
+    localStorage.removeItem("token");
     navigate("/");
   };
 

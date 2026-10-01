@@ -17,6 +17,7 @@ const LoginForm = () => {
     handleRoleChange,
     togglePasswordVisibility,
     handleSubmit,
+    loading,
   } = useLoginForm();
 
   const roles = [
@@ -188,9 +189,10 @@ const LoginForm = () => {
 
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-200 active:scale-[0.99]"
+                  disabled={loading}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-200 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  <span>Entrar</span>
+                  <span>{loading ? "Ingresando..." : "Entrar"}</span>
                 </button>
               </form>
 

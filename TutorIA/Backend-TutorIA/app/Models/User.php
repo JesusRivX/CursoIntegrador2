@@ -12,14 +12,11 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
+        'rol_id',
         'codigo',
+        'nombre',
         'password',
-        'name',
-        'rol',
         'estado',
-        'nivel',
-        'grado',
-        'especialidad',
     ];
 
     protected $hidden = [
@@ -33,5 +30,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'rol_id');
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'user_id');
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'user_id');
     }
 }

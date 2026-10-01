@@ -13,9 +13,14 @@ import useStudentCourses from "./useStudentCourses";
 const StudentCourses = () => {
   const {
     user,
+    authUser,
+    studentId,
     courseId,
+    coursesData,
     studentCourses,
     selectedCourse,
+    loading,
+    error,
     getVisual,
     handleCourseClick,
   } = useStudentCourses();
@@ -25,10 +30,45 @@ const StudentCourses = () => {
       <Outlet
         context={{
           user,
+          authUser,
+          studentId,
+          coursesData,
           studentCourses,
           selectedCourse,
         }}
       />
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="flex min-h-100 items-center justify-center">
+        <div className="text-center">
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600" />
+
+          <p className="mt-4 text-sm font-semibold text-slate-500">
+            Cargando tus cursos...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="rounded-[26px] border border-red-100 bg-white p-10 text-center shadow-sm">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-500">
+          <BookOpen className="h-6 w-6" />
+        </div>
+
+        <h2 className="mt-5 text-lg font-black text-slate-900">
+          No se pudieron cargar los cursos
+        </h2>
+
+        <p className="mx-auto mt-2 max-w-md text-xs leading-6 text-slate-400">
+          {error}
+        </p>
+      </section>
     );
   }
 
@@ -57,17 +97,17 @@ const StudentCourses = () => {
           <div className="mt-6 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
               <GraduationCap className="h-4 w-4 text-blue-300" />
-              {user?.nivel || "—"}
+              {coursesData?.grado || "—"}
             </span>
 
             <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
               <BookOpen className="h-4 w-4 text-violet-300" />
-              {user?.grado || "—"}
+              {coursesData?.nivel_educativo || "—"}
             </span>
 
             <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
               <Sparkles className="h-4 w-4 text-emerald-300" />
-              {studentCourses.length} cursos
+              {coursesData?.cantidad_cursos || 0} cursos
             </span>
           </div>
         </div>
@@ -84,11 +124,13 @@ const StudentCourses = () => {
                 key={course.id}
                 type="button"
                 onClick={() => handleCourseClick(course.id)}
-                className="group overflow-hidden rounded-[26px] border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-[26px] border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className={`h-2 bg-linear-to-r ${visual.gradient}`} />
+                <div
+                  className={`absolute inset-x-0 top-0 h-2 bg-linear-to-r ${visual.gradient}`}
+                />
 
-                <div className="p-6">
+                <div className="p-6 pt-8">
                   <div className="flex items-start justify-between">
                     <div
                       className={`flex h-12 w-12 items-center justify-center rounded-2xl ${visual.bg} ${visual.text}`}
@@ -118,7 +160,7 @@ const StudentCourses = () => {
                       <p className="text-[10px] text-slate-400">Contenido</p>
 
                       <p className="mt-1 text-sm font-black text-slate-800">
-                        {course.temas?.length || 0} temas
+                        {course.cantidad_temas || 0} temas
                       </p>
                     </div>
 
@@ -143,8 +185,7 @@ const StudentCourses = () => {
           </h2>
 
           <p className="mx-auto mt-2 max-w-md text-xs leading-6 text-slate-400">
-            Actualmente no existen cursos que coincidan con tu nivel y grado
-            académico.
+            Actualmente no existen cursos asignados a tu perfil académico.
           </p>
         </section>
       )}

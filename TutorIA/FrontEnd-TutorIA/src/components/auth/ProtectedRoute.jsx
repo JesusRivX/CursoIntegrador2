@@ -1,83 +1,57 @@
 import { useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { sileo } from "sileo";
 
-const storageKeys = ["studentUser", "teacherUser", "adminUser"];
-
 const getAuthenticatedUser = () => {
-  for (const key of storageKeys) {
-    const data = localStorage.getItem(key);
-
-    if (!data) continue;
-
-    try {
-      const user = JSON.parse(data);
-
-      if (user) {
-        return user;
-      }
-    } catch {
-      localStorage.removeItem(key);
-    }
+  const data = localStorage.getItem("authUser");
+  if (!data) {
+    return null;
   }
-
-  return null;
+  try {
+    return JSON.parse(data);
+  } catch {
+    localStorage.removeItem("authUser");
+    localStorage.removeItem("token");
+    return null;
+  }
 };
 
 const ProtectedRoute = ({ role }) => {
-  const location = useLocation();
   const navigate = useNavigate();
-
   const user = getAuthenticatedUser();
+  const token = localStorage.getItem("token");
 
-  const hasSession = !!user;
+  const hasSession = !!user && !!token;
   const isActive = user?.estado === "Activo";
   const hasCorrectRole = user?.rol === role;
 
   useEffect(() => {
-    if (hasSession && isActive && hasCorrectRole) {
-      sessionStorage.setItem(
-        "lastValidRoute",
-        location.pathname + location.search,
-      );
+    if (!hasSession) {
+      navigate("/login", { replace: true });
+      return;
     }
-  }, [
-    hasSession,
-    isActive,
-    hasCorrectRole,
-    location.pathname,
-    location.search,
-  ]);
-
-  useEffect(() => {
-    if (hasSession && isActive && !hasCorrectRole) {
-      const lastValidRoute = sessionStorage.getItem("lastValidRoute");
-
+    if (!isActive) {
+      localStorage.removeItem("authUser");
+      localStorage.removeItem("token");
+      sileo.error({
+        title: "Usuario inactivo",
+        description: "Tu cuenta se encuentra inactiva.",
+      });
+      navigate("/login", { replace: true });
+      return;
+    }
+    if (!hasCorrectRole) {
       sileo.error({
         title: "Ruta protegida",
         description: "No tienes permisos para acceder a esta sección.",
       });
-
-      if (lastValidRoute && lastValidRoute !== location.pathname) {
-        navigate(lastValidRoute, {
-          replace: true,
-        });
-      }
+      navigate("/login", { replace: true });
     }
-  }, [hasSession, isActive, hasCorrectRole, location.pathname, navigate]);
+  }, [hasSession, isActive, hasCorrectRole, navigate]);
 
-  if (!hasSession) {
+  if (!hasSession || !isActive || !hasCorrectRole) {
     return null;
   }
-
-  if (!isActive) {
-    return null;
-  }
-
-  if (!hasCorrectRole) {
-    return null;
-  }
-
   return <Outlet />;
 };
 

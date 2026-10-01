@@ -33,7 +33,7 @@ const HeaderDashboard = ({
 
           <div className="min-w-0">
             <h1 className="truncate text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
-              ¡Hola {`${user?.rol} ${user?.nombre}`}!
+              ¡Hola {`${user?.rol}, ${user?.nombre}`}!
             </h1>
 
             <p className="mt-0.5 hidden text-sm text-slate-500 sm:block">

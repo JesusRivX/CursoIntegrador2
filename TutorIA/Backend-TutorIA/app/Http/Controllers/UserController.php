@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
+    /**
+     * Verifica si un usuario existe con las credenciales proporcionadas.
+     *
+     * @param LoginRequest $req
+     * @param UserService $userService
+     * @return JsonResponse
+     */
     public function verificarUsuario(
         LoginRequest $req,
         UserService $userService
     ): JsonResponse {
+
         $resultado = $userService->verificarUsuario(
             $req->codigo,
             $req->password,
@@ -26,8 +35,8 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Inicio de sesión correcto',
-            'user' => $resultado['usuario'],
+            'usuario' => new UserResource($resultado['usuario']),
             'token' => $resultado['token'],
-        ]);
+        ], 200);
     }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sileo } from "sileo";
-import loginUser from "./loginUser";
+import { login } from "../../services/auth/auth.service";
 
 const initialFormData = {
   rol: "Estudiante",
@@ -11,122 +11,94 @@ const initialFormData = {
 
 const useLoginForm = () => {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState(initialFormData);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleRoleChange = (rol) => {
-    setFormData((prev) => ({
-      ...prev,
-      rol,
-    }));
+    setFormData((prev) => ({ ...prev, rol }));
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const { rol, codigo, password } = formData;
 
-    const result = loginUser(formData);
+    const hasEmptyFields = [rol, codigo, password].some(
+      (value) => !value || !value.trim(),
+    );
 
-    if (result.reason === "EMPTY_FIELDS") {
+    if (hasEmptyFields) {
       sileo.error({
         title: "Campos incompletos",
         description: "Por favor, completa todos los campos para continuar.",
       });
-
-      return result;
+      return;
     }
+    try {
+      setLoading(true);
+      const result = await login({ codigo: codigo.trim(), password, rol });
+      console.log("Respuesta del backend:", result);
 
-    if (result.reason === "INVALID_CREDENTIALS") {
-      sileo.error({
-        title: "Credenciales incorrectas",
-        description: "El rol, código o contraseña no son correctos.",
-      });
-
-      return result;
-    }
-
-    if (result.reason === "INACTIVE_USER") {
-      sileo.error({
-        title: "Usuario inactivo",
-        description:
-          "Tu cuenta se encuentra inactiva. Comunícate con el administrador.",
-      });
-
-      return result;
-    }
-
-    if (result.reason === "LOGIN_SUCCESS") {
-      const usuarioEncontrado = result.user;
-
-      sileo.success({
-        title: "Login exitoso",
-        description: `Bienvenido, ${usuarioEncontrado.nombre}.`,
-      });
-
-      switch (usuarioEncontrado.rol) {
-        case "Estudiante":
-          localStorage.setItem(
-            "studentUser",
-            JSON.stringify(usuarioEncontrado),
-          );
-
-          navigate("/app/estudiante", {
-            state: {
-              user: usuarioEncontrado,
-            },
-          });
-
-          break;
-
-        case "Docente":
-          localStorage.setItem(
-            "teacherUser",
-            JSON.stringify(usuarioEncontrado),
-          );
-
-          navigate("/app/docente", {
-            state: {
-              user: usuarioEncontrado,
-            },
-          });
-
-          break;
-
-        case "Administrador":
-          localStorage.setItem("adminUser", JSON.stringify(usuarioEncontrado));
-
-          navigate("/app/admin", {
-            state: {
-              user: usuarioEncontrado,
-            },
-          });
-
-          break;
-
-        default:
-          break;
+      if (result?.usuario && result?.token) {
+        const usuario = result.usuario;
+        sileo.success({
+          title: "Login exitoso",
+          description: `Bienvenido, ${usuario.nombre}.`,
+        });
+        switch (usuario.rol) {
+          case "Estudiante":
+            navigate("/app/estudiante", {
+              replace: true,
+              state: { user: usuario },
+            });
+            break;
+          case "Docente":
+            navigate("/app/docente", {
+              replace: true,
+              state: { user: usuario },
+            });
+            break;
+          case "Administrador":
+            navigate("/app/admin", { replace: true, state: { user: usuario } });
+            break;
+          default:
+            localStorage.removeItem("authUser");
+            localStorage.removeItem("token");
+            sileo.error({
+              title: "Rol no válido",
+              description: "El servidor devolvió un rol que no está permitido.",
+            });
+        }
+        return;
       }
+
+      sileo.error({
+        title: "Error al iniciar sesión",
+        description:
+          "El servidor no devolvió correctamente el usuario y el token.",
+      });
+    } catch (error) {
+      console.error("Error login:", error);
+      const message =
+        error.response?.data?.message || "No se pudo conectar con el servidor.";
+      sileo.error({ title: "Error al iniciar sesión", description: message });
+    } finally {
+      setLoading(false);
     }
-
-    return result;
   };
-
   return {
     formData,
     showPassword,
+    loading,
     handleChange,
     handleRoleChange,
     togglePasswordVisibility,

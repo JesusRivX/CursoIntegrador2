@@ -1,29 +1,60 @@
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-
 import { Atom, BookOpen, Calculator, MessageCircle } from "lucide-react";
-
-import { courses } from "../../../data/academic/courses";
+import { getStudentCourses } from "../../../services/student/student.service";
 
 const useStudentCourses = () => {
   const navigate = useNavigate();
   const { user } = useOutletContext();
   const { courseId } = useParams();
 
-  const studentCourses = useMemo(() => {
-    if (!user) {
-      return [];
+  const [coursesData, setCoursesData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const authUser = useMemo(() => {
+    try {
+      const storedUser = localStorage.getItem("authUser");
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch {
+      return null;
     }
+  }, []);
 
-    const assignedCourseIds = Array.isArray(user.cursos) ? user.cursos : [];
+  const studentId = authUser?.id;
 
-    return courses.filter(
-      (course) =>
-        assignedCourseIds.includes(course.id) &&
-        course.nivel === user.nivel &&
-        course.grado === user.grado,
-    );
-  }, [user]);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      if (!studentId) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await getStudentCourses(studentId);
+
+        setCoursesData(response?.data || null);
+      } catch (error) {
+        setError(
+          error?.response?.data?.message ||
+            "No se pudieron obtener los cursos.",
+        );
+
+        setCoursesData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, [studentId]);
+
+  const studentCourses = useMemo(() => {
+    return coursesData?.cursos || [];
+  }, [coursesData]);
 
   const selectedCourse = useMemo(() => {
     if (!courseId) {
@@ -43,7 +74,7 @@ const useStudentCourses = () => {
         icon: Calculator,
         bg: "bg-blue-50",
         text: "text-blue-600",
-        gradient: "from-blue-500 to-cyan-500",
+        gradient: "bg-blue-500",
       };
     }
 
@@ -52,7 +83,7 @@ const useStudentCourses = () => {
         icon: MessageCircle,
         bg: "bg-emerald-50",
         text: "text-emerald-600",
-        gradient: "from-emerald-500 to-teal-500",
+        gradient: "bg-emerald-500",
       };
     }
 
@@ -65,7 +96,7 @@ const useStudentCourses = () => {
         icon: Atom,
         bg: "bg-violet-50",
         text: "text-violet-600",
-        gradient: "from-violet-500 to-purple-500",
+        gradient: "bg-violet-500",
       };
     }
 
@@ -73,7 +104,7 @@ const useStudentCourses = () => {
       icon: BookOpen,
       bg: "bg-slate-100",
       text: "text-slate-600",
-      gradient: "from-slate-500 to-slate-700",
+      gradient: "bg-slate-500",
     };
   };
 
@@ -83,9 +114,14 @@ const useStudentCourses = () => {
 
   return {
     user,
+    authUser,
+    studentId,
     courseId,
+    coursesData,
     studentCourses,
     selectedCourse,
+    loading,
+    error,
     getVisual,
     handleCourseClick,
   };
