@@ -372,7 +372,7 @@ const TeacherCourse = () => {
 
   if (!originalCourse) {
     return (
-      <div className="flex min-h-[400px] items-center justify-center">
+      <div className="flex min-h-100 items-center justify-center">
         <div className="text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 text-slate-300">
             <BookOpen className="h-6 w-6" />
@@ -405,7 +405,7 @@ const TeacherCourse = () => {
 
   if (!hasAccess) {
     return (
-      <div className="flex min-h-[400px] items-center justify-center">
+      <div className="flex min-h-100 items-center justify-center">
         <div className="max-w-md text-center">
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-500">
             <GraduationCap className="h-6 w-6" />
@@ -821,7 +821,7 @@ const TeacherCourse = () => {
               )}
             </div>
           ) : (
-            <div className="flex min-h-[400px] items-center justify-center p-6 text-center">
+            <div className="flex min-h-100 items-center justify-center p-6 text-center">
               <div>
                 <BookOpen className="mx-auto h-8 w-8 text-slate-300" />
 
