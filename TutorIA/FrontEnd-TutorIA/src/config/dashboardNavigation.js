@@ -60,10 +60,10 @@ export const dashboardNavigation = {
       icon: LayoutDashboard,
       path: "/app/docente",
     },
-    // {
-    //     label: "Mis aulas",
-    //     icon: BarChart3,
-    //     path: "/app/docente/aulas",
-    // },
+    {
+      label: "Mis aulas",
+      icon: BarChart3,
+      path: "/app/docente/aulas",
+    },
   ],
 };
