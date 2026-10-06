@@ -8,6 +8,7 @@ import {
 
 import { Outlet } from "react-router-dom";
 
+import StudentCoursesSkeleton from "../../../components/skeletons/student/StudentCoursesSkeleton";
 import useStudentCourses from "./useStudentCourses";
 
 const StudentCourses = () => {
@@ -41,17 +42,7 @@ const StudentCourses = () => {
   }
 
   if (loading) {
-    return (
-      <div className="flex min-h-100 items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600" />
-
-          <p className="mt-4 text-sm font-semibold text-slate-500">
-            Cargando tus cursos...
-          </p>
-        </div>
-      </div>
-    );
+    return <StudentCoursesSkeleton />;
   }
 
   if (error) {
@@ -115,7 +106,7 @@ const StudentCourses = () => {
 
       {studentCourses.length > 0 ? (
         <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {studentCourses.map((course) => {
+          {[...studentCourses].reverse().map((course) => {
             const visual = getVisual(course.nombre);
             const Icon = visual.icon;
 

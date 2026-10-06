@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import SidebarDashboard from "../../components/dashboard/SidebarDashboard";
 import HeaderDashboard from "../../components/dashboard/HeaderDashboard";
 import useStudentDashboard from "./useStudentDashboard";
+// import StudentDashboardSkeleton from "../../components/skeletons/student/StudentDashboardSkeleton";
 
 const StudentDashboard = () => {
   const {

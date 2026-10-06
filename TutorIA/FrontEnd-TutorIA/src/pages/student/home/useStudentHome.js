@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Calculator, Atom, MessageCircle } from "lucide-react";
 
@@ -5,26 +6,48 @@ const useStudentHome = () => {
   const navigate = useNavigate();
   const { user } = useOutletContext();
 
-  const courses = [
-    {
-      name: "Matemática",
-      progress: 72,
-      color: "blue",
-      icon: Calculator,
-    },
-    {
-      name: "Ciencia y Tecnología",
-      progress: 48,
-      color: "violet",
-      icon: Atom,
-    },
-    {
-      name: "Comunicación",
-      progress: 86,
-      color: "emerald",
-      icon: MessageCircle,
-    },
-  ];
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadStudentHome = async () => {
+      try {
+        setLoading(true);
+
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        const coursesData = [
+          {
+            name: "Matemática",
+            progress: 72,
+            color: "blue",
+            icon: Calculator,
+          },
+          {
+            name: "Ciencia y Tecnología",
+            progress: 48,
+            color: "violet",
+            icon: Atom,
+          },
+          {
+            name: "Comunicación",
+            progress: 86,
+            color: "emerald",
+            icon: MessageCircle,
+          },
+        ];
+
+        setCourses(coursesData);
+      } catch (error) {
+        console.error("Error al cargar el inicio del estudiante:", error);
+        setCourses([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadStudentHome();
+  }, []);
 
   const handleTutorNavigation = () => {
     navigate("/app/estudiante/tutor", {
@@ -35,6 +58,7 @@ const useStudentHome = () => {
   return {
     user,
     courses,
+    loading,
     handleTutorNavigation,
   };
 };

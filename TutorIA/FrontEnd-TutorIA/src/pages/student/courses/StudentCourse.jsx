@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import useStudentCourse from "./useStudentCourse";
+import StudentCourseSkeleton from "../../../components/skeletons/student/StudentCourseSkeleton";
 
 const StudentCourse = () => {
   const {
@@ -20,12 +21,17 @@ const StudentCourse = () => {
     completedTopics,
     inProgressTopics,
     materialCount,
-    getTopicProgress,
+    loading,
+    error,
     goToCourses,
     goToTopic,
   } = useStudentCourse();
 
-  if (!course) {
+  if (loading) {
+    return <StudentCourseSkeleton />;
+  }
+
+  if (error || !course) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center p-6">
         <div className="max-w-md text-center">
@@ -38,7 +44,8 @@ const StudentCourse = () => {
           </h1>
 
           <p className="mt-2 text-sm leading-6 text-slate-500">
-            Este curso no está asignado a tu perfil académico o no existe.
+            {error ||
+              "Este curso no está disponible o no se pudo obtener su información."}
           </p>
 
           <button
@@ -56,6 +63,9 @@ const StudentCourse = () => {
 
   return (
     <div className="space-y-6 pb-12">
+      {/* ========================================
+          VOLVER
+      ======================================== */}
       <div>
         <button
           type="button"
@@ -67,6 +77,9 @@ const StudentCourse = () => {
         </button>
       </div>
 
+      {/* ========================================
+          HEADER DEL CURSO
+      ======================================== */}
       <section className="relative overflow-hidden rounded-[30px] bg-slate-950 p-6 shadow-xl sm:p-8 lg:p-9">
         <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
 
@@ -81,21 +94,21 @@ const StudentCourse = () => {
               </div>
 
               <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
-                {course.nombre}
+                {course.curso_nombre}
               </h1>
 
               <p className="mt-2 text-sm font-medium text-blue-300">
-                {course.codigo}
+                {course.curso_codigo}
               </p>
 
               <p className="mt-5 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">
-                {course.descripcion}
+                {course.curso_descripcion}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
                   <GraduationCap className="h-4 w-4 text-blue-300" />
-                  {course.nivel}
+                  {course.nivel_educativo}
                 </span>
 
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
@@ -105,11 +118,14 @@ const StudentCourse = () => {
 
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold text-white">
                   <Target className="h-4 w-4 text-emerald-300" />
-                  {course.temas.length} temas
+                  {course.cantidad_temas} temas
                 </span>
               </div>
             </div>
 
+            {/* ========================================
+                PROGRESO DEL CURSO
+            ======================================== */}
             <div className="rounded-3xl border border-white/10 bg-white/8 p-5 shadow-lg backdrop-blur-xl sm:p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -166,7 +182,11 @@ const StudentCourse = () => {
         </div>
       </section>
 
+      {/* ========================================
+          RESUMEN
+      ======================================== */}
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {/* Temas */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
             <BookOpen className="h-5 w-5" />
@@ -175,10 +195,11 @@ const StudentCourse = () => {
           <p className="mt-4 text-xs text-slate-400">Temas</p>
 
           <p className="mt-1 text-2xl font-black text-slate-900">
-            {course.temas.length}
+            {course.cantidad_temas}
           </p>
         </div>
 
+        {/* Completados */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
             <CheckCircle2 className="h-5 w-5" />
@@ -191,6 +212,7 @@ const StudentCourse = () => {
           </p>
         </div>
 
+        {/* En progreso */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
             <Clock3 className="h-5 w-5" />
@@ -203,6 +225,7 @@ const StudentCourse = () => {
           </p>
         </div>
 
+        {/* Materiales */}
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-500">
             <FileText className="h-5 w-5" />
@@ -216,6 +239,9 @@ const StudentCourse = () => {
         </div>
       </section>
 
+      {/* ========================================
+          RUTA DE APRENDIZAJE
+      ======================================== */}
       <section className="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-100 px-5 py-6 sm:px-7">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -237,7 +263,7 @@ const StudentCourse = () => {
             </div>
 
             <span className="w-fit rounded-full bg-slate-100 px-3 py-1.5 text-[10px] font-bold text-slate-500">
-              {course.temas.length} unidades
+              {course.cantidad_temas} unidades
             </span>
           </div>
         </div>
@@ -248,16 +274,17 @@ const StudentCourse = () => {
 
             <div className="space-y-4">
               {course.temas.map((topic, index) => {
-                const progress = getTopicProgress(topic.id);
-                const completed = progress >= 80;
+                const progress = Number(topic.progreso) || 0;
+                const completed = topic.estado === "Completado";
 
                 return (
                   <button
-                    key={topic.id}
+                    key={topic.tema_id}
                     type="button"
-                    onClick={() => goToTopic(topic.id)}
+                    onClick={() => goToTopic(topic.tema_id)}
                     className="group relative flex w-full gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md sm:p-5"
                   >
+                    {/* Número / estado */}
                     <div
                       className={`relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
                         completed
@@ -274,15 +301,16 @@ const StudentCourse = () => {
                       )}
                     </div>
 
+                    {/* Información */}
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                           <p className="text-sm font-black text-slate-800">
-                            {topic.nombre}
+                            {topic.tema_nombre}
                           </p>
 
                           <p className="mt-1 line-clamp-2 text-[11px] leading-5 text-slate-400">
-                            {topic.descripcion}
+                            {topic.tema_descripcion}
                           </p>
                         </div>
 
@@ -290,13 +318,16 @@ const StudentCourse = () => {
                           className={`w-fit rounded-full px-2.5 py-1 text-[10px] font-bold ${
                             completed
                               ? "bg-emerald-50 text-emerald-600"
-                              : "bg-blue-50 text-blue-600"
+                              : progress > 0
+                                ? "bg-blue-50 text-blue-600"
+                                : "bg-slate-100 text-slate-500"
                           }`}
                         >
-                          {progress}% completado
+                          {topic.estado}
                         </span>
                       </div>
 
+                      {/* Barra de progreso */}
                       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-100">
                         <div
                           className={`h-full rounded-full transition-all ${
@@ -308,13 +339,15 @@ const StudentCourse = () => {
                         />
                       </div>
 
+                      {/* Footer del tema */}
                       <div className="mt-3 flex flex-wrap items-center gap-3">
-                        {topic.pdf && (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-400">
-                            <FileText className="h-3 w-3" />
-                            Material PDF
-                          </span>
-                        )}
+                        <span
+                          className={`inline-flex items-center gap-1 text-[10px] font-bold ${
+                            completed ? "text-emerald-600" : "text-blue-600"
+                          }`}
+                        >
+                          {progress}% completado
+                        </span>
 
                         <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600">
                           Estudiar tema

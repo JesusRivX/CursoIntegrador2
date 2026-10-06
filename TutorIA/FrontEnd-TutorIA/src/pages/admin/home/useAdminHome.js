@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { courses } from "../../../data/academic/courses";
+import { getKpiInicio } from "../../../services/admin/admin.service";
 import { users } from "../../../data/auth/users";
 
 const gradeOrder = {
@@ -13,6 +14,27 @@ const gradeOrder = {
 
 export const useAdminHome = () => {
   const [selectedLevel, setSelectedLevel] = useState("Primaria");
+  const [kpis, setKpis] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchKpis = async () => {
+      try {
+        setLoading(true);
+
+        const response = await getKpiInicio();
+
+        setKpis(response?.data?.[0] || null);
+      } catch (error) {
+        console.error("No se pudieron obtener los KPI.", error);
+        setKpis(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchKpis();
+  }, []);
 
   const students = useMemo(
     () => users.filter((user) => user.rol === "Estudiante"),
@@ -94,5 +116,7 @@ export const useAdminHome = () => {
     activeStudents,
     totalCourses,
     activeCourses,
+    loading,
+    kpis,
   };
 };

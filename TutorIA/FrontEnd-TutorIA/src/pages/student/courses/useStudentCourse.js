@@ -1,83 +1,107 @@
-import { useMemo } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { courses } from "../../../data/academic/courses";
-
-const topicProgress = {
-  1: 88,
-  2: 62,
-  3: 48,
-  4: 25,
-};
+import {
+  getStudentCourse,
+  patchStudentTopicProgress,
+} from "../../../services/student/student.service";
 
 const useStudentCourse = () => {
   const navigate = useNavigate();
-  const { user, selectedCourse } = useOutletContext();
   const { courseId } = useParams();
 
-  const course = useMemo(() => {
-    if (selectedCourse) {
-      return selectedCourse;
-    }
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    if (!user || !courseId) {
-      return null;
-    }
+  useEffect(() => {
+    const fetchCourse = async () => {
+      if (!courseId) {
+        setCourse(null);
+        setLoading(false);
+        return;
+      }
 
-    const assignedCourseIds = Array.isArray(user.cursos) ? user.cursos : [];
+      try {
+        setLoading(true);
+        setError(null);
 
-    return (
-      courses.find(
-        (item) =>
-          item.id === Number(courseId) &&
-          assignedCourseIds.includes(item.id) &&
-          item.nivel === user.nivel &&
-          item.grado === user.grado,
-      ) || null
-    );
-  }, [selectedCourse, user, courseId]);
+        const response = await getStudentCourse(courseId);
 
-  const courseProgress = 72;
+        setCourse(response?.data || null);
+      } catch (error) {
+        setCourse(null);
 
-  const completedTopics = useMemo(() => {
-    if (!course) {
+        setError(
+          error?.response?.data?.message ||
+            "No se pudo obtener la información del curso.",
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourse();
+  }, [courseId]);
+
+  const courseProgress = useMemo(() => {
+    if (!course?.temas?.length) {
       return 0;
     }
 
-    return course.temas.filter((topic) => (topicProgress[topic.id] || 0) >= 80)
-      .length;
+    const totalProgress = course.temas.reduce(
+      (total, topic) => total + (Number(topic.progreso) || 0),
+      0,
+    );
+
+    return Math.round(totalProgress / course.temas.length);
+  }, [course]);
+
+  const completedTopics = useMemo(() => {
+    if (!course?.temas?.length) {
+      return 0;
+    }
+
+    return course.temas.filter((topic) => topic.estado === "Completado").length;
   }, [course]);
 
   const inProgressTopics = useMemo(() => {
-    if (!course) {
+    if (!course?.temas?.length) {
       return 0;
     }
 
-    return course.temas.filter((topic) => {
-      const progress = topicProgress[topic.id] || 0;
-
-      return progress > 0 && progress < 80;
-    }).length;
+    return course.temas.filter(
+      (topic) =>
+        topic.progreso > 0 &&
+        topic.progreso < 100 &&
+        topic.estado !== "Completado",
+    ).length;
   }, [course]);
 
-  const materialCount = useMemo(() => {
-    if (!course) {
-      return 0;
-    }
+  const materialCount = 0;
 
-    return course.temas.filter((topic) => topic.pdf).length;
-  }, [course]);
+  const getTopicProgress = (topicId) => {
+    const topic = course?.temas?.find((item) => item.tema_id === topicId);
+
+    return topic?.progreso || 0;
+  };
 
   const goToCourses = () => {
     navigate("/app/estudiante/cursos");
   };
 
-  const goToTopic = (topicId) => {
-    navigate(`/app/estudiante/cursos/${course.id}/temas/${topicId}`);
-  };
+  const goToTopic = async (topicId) => {
+    if (!course?.curso_id || !topicId) {
+      return;
+    }
 
-  const getTopicProgress = (topicId) => {
-    return topicProgress[topicId] || 0;
+    try {
+      await patchStudentTopicProgress(course.curso_id, topicId);
+      navigate(`/app/estudiante/cursos/${course.curso_id}/temas/${topicId}`);
+    } catch (error) {
+      console.error("No se pudo actualizar el progreso del tema:", error);
+      navigate(`/app/estudiante/cursos/${course.curso_id}/temas/${topicId}`);
+    }
   };
 
   return {
@@ -87,6 +111,8 @@ const useStudentCourse = () => {
     inProgressTopics,
     materialCount,
     getTopicProgress,
+    loading,
+    error,
     goToCourses,
     goToTopic,
   };

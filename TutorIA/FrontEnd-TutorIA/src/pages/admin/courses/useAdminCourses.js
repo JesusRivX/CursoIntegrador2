@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { sileo } from "sileo";
 import { courses as cursosIniciales } from "../../../data/academic/courses";
 
@@ -24,12 +24,29 @@ const useAdminCourses = () => {
   const [editingCourse, setEditingCourse] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
+  const [loading, setLoading] = useState(true);
+
   const [form, setForm] = useState({
     ...initialForm,
     temas: [],
   });
 
   const [newTopic, setNewTopic] = useState("");
+
+  useEffect(() => {
+    const loadCourses = async () => {
+      setLoading(true);
+
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setCourses(cursosIniciales);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCourses();
+  }, []);
 
   const filteredCourses = useMemo(() => {
     const searchValue = search.toLowerCase().trim();
@@ -339,6 +356,8 @@ const useAdminCourses = () => {
 
     getLevelStyles,
     getStatusStyles,
+
+    loading,
   };
 };
 

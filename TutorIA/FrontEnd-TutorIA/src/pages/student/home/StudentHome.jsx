@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import useStudentHome from "./useStudentHome";
+import StudentDashboardSkeleton from "../../../components/skeletons/student/StudentDashboardSkeleton";
 
 const colorClasses = {
   blue: {
@@ -29,12 +30,17 @@ const colorClasses = {
 };
 
 const StudentHome = () => {
-  const { courses, handleTutorNavigation } = useStudentHome();
+  const { courses, loading, handleTutorNavigation } = useStudentHome();
+
+  if (loading) {
+    return <StudentDashboardSkeleton />;
+  }
 
   return (
     <>
       <section className="relative overflow-hidden rounded-[28px] bg-slate-950 p-6 shadow-xl shadow-slate-200 sm:p-8 lg:p-10">
         <div className="absolute -right-20 -top-32 h-80 w-80 rounded-full bg-blue-500/30 blur-3xl" />
+
         <div className="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
 
         <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">

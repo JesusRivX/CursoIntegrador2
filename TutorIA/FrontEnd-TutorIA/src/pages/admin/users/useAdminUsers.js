@@ -1,6 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { sileo } from "sileo";
-import { users as initialUsers } from "../../../data/auth/users";
+import {
+  getKpiUsuarios,
+  getUsuarios,
+  getUsuarioInfo,
+} from "../../../services/admin/admin.service";
 
 const createEmptyForm = () => ({
   nombre: "",
@@ -114,7 +118,10 @@ const buildUpdatedUser = (user, form) => ({
 });
 
 const useAdminUsers = () => {
-  const [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState([]);
+  const [kpis, setKpis] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadingDetail, setLoadingDetail] = useState(false);
 
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("Todos");
@@ -129,33 +136,68 @@ const useAdminUsers = () => {
 
   const [form, setForm] = useState(createEmptyForm);
 
+  console.log(selectedUser);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const [usersResponse, kpisResponse] = await Promise.all([
+          getUsuarios(),
+          getKpiUsuarios(),
+        ]);
+
+        setUsers(usersResponse?.data || []);
+        setKpis(kpisResponse?.data?.[0] || null);
+      } catch (error) {
+        console.error("No se pudieron obtener los datos.", error);
+
+        setUsers([]);
+        setKpis(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getUserInfo = async (userId) => {
+    try {
+      setLoadingDetail(true);
+      setSelectedUser(null);
+
+      const response = await getUsuarioInfo(userId);
+
+      setSelectedUser(response?.data || null);
+      setIsDetailModalOpen(true);
+    } catch (error) {
+      console.error("No se pudo obtener la información del usuario.", error);
+
+      sileo.error({
+        title: "Error",
+        description:
+          error?.response?.data?.message ||
+          "No se pudo obtener la información del usuario.",
+      });
+    } finally {
+      setLoadingDetail(false);
+    }
+  };
+
   const filteredUsers = useMemo(() => {
     const searchValue = search.toLowerCase();
 
     return users.filter((user) => {
       const matchesSearch =
-        user.nombre.toLowerCase().includes(searchValue) ||
+        user.usuario.toLowerCase().includes(searchValue) ||
         user.codigo.toLowerCase().includes(searchValue);
 
       const matchesRole = roleFilter === "Todos" || user.rol === roleFilter;
-
       return matchesSearch && matchesRole;
     });
   }, [users, search, roleFilter]);
-
-  const stats = useMemo(
-    () => ({
-      total: users.length,
-
-      estudiantes: users.filter((user) => user.rol === "Estudiante").length,
-
-      docentes: users.filter((user) => user.rol === "Docente").length,
-
-      administradores: users.filter((user) => user.rol === "Administrador")
-        .length,
-    }),
-    [users],
-  );
 
   const openCreateModal = () => {
     setEditingUser(null);
@@ -299,41 +341,33 @@ const useAdminUsers = () => {
   };
 
   return {
-    users,
     filteredUsers,
-
-    stats,
-
     search,
     setSearch,
-
     roleFilter,
     setRoleFilter,
-
     isModalOpen,
     isDetailModalOpen,
-
     editingUser,
     selectedUser,
-
     form,
     showPassword,
-
     openCreateModal,
     openEditModal,
     closeModal,
-
     openDetailModal,
     closeDetailModal,
-
     handleFormChange,
     handleRoleChange,
     handleCourseToggle,
-
     togglePasswordVisibility,
-
     handleSubmit,
     handleDelete,
+    users,
+    kpis,
+    loading,
+    getUserInfo,
+    loadingDetail,
   };
 };
 

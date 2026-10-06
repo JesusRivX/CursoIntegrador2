@@ -15,11 +15,11 @@ import {
 
 import { courses } from "../../../data/academic/courses";
 import useAdminUsers from "./useAdminUsers";
+import AdminUsersSkeleton from "../../../components/skeletons/admin/AdminUsersSkeleton";
 
 const AdminUsers = () => {
   const {
     filteredUsers,
-    stats,
     search,
     setSearch,
     roleFilter,
@@ -33,7 +33,6 @@ const AdminUsers = () => {
     openCreateModal,
     openEditModal,
     closeModal,
-    openDetailModal,
     closeDetailModal,
     handleFormChange,
     handleRoleChange,
@@ -41,6 +40,9 @@ const AdminUsers = () => {
     togglePasswordVisibility,
     handleSubmit,
     handleDelete,
+    kpis,
+    loading,
+    getUserInfo,
   } = useAdminUsers();
 
   const getRoleStyles = (role) => {
@@ -77,17 +79,15 @@ const AdminUsers = () => {
     return "bg-red-100 text-red-500";
   };
 
-  const getCourseName = (courseId) => {
-    const course = courses.find((course) => course.id === courseId);
-
-    return course?.nombre || "Curso no encontrado";
-  };
-
   const availableCourses = useMemo(() => {
     return courses.filter(
       (course) => course.estado === "Activo" && course.nivel === form.nivel,
     );
   }, [form.nivel]);
+
+  if (loading) {
+    return <AdminUsersSkeleton />;
+  }
 
   return (
     <div className="space-y-5 pb-8">
@@ -127,7 +127,7 @@ const AdminUsers = () => {
           <p className="mt-4 text-xs font-medium text-slate-400">Todos</p>
 
           <p className="mt-1 text-2xl font-bold text-slate-900">
-            {stats.total}
+            {kpis.total_usuarios}
           </p>
         </div>
 
@@ -139,7 +139,7 @@ const AdminUsers = () => {
           <p className="mt-4 text-xs font-medium text-slate-400">Estudiantes</p>
 
           <p className="mt-1 text-2xl font-bold text-slate-900">
-            {stats.estudiantes}
+            {kpis.estudiantes}
           </p>
         </div>
 
@@ -151,7 +151,7 @@ const AdminUsers = () => {
           <p className="mt-4 text-xs font-medium text-slate-400">Docentes</p>
 
           <p className="mt-1 text-2xl font-bold text-slate-900">
-            {stats.docentes}
+            {kpis.docentes}
           </p>
         </div>
 
@@ -165,7 +165,7 @@ const AdminUsers = () => {
           </p>
 
           <p className="mt-1 text-2xl font-bold text-slate-900">
-            {stats.administradores}
+            {kpis.administradores}
           </p>
         </div>
       </section>
@@ -247,12 +247,12 @@ const AdminUsers = () => {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-600">
-                          {user.nombre.charAt(0).toUpperCase()}
+                          {user.usuario.charAt(0).toUpperCase()}
                         </div>
 
                         <div>
                           <p className="text-sm font-bold text-slate-800">
-                            {user.nombre}
+                            {user.usuario}
                           </p>
 
                           <p className="mt-0.5 text-[11px] text-slate-400">
@@ -301,7 +301,7 @@ const AdminUsers = () => {
                       <div className="flex justify-end gap-2">
                         <button
                           type="button"
-                          onClick={() => openDetailModal(user)}
+                          onClick={() => getUserInfo(user.id)}
                           className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
                           title="Ver detalles"
                         >
@@ -680,12 +680,12 @@ const AdminUsers = () => {
             <div className="space-y-5 p-6">
               <div className="flex items-center gap-4 rounded-2xl bg-slate-50 p-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-lg font-bold text-slate-600 shadow-sm">
-                  {selectedUser.nombre.charAt(0).toUpperCase()}
+                  {selectedUser.usuario.charAt(0).toUpperCase()}
                 </div>
 
                 <div>
                   <p className="font-bold text-slate-900">
-                    {selectedUser.nombre}
+                    {selectedUser.usuario}
                   </p>
 
                   <p className="mt-1 font-mono text-xs text-slate-400">
@@ -784,12 +784,12 @@ const AdminUsers = () => {
 
                     {selectedUser.cursos?.length > 0 ? (
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {selectedUser.cursos.map((courseId) => (
+                        {selectedUser.cursos.map((curso, index) => (
                           <span
-                            key={courseId}
+                            key={`${curso}-${index}`}
                             className="rounded-lg bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-600"
                           >
-                            {getCourseName(courseId)}
+                            {curso}
                           </span>
                         ))}
                       </div>
@@ -822,11 +822,28 @@ const AdminUsers = () => {
                     </div>
 
                     <div className="rounded-xl border border-slate-100 p-4">
-                      <p className="text-[11px] text-slate-400">Especialidad</p>
-
-                      <p className="mt-1 text-sm font-bold text-slate-800">
-                        {selectedUser.especialidad || "No registrada"}
+                      <p className="text-[11px] text-slate-400">
+                        Especialidades
                       </p>
+
+                      {selectedUser.especialidades?.length > 0 ? (
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {selectedUser.especialidades.map(
+                            (especialidad, index) => (
+                              <span
+                                key={`${especialidad}-${index}`}
+                                className="rounded-lg bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-600"
+                              >
+                                {especialidad}
+                              </span>
+                            ),
+                          )}
+                        </div>
+                      ) : (
+                        <p className="mt-1 text-sm font-medium text-slate-400">
+                          No registrada
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

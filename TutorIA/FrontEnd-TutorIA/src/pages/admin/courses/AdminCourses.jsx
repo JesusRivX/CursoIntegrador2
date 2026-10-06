@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import useAdminCourses from "./useAdminCourses";
+import AdminCoursesSkeleton from "../../../components/skeletons/admin/AdminCoursesSkeleton";
 
 const AdminCourses = () => {
   const {
@@ -56,7 +57,13 @@ const AdminCourses = () => {
 
     getLevelStyles,
     getStatusStyles,
+
+    loading,
   } = useAdminCourses();
+
+  if (loading) {
+    return <AdminCoursesSkeleton />;
+  }
 
   return (
     <div className="space-y-5 pb-8">

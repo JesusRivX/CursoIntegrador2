@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { useAdminHome } from "./useAdminHome";
+import AdminHomeSkeleton from "../../../components/skeletons/admin/AdminHomeSkeleton";
 
 const AdminHome = () => {
   const navigate = useNavigate();
@@ -30,9 +31,13 @@ const AdminHome = () => {
     selectedLevelCourses,
     selectedLevelGrades,
     totalStudents,
-    activeStudents,
-    totalCourses,
+    loading,
+    kpis,
   } = useAdminHome();
+
+  if (loading) {
+    return <AdminHomeSkeleton />;
+  }
 
   return (
     <div className="space-y-5 pb-8">
@@ -98,11 +103,7 @@ const AdminHome = () => {
       </section>
 
       <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-        <button
-          type="button"
-          onClick={() => navigate("/app/admin/alumnos")}
-          className="group rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
-        >
+        <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md">
           <div className="flex items-start justify-between">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
               <Users className="h-5 w-5" />
@@ -114,15 +115,11 @@ const AdminHome = () => {
           </p>
 
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-            {totalStudents}
+            {kpis?.alumnos_registrados ?? 0}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => navigate("/app/admin/docentes")}
-          className="group rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-violet-200 hover:shadow-md"
-        >
+        <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-violet-200 hover:shadow-md">
           <div className="flex items-start justify-between">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
               <GraduationCap className="h-5 w-5" />
@@ -134,15 +131,11 @@ const AdminHome = () => {
           </p>
 
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-            8
+            {kpis?.docentes_registrados ?? 0}
           </p>
-        </button>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => navigate("/app/admin/cursos")}
-          className="group rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md"
-        >
+        <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md">
           <div className="flex items-start justify-between">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <BookOpen className="h-5 w-5" />
@@ -154,9 +147,9 @@ const AdminHome = () => {
           </p>
 
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-            {totalCourses}
+            {kpis?.cursos_disponibles ?? 0}
           </p>
-        </button>
+        </div>
 
         <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
           <div className="flex items-start justify-between">
@@ -170,7 +163,7 @@ const AdminHome = () => {
           </p>
 
           <p className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-            {activeStudents}
+            {kpis?.usuarios_activos ?? 0}
           </p>
         </div>
       </section>
@@ -491,7 +484,7 @@ const AdminHome = () => {
               Alumnos aprobados
             </p>
 
-            <p className="mt-1 text-2xl font-bold text-slate-900">973</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">2</p>
 
             <p className="mt-1 text-[10px] text-slate-400">
               De {totalStudents} alumnos
@@ -513,7 +506,7 @@ const AdminHome = () => {
               Alumnos en riesgo
             </p>
 
-            <p className="mt-1 text-2xl font-bold text-slate-900">86</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">5</p>
 
             <p className="mt-1 text-[10px] text-slate-400">
               Requieren seguimiento
@@ -535,12 +528,12 @@ const AdminHome = () => {
               Progreso promedio
             </p>
 
-            <p className="mt-1 text-2xl font-bold text-slate-900">78%</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">35%</p>
 
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
               <div
                 className="h-full rounded-full bg-violet-500"
-                style={{ width: "78%" }}
+                style={{ width: "35%" }}
               />
             </div>
           </div>
