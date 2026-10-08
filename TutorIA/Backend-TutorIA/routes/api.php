@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [UserController::class, 'verificarUsuario']);
 
 Route::controller(StudentController::class)
-    ->middleware('auth:sanctum')
+    ->middleware(['auth:sanctum', 'role:Estudiante'])
     ->prefix('student')->group(function () {
         Route::get('/dashboard-cursos', 'dashboard_cursos');
         Route::get('/dashboard-cursos/{cursoId}', 'curso_detalle');
@@ -17,7 +17,7 @@ Route::controller(StudentController::class)
     });
 
 Route::controller(AdminController::class)
-    ->middleware('auth:sanctum')
+    ->middleware(['auth:sanctum', 'role:Administrador'])
     ->prefix('admin')->group(function () {
         Route::get('/dashboard-kpi-inicio', 'dashboard_inicio_kpi');
         Route::get('/kpi-usuarios', 'kpi_usuarios');
