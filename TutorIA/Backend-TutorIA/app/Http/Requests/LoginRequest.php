@@ -15,8 +15,11 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /** @example Estudiante */
             'rol' => ['required', 'string', Rule::in(['Estudiante', 'Docente', 'Administrador',]),],
+            /** @example EST-2026-001 */
             'codigo' => ['required', 'string', 'max:50',],
+            /** @example 123456 */
             'password' => ['required', 'string', 'min:6',],
         ];
     }

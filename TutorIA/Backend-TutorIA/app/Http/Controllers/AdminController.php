@@ -8,6 +8,11 @@ use Illuminate\Http\JsonResponse;
 
 class AdminController extends Controller
 {
+
+    /**
+     * Obtiene los KPI de inicio del dashboard del administrador.
+     */
+
     public function dashboard_inicio_kpi(AdminService $adminService): JsonResponse
     {
         $resultado = $adminService->dashboard_inicio_kpi();
@@ -23,6 +28,10 @@ class AdminController extends Controller
             'data' => $resultado,
         ], 200);
     }
+
+    /**
+     * Obtiene los KPI de usuarios.
+     */
 
     public function kpi_usuarios(AdminService $adminService): JsonResponse
     {
@@ -40,6 +49,10 @@ class AdminController extends Controller
         ], 200);
     }
 
+    /**
+     * Obtiene la lista de usuarios.
+     */
+
     public function usuarios(AdminService $adminService): JsonResponse
     {
         $resultado = $adminService->usuarios();
@@ -55,6 +68,10 @@ class AdminController extends Controller
             'data' => $resultado,
         ], 200);
     }
+
+    /**
+     * Obtiene la información de un usuario específico.
+     */
 
     public function usuario_informacion(int $userId, AdminService $adminService): JsonResponse
     {

@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    /**
+     * Obtiene los cursos del estudiante.
+     */
+
     public function dashboard_cursos(
         Request $req,
         StudentService $misCursosService
@@ -30,6 +34,10 @@ class StudentController extends Controller
             'data' => new CursoResource($resultado),
         ], 200);
     }
+
+    /**
+     * Obtiene el detalle de un curso específico.
+     */
 
     public function curso_detalle(
         Request $req,
@@ -52,6 +60,10 @@ class StudentController extends Controller
         ], 200);
     }
 
+    /**
+     * Obtiene los temas de un curso específico.
+     */
+
     public function curso_temas(
         Request $req,
         int $cursoId,
@@ -73,6 +85,10 @@ class StudentController extends Controller
             'data' => new CursoTemaResource($resultado),
         ], 200);
     }
+
+    /**
+     * Actualiza el progreso de un tema específico.
+     */
 
     public function actualizar_progreso_tema(
         int $cursoId,

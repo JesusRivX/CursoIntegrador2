@@ -10,11 +10,7 @@ use App\Http\Resources\UserResource;
 class UserController extends Controller
 {
     /**
-     * Verifica si un usuario existe con las credenciales proporcionadas.
-     *
-     * @param LoginRequest $req
-     * @param UserService $userService
-     * @return JsonResponse
+     * Login de usuario y verificación de credenciales.
      */
     public function verificarUsuario(
         LoginRequest $req,

@@ -3,12 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::post('/login', [UserController::class, 'verificarUsuario']);
 
 Route::controller(StudentController::class)
     ->middleware('auth:sanctum')
@@ -27,5 +24,3 @@ Route::controller(AdminController::class)
         Route::get('/usuarios', 'usuarios');
         Route::get('/usuarios/{userId}', 'usuario_informacion');
     });
-
-Route::post('/login', [UserController::class, 'verificarUsuario']);
