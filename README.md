@@ -14,71 +14,66 @@ La propuesta está orientada principalmente a estudiantes que presentan dificult
 
 ## Tabla de contenido
 
-- [ESTUD-IA](#estud-ia)
-  - [Tabla de contenido](#tabla-de-contenido)
 - [1. Sobre el proyecto](#1-sobre-el-proyecto)
-  - [Problema identificado](#problema-identificado)
-  - [Propuesta de solución](#propuesta-de-solución)
-  - [Objetivo](#objetivo)
-  - [Características principales](#características-principales)
-    - [Para estudiantes](#para-estudiantes)
-    - [Para docentes](#para-docentes)
-    - [Para administradores](#para-administradores)
-- [2. Usuarios del sistema](#2-usuarios-del-sistema)
-- [3. Experiencia y diseño de interfaces](#3-experiencia-y-diseño-de-interfaces)
-  - [Google Stitch: exploración inicial](#google-stitch-exploración-inicial)
-    - [Proyecto en Google Stitch](#proyecto-en-google-stitch)
-  - [Figma: prototipo de la aplicación](#figma-prototipo-de-la-aplicación)
-    - [Prototipo](#prototipo)
-  - [Interfaces principales](#interfaces-principales)
-    - [Capturas de las interfaces](#capturas-de-las-interfaces)
-- [4. Metodología Scrum](#4-metodología-scrum)
+
+- [2. Metodología Scrum](#2-metodología-scrum)
   - [Equipo Scrum](#equipo-scrum)
-  - [Responsabilidades](#responsabilidades)
-    - [Product Owner](#product-owner)
-    - [Scrum Master](#scrum-master)
-    - [Developers](#developers)
   - [Product Backlog](#product-backlog)
     - [Resumen del Product Backlog](#resumen-del-product-backlog)
     - [Épicas](#épicas)
     - [Product Backlog completo](#product-backlog-completo)
   - [Product Goal](#product-goal)
   - [Sprints](#sprints)
-  - [Primer Sprint](#primer-sprint)
+  - [Segundo Sprint](#segundo-sprint)
     - [Rol Estudiante](#rol-estudiante)
     - [Rol Administrador](#rol-administrador)
+    - [Rol Docente](#rol-docente)
   - [Sprint Goal](#sprint-goal)
-    - [Sprint Goal del Primer Sprint](#sprint-goal-del-primer-sprint)
+    - [Sprint Goal del Segundo Sprint](#sprint-goal-del-segundo-sprint)
   - [Sprint Backlog](#sprint-backlog)
+    - [Actividades técnicas del Segundo Sprint](#actividades-técnicas-del-segundo-sprint)
   - [Definition of Done](#definition-of-done)
-- [5. Tecnologías y herramientas](#5-tecnologías-y-herramientas)
-  - [Front-End](#front-end)
-  - [Back-End](#back-end)
-  - [Base de datos](#base-de-datos)
-  - [Inteligencia Artificial](#inteligencia-artificial)
-  - [Herramientas de desarrollo](#herramientas-de-desarrollo)
-- [6. Arquitectura](#6-arquitectura)
+
+- [3. Arquitectura del software](#3-arquitectura-del-software)
   - [Diagrama de arquitectura](#diagrama-de-arquitectura)
+  - [Arquitectura general](#arquitectura-general)
   - [Componentes principales](#componentes-principales)
-    - [Front-End](#front-end-1)
-    - [Back-End](#back-end-1)
-    - [Base de datos](#base-de-datos-1)
-    - [Inteligencia Artificial](#inteligencia-artificial-1)
-- [7. Estructura del repositorio](#7-estructura-del-repositorio)
-- [8. Control de versiones y GitFlow](#8-control-de-versiones-y-gitflow)
-  - [Flujo de trabajo](#flujo-de-trabajo)
-  - [GitFlow del proyecto](#gitflow-del-proyecto)
-  - [Convención de ramas](#convención-de-ramas)
-  - [Pull Requests](#pull-requests)
-- [9. Registro de Riesgos](#9-registro-de-riesgos)
-- [10. Catalogo de KPI y SLI](#10-catalogo-de-kpi-y-sli)
-- [11. Cómo ejecutar el proyecto](#11-cómo-ejecutar-el-proyecto)
-  - [Requisitos previos](#requisitos-previos)
-  - [Clonar el repositorio](#clonar-el-repositorio)
-  - [Configurar el Back-End](#configurar-el-back-end)
-  - [Configurar la base de datos](#configurar-la-base-de-datos)
-  - [Configurar el Front-End](#configurar-el-front-end)
-  - [Configurar el Tutor IA](#configurar-el-tutor-ia)
+    - [Front-End y Back-End](#front-end-y-back-end)
+      - [Flujo del endpoint](#flujo-del-endpoint)
+    - [Base de datos](#base-de-datos)
+      - [Diagrama entidad-relación](#diagrama-entidad-relación)
+    - [Inteligencia Artificial](#inteligencia-artificial)
+
+- [4. Seguridad del software](#4-seguridad-del-software)
+  - [Autenticación y autorización](#autenticación-y-autorización)
+    - [Flujo de autenticación y autorización](#flujo-de-autenticación-y-autorización)
+  - [Protección de datos](#protección-de-datos)
+  - [Validación de entradas](#validación-de-entradas)
+  - [Gestión de credenciales y secretos](#gestión-de-credenciales-y-secretos)
+  - [Análisis de seguridad con OWASP](#análisis-de-seguridad-con-owasp)
+  - [Trazabilidad y monitoreo con Laravel Telescope](#trazabilidad-y-monitoreo-con-laravel-telescope)
+    - [Vista general de Telescope](#vista-general-de-telescope)
+    - [Detalle de los registros](#detalle-de-los-registros)
+
+- [5. Pruebas de software](#5-pruebas-de-software)
+  - [Estrategia de pruebas](#estrategia-de-pruebas)
+  - [Pruebas funcionales](#pruebas-funcionales)
+    - [Pruebas unitarias](#pruebas-unitarias)
+      - [Pruebas unitarias del Front-End](#pruebas-unitarias-del-front-end)
+      - [Pruebas unitarias del Back-End](#pruebas-unitarias-del-back-end)
+    - [Pruebas de integración](#pruebas-de-integración)
+      - [Documentación y pruebas de endpoints](#documentación-y-pruebas-de-endpoints)
+    - [Pruebas de sistema](#pruebas-de-sistema)
+    - [Pruebas de extremo a extremo (E2E)](#pruebas-de-extremo-a-extremo-e2e)
+    - [Pruebas de regresión](#pruebas-de-regresión)
+    - [Pruebas de aceptación](#pruebas-de-aceptación)
+  - [Pruebas no funcionales](#pruebas-no-funcionales)
+    - [Pruebas de rendimiento](#pruebas-de-rendimiento)
+    - [Pruebas de seguridad](#pruebas-de-seguridad)
+    - [Pruebas de usabilidad](#pruebas-de-usabilidad)
+    - [Pruebas de compatibilidad](#pruebas-de-compatibilidad)
+  - [Casos de prueba](#casos-de-prueba)
+  - [Criterios de aceptación](#criterios-de-aceptación)
 
 ---
 
@@ -90,161 +85,19 @@ La aplicación combina contenidos educativos, ejercicios interactivos, seguimien
 
 El proyecto considera también las diferencias de acceso tecnológico existentes entre contextos urbanos y rurales. Por ello, se busca que la plataforma sea **responsive, ligera, sencilla de utilizar y adaptable a diferentes dispositivos**.
 
-![Vista general de ESTUD-IA](docs/img/hero-estud-ia.png)
-
-## Problema identificado
-
-En un aula, un docente debe atender a varios estudiantes al mismo tiempo. Cuando un estudiante tiene dificultades para comprender un tema o resolver un ejercicio, no siempre puede recibir ayuda inmediatamente.
-
-Esto puede provocar que las dudas se acumulen, aparezcan vacíos de aprendizaje y el estudiante pierda motivación para continuar.
-
-Por otro lado, el docente puede tener dificultades para identificar rápidamente qué temas están generando mayores problemas en sus estudiantes.
-
-En este contexto, se identifica la necesidad de contar con una herramienta que permita al estudiante **continuar aprendiendo de manera autónoma**, recibir apoyo cuando tenga dudas y visualizar su rendimiento.
-
-![Problema y oportunidad](docs/img/problema-solucion.png)
-
-## Propuesta de solución
-
-ESTUD-IA funciona como un **acompañante pedagógico integral** dentro y fuera del aula.
-
-La propuesta se centra en cuatro elementos:
-
-- **Contenidos educativos:** organizados por cursos y materias.
-- **Ejercicios interactivos:** permiten practicar y comprobar los conocimientos adquiridos.
-- **Tutor IA:** permite realizar preguntas y recibir orientación durante el aprendizaje.
-- **Seguimiento del progreso:** permite visualizar resultados y avance académico.
-
-![Problema y Solucion](docs/img/solucion.jpeg)
+![Problema General](docs/img/solucion.jpeg)
 
 La finalidad no es reemplazar al docente, sino proporcionar al estudiante una herramienta de apoyo que pueda utilizar cuando necesite practicar, reforzar un tema o resolver una duda.
 
-## Objetivo
-
-Desarrollar una plataforma web de apoyo pedagógico que permita a estudiantes de instituciones educativas consultar contenidos, practicar mediante ejercicios interactivos y recibir orientación de un Tutor IA adaptativo, favoreciendo el aprendizaje autónomo y el seguimiento del progreso académico.
-
-## Características principales
-
-### Para estudiantes
-
-- Consultar cursos disponibles.
-- Consultar contenidos de los cursos.
-- Resolver ejercicios prácticos.
-- Consultar dudas al Tutor IA.
-- Revisar resultados.
-- Consultar su progreso académico.
-
-### Para docentes
-
-- Consultar los cursos asignados.
-- Consultar métricas generales de desempeño de sus aulas.
-- Actualizar el contenido de cada curso.
-
-### Para administradores
-
-- Consultar usuarios.
-- Registrar usuarios.
-- Actualizar información de usuarios.
-- Consultar cursos.
-- Registrar cursos.
-- Consultar el panel administrativo.
-
 ---
 
-# 2. Usuarios del sistema
-
-ESTUD-IA contempla tres roles principales:
-
-| Rol | Funcionalidades principales |
-| --- | --- |
-| **Estudiante** | Consulta cursos y contenidos, resuelve ejercicios, consulta al Tutor IA, solicita pistas, revisa resultados y consulta su progreso. |
-| **Docente** | Consulta cursos asignados y métricas generales de desempeño de sus aulas. |
-| **Administrador** | Gestiona usuarios y cursos, además de consultar información general de la plataforma. |
-
-![Roles de usuario](docs/img/roles-usuario.png)
-
----
-
-# 3. Experiencia y diseño de interfaces
-
-El diseño de ESTUD-IA se trabajó previamente a la implementación, con el objetivo de definir la estructura de las pantallas, la navegación y la experiencia que tendría cada tipo de usuario.
-
-Durante esta etapa se utilizaron **Google Stitch** y **Figma** con diferentes propósitos. Primero se realizaron exploraciones visuales y bocetos iniciales para plantear las principales ideas de la interfaz. Posteriormente, estas propuestas se organizaron y llevaron a un prototipo navegable en Figma.
-
-Los principales criterios considerados fueron:
-
-- Diseño **mobile first**.
-- Adaptación responsive.
-- Navegación sencilla e intuitiva.
-- Buena legibilidad y contraste.
-- Componentes visuales consistentes.
-- Estados de carga, error y éxito.
-- Interfaz sencilla para facilitar el uso por parte de los estudiantes.
-
-## Google Stitch: exploración inicial
-
-**Google Stitch** se utilizó durante las primeras etapas del proyecto como herramienta de apoyo para explorar rápidamente diferentes propuestas de interfaz mediante Inteligencia Artificial.
-
-A partir de estas exploraciones se obtuvieron **bocetos y mockups iniciales** que ayudaron al equipo a visualizar cómo podrían organizarse las principales pantallas de ESTUD-IA antes de definir el diseño final.
-
-Esta etapa permitió probar diferentes distribuciones, estilos y elementos de la interfaz de manera rápida, utilizando las propuestas generadas como referencia para continuar con el diseño.
-
-### Proyecto en Google Stitch
-
-[Ver exploraciones iniciales de ESTUD-IA en Google Stitch](https://stitch.withgoogle.com/projects/12456477824584293891)
-
-![Exploración inicial de interfaces con Google Stitch](docs/img/google-stitch.png)
-
-## Figma: prototipo de la aplicación
-
-Después de la etapa de exploración inicial, **Figma** se utilizó para estructurar y consolidar las propuestas de diseño en un **prototipo navegable**.
-
-En Figma se definieron las principales pantallas, componentes visuales y flujos de navegación de ESTUD-IA, permitiendo simular la interacción del usuario antes de comenzar la implementación.
-
-El prototipo sirvió como referencia visual para el desarrollo del Front-End y permitió validar la organización de las interfaces y los principales recorridos de usuario.
-
-### Prototipo
-
-[Ver prototipo de ESTUD-IA en Figma](https://www.figma.com/make/t1DSBAAx1dcnDfEv4YV5Y3/TutorIA-Escolar-UI-UX-Brief)
-
-![Prototipo navegable de ESTUD-IA en Figma](docs/img/01-login.png)
-
-## Interfaces principales
-
-Las principales interfaces consideradas para el proyecto son:
-
-| Interfaz | Descripción |
-| --- | --- |
-| **Inicio de sesión** | Permite al usuario ingresar a la plataforma según su rol. |
-| **Panel del estudiante** | Presenta el progreso, continuidad de aprendizaje y principales indicadores. |
-| **Tutor IA** | Permite realizar consultas y recibir orientación. |
-| **Práctica** | Permite resolver ejercicios y solicitar pistas. |
-| **Resultados** | Permite revisar el desempeño obtenido en los ejercicios. |
-| **Mi perfil** | Presenta información relacionada con el progreso y logros. |
-| **Panel docente** | Permite consultar cursos y métricas de las aulas. |
-| **Panel administrativo** | Permite consultar información general y gestionar usuarios y cursos. |
-
-### Capturas de las interfaces
-
-![Panel del estudiante](docs/img/02-panel-estudiante.png)
-
-![Tutor IA](docs/img/03-tutor-ia.png)
-
-![Práctica](docs/img/04-practicar.png)
-
-![Mi perfil](docs/img/05-mi-perfil.png)
-
----
-
-# 4. Metodología Scrum
+# 2. Metodología Scrum 
 
 El desarrollo de ESTUD-IA utiliza **Scrum** como marco de trabajo para organizar las actividades del equipo y avanzar de manera incremental.
 
 La metodología permite dividir el desarrollo en periodos de trabajo, priorizar las funcionalidades más importantes y revisar continuamente el avance del producto.
 
 ## Equipo Scrum
-
-El equipo de ESTUD-IA está conformado por:
 
 | Integrante | Rol | Responsabilidad principal |
 | --- | --- | --- |
@@ -253,22 +106,6 @@ El equipo de ESTUD-IA está conformado por:
 | **Ben Alanya** | Developer | Analizar, desarrollar, probar e integrar las funcionalidades asignadas. |
 | **Renato Ninatanta** | Developer | Analizar, desarrollar, probar e integrar las funcionalidades asignadas. |
 
-![Equipo Scrum](docs/img/equipo-scrum.png)
-
-## Responsabilidades
-
-### Product Owner
-
-El Product Owner se encarga principalmente de mantener y priorizar el Product Backlog, buscando que el equipo trabaje primero en las funcionalidades que generan mayor valor para ESTUD-IA.
-
-### Scrum Master
-
-El Scrum Master facilita la organización del equipo, ayuda a mantener el proceso Scrum y apoya en la identificación y solución de impedimentos.
-
-### Developers
-
-Los Developers participan en el análisis, diseño, desarrollo, pruebas e integración de las funcionalidades seleccionadas para cada Sprint.
-
 En este proyecto, algunos integrantes pueden asumir más de una responsabilidad debido al tamaño reducido del equipo.
 
 ## Product Backlog
@@ -276,9 +113,9 @@ En este proyecto, algunos integrantes pueden asumir más de una responsabilidad 
 El Product Backlog reúne las funcionalidades necesarias para desarrollar ESTUD-IA y permite ordenar el trabajo según su prioridad y valor para el producto.
 
 Actualmente está compuesto por:
-* 19 Historias de Usuario
-* 8 Épicas
-* 76 Story Points
+- 19 Historias de Usuario
+- 8 Épicas
+- 76 Story Points
 
 Las Historias de Usuario fueron priorizadas considerando principalmente el valor que aportan al estudiante y la evolución necesaria para construir progresivamente la plataforma.
 
@@ -329,21 +166,23 @@ La planificación general considera:
 | Etapa | Enfoque |
 | --- | --- |
 | **Primer Sprint** | Construcción inicial del Front-End y flujos principales. |
-| **Segundo Sprint** | Desarrollo del Back-End y servicios necesarios. |
+| **Segundo Sprint** | Desarrollo del Back-End, servicios necesarios y funcionalidades de los roles Estudiante, Administrador y Docente. |
 | **Tercer Sprint** | Integración entre Front-End y Back-End. |
 | **Sprint final** | Pruebas, mejoras, correcciones y preparación del despliegue. |
 
 El objetivo es evitar desarrollar todos los componentes por separado y realizar la integración únicamente al final.
 
-## Primer Sprint
+## Segundo Sprint
 
-El primer Sprint se enfoca principalmente en los roles de **Estudiante y Administrador**, priorizando la construcción de las interfaces y los principales flujos de interacción de la aplicación.
+El segundo Sprint se enfoca en **iniciar el desarrollo del Back-End de ESTUD-IA y realizar la integración inicial con el Front-End** desarrollado previamente.
 
-En esta primera etapa se trabaja principalmente el **Front-End**, dejando preparada la estructura visual para que las funcionalidades puedan conectarse posteriormente con el Back-End.
+Durante esta etapa se busca implementar la estructura inicial del servidor con Laravel, establecer la conexión con la base de datos MySQL y desarrollar los primeros servicios necesarios para permitir la comunicación entre ambos componentes.
+
+Asimismo, se comienza a trabajar en las funcionalidades del rol Docente, junto con la preparación de los servicios que permitirán gestionar las operaciones de los roles Estudiante y Administrador.
 
 ### Rol Estudiante
 
-Para el estudiante se priorizan las funcionalidades relacionadas directamente con el aprendizaje y la práctica:
+Se consideran las funcionalidades relacionadas directamente con el aprendizaje y la práctica:
 
 | Historia | Funcionalidad | Prioridad |
 | --- | --- | --- |
@@ -357,13 +196,13 @@ Para el estudiante se priorizan las funcionalidades relacionadas directamente co
 | **HU-08** | Consultar progreso de aprendizaje | Alta |
 | **HU-10** | Consultar panel principal | Media |
 
-Estas funcionalidades permiten construir el recorrido principal del estudiante dentro de ESTUD-IA: ingresar a la plataforma, consultar sus cursos, estudiar contenidos, practicar, recibir apoyo del Tutor IA y revisar su progreso.
+Estas funcionalidades representan los principales servicios que se prepararán para conectar las interfaces del estudiante con el Back-End.
 
-![Primer Sprint - Estudiante](docs/img/primer-sprint-estudiante.png)
+![Segundo Sprint - Estudiante](docs/img/primer-sprint-estudiante.png)
 
 ### Rol Administrador
 
-Para el administrador se consideran inicialmente las funcionalidades necesarias para gestionar la información básica de la plataforma:
+Se consideran las funcionalidades necesarias para gestionar la información básica de la plataforma:
 
 | Historia | Funcionalidad | Prioridad |
 | --- | --- | --- |
@@ -375,28 +214,58 @@ Para el administrador se consideran inicialmente las funcionalidades necesarias 
 | **HU-19** | Actualizar información de curso | Baja |
 | **HU-16** | Consultar panel administrativo | Baja |
 
-Estas funcionalidades permiten establecer la estructura inicial para que el administrador pueda consultar y gestionar usuarios y cursos desde la plataforma.
+Estas funcionalidades servirán como referencia para desarrollar progresivamente los servicios administrativos del Back-End.
 
-![Primer Sprint - Administrador](docs/img/primer-sprint-administrador.png)
+![Segundo Sprint - Administrador](docs/img/primer-sprint-administrador.png)
+
+### Rol Docente
+
+Se inicia el desarrollo de las funcionalidades del rol Docente, enfocándose en la consulta de cursos asignados y la información académica de sus aulas.
+
+| Historia | Funcionalidad | Prioridad |
+| --- | --- | --- |
+| **HU-14** | Consultar cursos asignados | Baja |
+| **HU-15** | Consultar métricas del aula | Baja |
+
+Estas funcionalidades permitirán preparar los servicios para consultar los cursos asignados a cada docente, gestionar el contenido de los temas de cada curso y visualizar información relevante de sus aulas.
+
+![Segundo Sprint - Docente](docs/img/segundo-sprint-administrador.jpeg)
 
 ## Sprint Goal
 
 Cada Sprint cuenta con un objetivo que permite al equipo mantener el foco durante el periodo de desarrollo.
 
-### Sprint Goal del Primer Sprint
+### Sprint Goal del Segundo Sprint
 
-> **Construir la base visual y los principales flujos de interacción de ESTUD-IA para los roles de estudiante y administrador, dejando preparada la estructura del Front-End para su posterior integración con el Back-End.**
+> **Iniciar el desarrollo del Back-End de ESTUD-IA mediante la configuración de Laravel, la conexión con MySQL y la implementación de los primeros servicios, realizando una integración inicial con el Front-End para comenzar a conectar las interfaces existentes con la lógica de negocio y avanzar en las funcionalidades de los roles Estudiante, Administrador y Docente.**
 
-El objetivo de esta primera etapa no es completar toda la aplicación, sino construir una base funcional y visual que permita continuar con el desarrollo en los siguientes Sprints.
+El objetivo de esta etapa es establecer una base funcional de comunicación entre el Front-End y el Back-End, permitiendo validar progresivamente la integración de los componentes y preparar el desarrollo de las funcionalidades restantes.
 
 ## Sprint Backlog
 
-El Sprint Backlog contiene las Historias de Usuario seleccionadas para el Sprint y las tareas necesarias para desarrollarlas.
+El Sprint Backlog contiene las Historias de Usuario seleccionadas para el Sprint y las tareas necesarias para desarrollar el Back-End y realizar su integración inicial con el Front-End.
 
-Para el Primer Sprint, el trabajo se organiza principalmente en dos grupos:
+Para el Segundo Sprint, el trabajo se organiza en los siguientes grupos:
 
-- **Estudiante:** funcionalidades relacionadas con el acceso, aprendizaje, práctica, Tutor IA y seguimiento del progreso.
-- **Administrador:** funcionalidades relacionadas con la gestión inicial de usuarios, cursos y panel administrativo.
+- **Back-End:** configuración inicial de Laravel, conexión con MySQL, creación de rutas, controladores y servicios, implementación inicial de la lógica de negocio y validación de solicitudes.
+- **Integración Front-End y Back-End:** configuración de la comunicación entre ambos componentes, conexión de las primeras interfaces con los servicios disponibles y verificación del intercambio de datos.
+- **Estudiante:** preparación de los servicios necesarios para el acceso, la consulta de cursos, los contenidos educativos, los ejercicios y el seguimiento del progreso.
+- **Administrador:** preparación de los servicios para consultar, registrar y actualizar usuarios, así como consultar y gestionar cursos.
+- **Docente:** inicio de los servicios para consultar cursos asignados y preparar la gestión de contenidos temáticos y la consulta de métricas de las aulas.
+
+### Actividades técnicas del Segundo Sprint
+
+- Configurar la estructura inicial del Back-End con Laravel.
+- Establecer la conexión con la base de datos MySQL.
+- Crear las primeras rutas, controladores y servicios.
+- Implementar las primeras operaciones de consulta y procesamiento de datos.
+- Configurar la comunicación entre el Front-End y el Back-End.
+- Conectar las primeras interfaces con los servicios desarrollados.
+- Verificar el intercambio de datos entre ambos componentes.
+- Preparar los servicios correspondientes a los roles Estudiante y Administrador.
+- Iniciar el desarrollo de los servicios del rol Docente para consultar cursos asignados.
+- Preparar la gestión del contenido de los temas y la consulta de métricas de las aulas.
+- Realizar pruebas iniciales de integración y corregir los errores identificados.
 
 El equipo utiliza **GitHub Projects** para organizar y visualizar el trabajo del Sprint, permitiendo identificar las tareas pendientes, en desarrollo y terminadas.
 
@@ -407,290 +276,307 @@ El equipo utiliza **GitHub Projects** para organizar y visualizar el trabajo del
 Una Historia de Usuario se considera terminada cuando cumple las condiciones establecidas por el equipo.
 
 Como mínimo:
-* La funcionalidad fue desarrollada.
-* Cumple los criterios de aceptación.
-* Fue revisada por otro integrante.
-* No presenta errores conocidos que impidan su funcionamiento.
-* Los cambios fueron integrados correctamente.
-* La funcionalidad puede demostrarse.
+
+- La funcionalidad fue desarrollada.
+- Cumple los criterios de aceptación.
+- Fue revisada por otro integrante.
+- No presenta errores conocidos que impidan su funcionamiento.
+- Los cambios fueron integrados correctamente.
+- La funcionalidad puede demostrarse.
 
 ---
 
-## 5. Tecnologías y herramientas
+# 3. Arquitectura del software
 
-ESTUD-IA utiliza tecnologías web que permiten separar la interfaz, la lógica de negocio, la persistencia de información y el componente de Inteligencia Artificial.
+ESTUD-IA utiliza una arquitectura web organizada por componentes y separada por responsabilidades, permitiendo estructurar la interfaz de usuario, la lógica de negocio, el almacenamiento de datos y los servicios de inteligencia artificial.
 
-### Front-End
+La solución está compuesta principalmente por:
+- **Front-End:** desarrollado con React.
+- **Back-End:** desarrollado con Laravel.
+- **Base de datos:** MySQL.
+- **Inteligencia Artificial:** servicio local mediante Ollama.
 
-| Tecnología | Uso |
-| :--- | :--- |
-| **React** | Construcción de interfaces mediante componentes reutilizables. |
-| **Vite** | Entorno de desarrollo y construcción del Front-End. |
-| **Tailwind CSS** | Diseño y estilos de la interfaz. |
-| **React Router** | Gestión de rutas y navegación. |
-| **Axios** | Comunicación HTTP con el Back-End. |
-| **Lucide React** | Iconografía de la aplicación. |
+## Diagrama de arquitectura
 
-### Back-End
+![Arquitectura del software](docs/img/Arquitectura%20de%20Software.jpeg)
 
-| Tecnología | Uso |
-| :--- | :--- |
-| **Laravel** | Desarrollo de la API y lógica de negocio. |
-| **PHP** | Lenguaje utilizado en el Back-End. |
-| **Laravel Sanctum** | Autenticación de usuarios. |
-| **Scramble** | Documentación de la API mediante OpenAPI. |
-| **PhpUnit** | Pruebas automatizadas. |
+## Arquitectura general
+
+La arquitectura de ESTUD-IA sigue un modelo cliente-servidor, en el que el Front-End se comunica con el Back-End para solicitar información y ejecutar las operaciones necesarias para el funcionamiento de la plataforma.
+
+El Back-End procesa las solicitudes, aplica la lógica de negocio y se comunica con la base de datos MySQL y el servicio de inteligencia artificial cuando corresponde.
+
+## Componentes principales
+
+### Front-End y Back-End
+
+El **Front-End**, desarrollado con React, se encarga de presentar las interfaces, gestionar la navegación y permitir la interacción de los usuarios con las funcionalidades de ESTUD-IA.
+
+El **Back-End**, desarrollado con Laravel, procesa las solicitudes recibidas desde el Front-End, ejecuta la lógica de negocio, valida los datos y gestiona la comunicación con la base de datos y los servicios de inteligencia artificial.
+
+Ambos componentes se comunican mediante solicitudes HTTP a través de endpoints, permitiendo intercambiar información y conectar progresivamente las interfaces con las funcionalidades del sistema.
+
+#### Flujo del endpoint
+
+![Flujo del endpoint](docs/img/flujo%20del%20endpoint.jpg)
 
 ### Base de datos
 
-| Tecnología | Uso |
-| :--- | :--- |
-| **MySQL** | Persistencia de usuarios, cursos, contenidos, ejercicios y progreso. |
+MySQL se utiliza para almacenar y relacionar la información necesaria para el funcionamiento de ESTUD-IA, incluyendo los datos de los usuarios, los cursos, los contenidos educativos y el progreso académico.
 
-La base de datos utiliza un modelo relacional debido a la relación existente entre usuarios, roles, cursos, contenidos, ejercicios y resultados.
+El Back-End gestiona las operaciones de consulta y modificación de los datos, manteniendo la comunicación con la base de datos centralizada.
+
+#### Diagrama entidad-relación
+
+![Diagrama ER de la base de datos ESTUD-IA](docs/img/Diagrama%20ER%20de%20Base%20de%20Datos%20Estud-IA.png)
 
 ### Inteligencia Artificial
 
-Para el componente de Tutor IA se contempla el uso de:
+Ollama permite ejecutar modelos de inteligencia artificial localmente y utilizar sus capacidades como parte del Tutor IA de ESTUD-IA.
 
-| Tecnología | Uso |
-| :--- | :--- |
-| **Ollama** | Ejecución local del modelo de Inteligencia Artificial. |
-| **llama3.2** | Modelo utilizado para las consultas del Tutor IA. |
-| **cloudstudio/ollama-laravel** | Integración entre Laravel y Ollama. |
-
-La ejecución local del modelo busca reducir los costos de operación y evitar que las consultas educativas tengan que enviarse a un servicio externo.
-
-La integración completa del Tutor IA se encuentra en proceso de desarrollo.
-
-![Integración del Tutor IA](docs/img/flujo-de-ia.png)
-
-### Herramientas de desarrollo
-
-| Herramienta | Uso |
-| :--- | :--- |
-| **Visual Studio Code** | Desarrollo del código fuente de la aplicación. |
-| **Git** | Control de versiones. |
-| **GitHub** | Repositorio y colaboración del equipo. |
-| **GitHub Issues** | Gestión de Historias de Usuario y tareas. |
-| **GitHub Projects** | Organización y seguimiento del trabajo. |
-| **Figma** | Diseño y prototipado de interfaces. |
-| **Google Stitch** | Apoyo en exploración y generación de interfaces mediante IA. |
-
-## 6. Arquitectura
-
-ESTUD-IA utiliza una arquitectura web separada por responsabilidades.
-
-La solución está compuesta principalmente por:
-* **Front-End:** desarrollado con React.
-* **Back-End:** desarrollado con Laravel.
-* **Base de datos:** MySQL.
-* **Inteligencia Artificial:** servicio local mediante Ollama.
-
-### Diagrama de arquitectura
-
-![Arquitectura del Proyecto](docs/img/arquitectura.png)
-
-### Componentes principales
-
-#### Front-End
-El Front-End se encarga de presentar la interfaz al usuario, gestionar la navegación y consumir los servicios proporcionados por el Back-End.
-
-#### Back-End
-El Back-End concentra la lógica de negocio, autenticación, validaciones y comunicación con la base de datos y el servicio de Inteligencia Artificial.
-
-#### Base de datos
-MySQL permite almacenar y relacionar la información necesaria para el funcionamiento de la plataforma.
-
-#### Inteligencia Artificial
-Ollama permite ejecutar el modelo de IA localmente y utilizarlo como parte del Tutor IA.
-
-## 7. Estructura del repositorio
-
-El repositorio se divide principalmente entre el Front-End, Back-End y documentación.
-
-![Estructura del Repositorio](docs/img/estructura_repositorio.jpeg)
-
-> **Nota:** La separación de directorios permite trabajar de forma independiente en cada capa de la aplicación y facilita la integración continua del proyecto.
+Este componente está orientado a proporcionar respuestas a consultas académicas y ofrecer apoyo durante el aprendizaje, de acuerdo con la integración implementada en el Back-End.
 
 ---
 
-## 8. Control de versiones y GitFlow
+# 4. Seguridad del software
 
-El equipo utiliza Git y GitHub para controlar las versiones del código, gestionar las Historias de Usuario y revisar los cambios antes de integrarlos.
+ESTUD-IA considera mecanismos de seguridad orientados a proteger el acceso a la plataforma, controlar las operaciones disponibles para cada usuario, validar la información recibida y facilitar la trazabilidad de las solicitudes. Además, se contempla el análisis de vulnerabilidades mediante herramientas y prácticas de seguridad.
 
-Cada Historia de Usuario se relaciona con un Issue y se desarrolla en una rama independiente.
+## Autenticación y autorización
 
-### Flujo de trabajo
+ESTUD-IA utiliza **Laravel Sanctum** para gestionar la autenticación y **middlewares** para controlar el acceso a las rutas y funcionalidades protegidas del sistema.
 
-![Flujo de trabajo](docs/img/flujo-trabajo.png)
+Estos mecanismos permiten verificar la identidad del usuario y restringir el acceso según las condiciones definidas para cada operación, contribuyendo a proteger los recursos de los roles Estudiante, Administrador y Docente.
 
-Este flujo permite relacionar cada cambio realizado en el código con una funcionalidad concreta del Product Backlog.
+### Flujo de autenticación y autorización
 
-### GitFlow del proyecto
+El flujo de los endpoints permite visualizar cómo se procesan las solicitudes desde el Front-End hacia el Back-End y cómo se aplican los controles correspondientes antes de ejecutar una operación.
 
-El siguiente diagrama representa el flujo de trabajo utilizado por el equipo durante el desarrollo.
+![Flujo de autenticación y autorización mediante endpoints](docs/img/flujo%20del%20endpoint.jpg)
 
-![GitFlow](docs/img/git-flow.jpeg)
+## Protección de datos
 
-El flujo busca que los cambios pasen por una revisión antes de incorporarse a las ramas principales del proyecto.
+La protección de los datos se considera durante el procesamiento de las solicitudes y el acceso a los recursos de la plataforma. El Back-End centraliza la lógica de negocio y las operaciones sobre la información, permitiendo aplicar controles de acceso y validaciones antes de procesar los datos.
 
-### Convención de ramas
+## Validación de entradas
 
-El equipo utiliza una nomenclatura para identificar el propósito de cada rama:
+Laravel proporciona mecanismos de validación para comprobar que los datos recibidos desde el Front-End cumplan con las reglas establecidas antes de ser procesados por el Back-End.
 
-| Prefijo | Uso | Ejemplo |
-| :--- | :--- | :--- |
-| feature/ | Nueva funcionalidad del backlog. | feature/hu-05-tutor-ia |
-| fix/ | Corrección de errores. | fix/validacion-login |
-| docs/ | Cambios en documentación. | docs/readme |
-| refactor/ | Reorganización del código sin cambiar su comportamiento. | refactor/api-auth |
+Estas validaciones permiten verificar campos obligatorios, formatos, tipos de datos y otras condiciones necesarias para reducir el riesgo de errores y entradas maliciosas.
 
-### Pull Requests
+![Validación de entradas en Laravel](docs/img/validacion_entradas.jpeg)
 
-Los Pull Requests permiten revisar los cambios antes de integrarlos.
+## Gestión de credenciales y secretos
 
-El flujo utilizado es:
+La gestión de credenciales y secretos contempla el tratamiento de la información sensible necesaria para la configuración y ejecución del sistema, como las credenciales de la base de datos y las claves de los servicios utilizados.
 
-![Flujo de Pull Requests](docs/img/flujo-pull-request.png)
+![Gestión de credenciales y secretos](docs/img/gestion_credenciales.jpeg)
 
+## Trazabilidad y monitoreo con Laravel Telescope
 
-Cada Pull Request debe describir el cambio realizado y relacionarse con la Historia de Usuario o Issue correspondiente.
+ESTUD-IA utiliza **Laravel Telescope** como herramienta de observación y trazabilidad durante el desarrollo del Back-End. Permite inspeccionar solicitudes HTTP, consultas a la base de datos, excepciones y otros eventos registrados por la aplicación, facilitando el seguimiento del comportamiento del sistema y la identificación de errores.
 
-La revisión por otro integrante ayuda a detectar errores y mantener una mejor calidad del código.
+### Vista general de Telescope
 
-## 9. Registro de Riesgos
+![Vista general de Laravel Telescope](docs/img/seguridad_telescope.jpeg)
 
-El registro de riesgos permite mantener identificadas las situaciones que requieren 
-seguimiento durante el proyecto. Para cada riesgo se establece una probabilidad y 
-un impacto, utilizando una escala de 1 a 5. El nivel se obtiene multiplicando ambos 
-valores, lo que permite priorizar los riesgos que podrían afectar en mayor medida el 
-alcance, plazo, calidad o seguridad de la aplicación.
+### Detalle de los registros
 
-![Tabla de Riesgos](docs/img/tabla-riesgos.png)
+![Detalle de registros de Laravel Telescope](docs/img/detalle_telescope.jpeg)
 
-## 10. Catalogo de KPI y SLI
-
-Se seleccionaron indicadores que representan tanto el valor de negocio (KPI) como el nivel técnico del servicio (SLI), evitando tratar todo dato disponible como si fuera un indicador clave.
-
-![Tabla de KPI](docs/img/tabla-kpi.png)
+La información recopilada permite analizar el recorrido de las solicitudes y detectar comportamientos inesperados durante las pruebas y el desarrollo. El acceso a Telescope debe restringirse en entornos sensibles para evitar la exposición de datos confidenciales.
 
 ---
 
-## 11. Cómo ejecutar el proyecto
+# 5. Pruebas de software
 
-### Requisitos previos
+Las pruebas de software de ESTUD-IA permiten verificar el funcionamiento de los componentes de la aplicación, comprobar la comunicación entre el Front-End y el Back-End e identificar posibles errores durante el desarrollo.
 
-Antes de ejecutar el proyecto se necesita tener instalado:
+La estrategia contempla pruebas unitarias, pruebas de extremo a extremo (E2E), pruebas de regresión y pruebas no funcionales, con el propósito de evaluar la calidad, estabilidad, rendimiento, seguridad y compatibilidad de la plataforma.
 
-* PHP 8.3 o superior.
-* Composer.
-* Node.js 20 o superior.
-* npm.
-* MySQL.
-* Ollama, para la funcionalidad de Inteligencia Artificial.
+## Estrategia de pruebas
 
-**Importante:** El proyecto no utiliza Docker.
+La estrategia de pruebas de ESTUD-IA se organiza en diferentes niveles para comprobar tanto el funcionamiento individual de los componentes como el comportamiento general de la aplicación.
 
-### Clonar el repositorio
+- **Pruebas unitarias:** verifican el comportamiento de funciones, componentes y métodos individuales.
+- **Pruebas de integración:** comprueban la comunicación entre componentes y servicios, especialmente entre el Front-End y el Back-End.
+- **Pruebas de extremo a extremo (E2E):** verifican los flujos de interacción de la aplicación mediante Playwright.
+- **Pruebas de regresión:** comprueban que los cambios realizados no afecten las funcionalidades existentes.
+- **Pruebas no funcionales:** evalúan aspectos como el rendimiento, la seguridad, la usabilidad y la compatibilidad.
 
-```bash
-git clone <URL_DEL_REPOSITORIO>
-cd ESTUD-IA
-```
+## Pruebas funcionales
 
-### Configurar el Back-End
+Las pruebas funcionales permiten verificar que las funcionalidades implementadas cumplan con los requisitos y criterios de aceptación definidos para ESTUD-IA.
 
-Ingresar a la carpeta del Back-End:
+### Pruebas unitarias
 
-```bash
-cd Backend-TutorIA
-```
+Las pruebas unitarias permiten verificar el comportamiento de componentes y funciones de manera individual, facilitando la identificación de errores sin necesidad de ejecutar toda la aplicación.
 
-Instalar las dependencias:
+#### Pruebas unitarias del Front-End
 
-```bash
-composer install
-```
+En el Front-End se realizan pruebas para verificar el comportamiento de los componentes y las funciones de la interfaz, comprobando que respondan correctamente ante las interacciones y los datos proporcionados.
 
-Crear el archivo de configuración:
+![Pruebas unitarias del Front-End](docs/img/prueba_unitaria_front.jpeg)
 
-```bash
-cp .env.example .env
-```
+**Ejemplo de prueba unitaria del Front-End**
 
-Generar la clave de la aplicación:
+![Ejemplo de prueba unitaria del Front-End](docs/img/ejemplo-unitaria-front.jpeg)
 
-```bash
-php artisan key:generate
-```
+#### Pruebas unitarias del Back-End
 
-### Configurar la base de datos
+En el Back-End se utiliza **Pest** como herramienta de pruebas para comprobar el comportamiento de los métodos, la lógica de negocio y los servicios desarrollados con Laravel.
 
-Crear una base de datos MySQL y configurar las credenciales en el archivo `.env`:
+Estas pruebas permiten verificar las respuestas esperadas, las validaciones y el comportamiento de las funcionalidades ante diferentes condiciones de entrada.
 
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=backend_tutoria
-DB_USERNAME=root
-DB_PASSWORD=
-```
+![Pruebas unitarias del Back-End](docs/img/prueba_unitaria_back.jpeg)
 
-Ejecutar las migraciones:
+**Ejemplo de prueba con Pest**
 
-```bash
-php artisan migrate
-```
+![Ejemplo de prueba unitaria con Pest](docs/img/ejemplo_prueba_backend.jpeg)
 
-Iniciar el servidor del Back-End:
+### Pruebas de integración
 
-```bash
-php artisan serve
-```
+Las pruebas de integración permiten comprobar que los componentes del sistema se comuniquen correctamente, especialmente durante la conexión entre el Front-End desarrollado con React y el Back-End desarrollado con Laravel.
 
-La API estará disponible en: `http://localhost:8000`
+Se verifica el intercambio de solicitudes y respuestas, el procesamiento de los datos y la comunicación con los servicios necesarios para el funcionamiento de la plataforma.
 
-### Configurar el Front-End
+![Pruebas de integración entre Front-End y Back-End](docs/img/pruebas_integracion.jpeg)
 
-En otra terminal, ingresar a la carpeta del Front-End:
+#### Documentación y pruebas de endpoints
 
-```bash
-cd FrontEnd-TutorIA
-```
+Se utiliza **Laravel Scramble** para generar documentación de los endpoints de la API, facilitando la consulta de las rutas disponibles, los parámetros y las respuestas esperadas.
 
-Instalar las dependencias:
+Esta documentación sirve como referencia para revisar y probar los endpoints del Back-End durante el desarrollo y la integración con el Front-End.
 
-```bash
-npm install
-```
+![Documentación y pruebas de endpoints con Scramble](docs/img/Scramble-Endpoint.jpeg)
 
-Iniciar el servidor de desarrollo:
+### Pruebas de sistema
 
-```bash
-npm run dev
-```
+Las pruebas de sistema permiten comprobar el funcionamiento conjunto de los componentes de ESTUD-IA, verificando que las funcionalidades principales respondan de acuerdo con los requisitos establecidos.
 
-La aplicación estará disponible en: `http://localhost:5173`
+Estas pruebas consideran los flujos de navegación, la interacción con los servicios del Back-End y el procesamiento de la información de la plataforma.
 
-### Configurar el Tutor IA
+### Pruebas de extremo a extremo (E2E)
 
-Para utilizar el modelo local de Inteligencia Artificial:
+Las pruebas E2E se realizan con **Playwright** para verificar los flujos completos de interacción del usuario en la aplicación React.
 
-```bash
-ollama pull llama3.2
-```
+Permiten simular acciones como navegar por las interfaces, completar formularios, interactuar con elementos de la aplicación y comprobar los resultados obtenidos.
 
-Luego iniciar Ollama:
+**Pruebas E2E del Front-End**
 
-```bash
-ollama serve
-```
+![Pruebas E2E del Front-End con Playwright](docs/img/pruebas_e2e_front.jpeg)
 
-Una vez configurado, Laravel podrá comunicarse con Ollama para procesar las consultas del Tutor IA.
+**Ejemplo de prueba E2E**
+
+![Ejemplo de prueba E2E con Playwright](docs/img/ejemplo-e2e-front.jpeg)
+
+**Ejecución de pruebas en Chromium**
+
+Playwright permite ejecutar las pruebas en Chromium para comprobar el comportamiento de la aplicación en un navegador basado en este motor.
+
+![Pruebas de Playwright en Chromium](docs/img/prueba_chromium.jpeg)
+
+### Pruebas de regresión
+
+Las pruebas de regresión tienen como objetivo verificar que los cambios, correcciones o nuevas funcionalidades no afecten el comportamiento de las funcionalidades existentes.
+
+En ESTUD-IA, estas pruebas consisten en revisar la aplicación de manera integral, recorriendo los principales flujos de los roles Estudiante, Administrador y Docente, según las funcionalidades implementadas.
+
+Se comprueba el acceso a la plataforma, la navegación, las operaciones disponibles, la comunicación entre el Front-End y el Back-End y la presentación correcta de la información.
+
+### Pruebas de aceptación
+
+Las pruebas de aceptación de ESTUD-IA permiten verificar que las funcionalidades desarrolladas cumplan con los criterios de aceptación definidos en las Historias de Usuario y respondan a las necesidades de los roles Estudiante, Administrador y Docente.
+
+Se comprueba que el estudiante pueda iniciar sesión, consultar cursos, revisar contenidos educativos; que el administrador pueda gestionar usuarios y cursos; y que el docente pueda consultar sus cursos asignados y las métricas de sus aulas.
+
+## Pruebas no funcionales
+
+Las pruebas no funcionales permiten evaluar características de calidad de ESTUD-IA que van más allá del comportamiento funcional, como el rendimiento, la seguridad, la facilidad de uso y la compatibilidad con diferentes dispositivos.
+
+### Pruebas de rendimiento
+
+Las pruebas de rendimiento permiten observar el tiempo de respuesta de los endpoints y detectar operaciones que puedan requerir optimización.
+
+Se utiliza **Laravel Telescope** para inspeccionar las solicitudes HTTP, revisar su duración y analizar las consultas y los eventos relacionados con la ejecución de las operaciones del Back-End.
+
+![Análisis de solicitudes y tiempos de respuesta con Telescope](docs/img/seguridad_telescope.jpeg)
+
+La información obtenida facilita la identificación de endpoints que presentan tiempos de respuesta elevados y ayuda a orientar futuras mejoras de rendimiento.
+
+### Pruebas de seguridad
+
+Las pruebas de seguridad buscan identificar posibles vulnerabilidades y comprobar los mecanismos de protección implementados en ESTUD-IA.
+
+Se consideran aspectos como la autenticación, la autorización, la validación de entradas y el control de acceso a los recursos de la aplicación.
+
+#### Análisis de seguridad con OWASP
+
+El proyecto contempla el análisis de seguridad mediante **OWASP**, con el propósito de identificar posibles vulnerabilidades y evaluar aspectos de seguridad de la aplicación.
+
+El reporte del análisis se encuentra en el siguiente documento:
+
+[**Reporte de Integración ESTUD-IA (PDF)**](Laboratorio/docs/Reporte%20Integracion%20Estud-IA.pdf)
+
+Este documento reúne el análisis realizado sobre la seguridad del proyecto y sirve como referencia para identificar posibles riesgos y definir mejoras.
+
+### Pruebas de usabilidad
+
+Las pruebas de usabilidad permiten evaluar si las interfaces de ESTUD-IA son comprensibles y fáciles de utilizar, considerando las necesidades de los estudiantes, docentes y administradores.
+
+Se consideran aspectos como la claridad de la navegación, la organización de la información, la facilidad para completar tareas y la consistencia visual de las interfaces.
+
+### Pruebas de compatibilidad
+
+Las pruebas de compatibilidad permiten comprobar que ESTUD-IA se visualice y funcione correctamente en diferentes tamaños de pantalla y dispositivos.
+
+Se consideran los siguientes entornos:
+
+- **Computadoras:** revisión de la distribución de los elementos y la navegación en pantallas de escritorio.
+- **Tabletas:** comprobación de la adaptación de las interfaces a pantallas de tamaño intermedio.
+- **Dispositivos móviles:** verificación de la navegación, los formularios y la visualización del contenido en pantallas pequeñas.
+
+Estas pruebas buscan garantizar una experiencia de uso consistente y una interfaz adaptable a diferentes dispositivos.
+
+![Pruebas de compatibilidad en dispositivos móviles, tabletas y computadoras](docs/img/pruebas_compatibilidad.jpeg)
+
+## Casos de prueba
+
+Los casos de prueba describen las condiciones, acciones y resultados esperados que permiten verificar el correcto funcionamiento de las funcionalidades de ESTUD-IA.
+
+A continuación, se presentan algunos ejemplos representativos:
+
+| ID | Funcionalidad | Tipo de prueba | Resultado esperado |
+| --- | --- | --- | --- |
+| CP-01 | Validación de inicio de sesión | Funcional | El sistema permite el acceso con credenciales válidas y rechaza las inválidas. |
+| CP-02 | Consulta de cursos | Integración | El sistema obtiene y muestra los cursos disponibles para el usuario. |
+| CP-03 | Validación de datos de entrada | Unitaria | El Back-End rechaza los datos que no cumplen las reglas de validación. |
+| CP-04 | Consulta de cursos asignados | Funcional | El docente puede consultar los cursos asociados a su cuenta. |
+| CP-05 | Acceso a rutas protegidas | Seguridad | Las solicitudes sin autorización válida no pueden acceder a los recursos protegidos. |
+| CP-06 | Flujo de navegación del estudiante | E2E | El usuario puede completar el flujo de navegación definido sin errores. |
+| CP-07 | Regresión de funcionalidades | Regresión | Los cambios no alteran el funcionamiento de las funcionalidades previamente implementadas. |
+| CP-08 | Tiempo de respuesta de endpoints | Rendimiento | Se registran y analizan los tiempos de respuesta para identificar operaciones lentas. |
+| CP-09 | Visualización en dispositivos | Compatibilidad | La interfaz se adapta correctamente a computadoras, tabletas y móviles. |
+
+Los casos anteriores son ejemplos de referencia y deben ajustarse a las funcionalidades implementadas y a los resultados obtenidos durante las pruebas.
+
+## Criterios de aceptación
+
+Una funcionalidad se considera aceptada cuando cumple los criterios definidos para su Historia de Usuario y supera las verificaciones correspondientes.
+
+Como criterios generales:
+
+- La funcionalidad cumple los requisitos establecidos.
+- Los resultados obtenidos corresponden con los resultados esperados.
+- Las validaciones de entrada funcionan correctamente.
+- Los controles de autenticación y autorización protegen las rutas correspondientes.
+- La comunicación entre el Front-End y el Back-End funciona según lo previsto.
+- Las pruebas unitarias y de integración correspondientes se ejecutan correctamente.
+- Los flujos E2E definidos se completan sin errores.
+- No se identifican errores críticos que impidan utilizar la funcionalidad.
+- La interfaz mantiene un comportamiento adecuado en los dispositivos evaluados.
+- Los resultados y los errores detectados durante las pruebas quedan documentados.
 
 ---
 
-Proyecto académico desarrollado para el curso Curso Integrador II: Software de la
-Universidad Tecnológica del Perú.
+Proyecto académico desarrollado para el curso **Curso Integrador II: Software** de la Universidad Tecnológica del Perú.
