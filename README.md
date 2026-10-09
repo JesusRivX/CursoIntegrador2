@@ -498,9 +498,9 @@ Las pruebas no funcionales permiten evaluar características de calidad de ESTUD
 
 Las pruebas de rendimiento permiten observar el tiempo de respuesta de los endpoints y detectar operaciones que puedan requerir optimización.
 
-Se utiliza **Laravel Telescope** para inspeccionar las solicitudes HTTP, revisar su duración y analizar las consultas y los eventos relacionados con la ejecución de las operaciones del Back-End.
-
 ![Análisis de solicitudes y tiempos de respuesta con Telescope](docs/img/seguridad_telescope.jpeg)
+
+![Análisis de solicitudes Frontend](docs/img/rendimiento_consulta.jpeg)
 
 La información obtenida facilita la identificación de endpoints que presentan tiempos de respuesta elevados y ayuda a orientar futuras mejoras de rendimiento.
 
@@ -517,6 +517,16 @@ El proyecto contempla el análisis de seguridad mediante **OWASP**, con el prop�
 El reporte del análisis se encuentra en el siguiente documento:
 
 [**Reporte de Integración ESTUD-IA (PDF)**](Laboratorio/docs/Reporte%20Integracion%20Estud-IA.pdf)
+
+| **Problema Detectado** | **Riesgo / Impacto** | **Solución Corta** |
+|---|---|---|
+| **Ruta Transversal (Path Traversal)** <br>*(Riesgo Alto)* | Un atacante puede salirse de la carpeta raíz y **leer archivos confidenciales del servidor** (ej. código fuente o configuraciones). | Validar y canonicalizar las rutas de entrada utilizando funciones nativas como `realpath()` y restringir caracteres especiales. |
+| **Falta de Cabecera CSP (Content Security Policy)** <br>*(Riesgo Medio)* | Facilita la **inyección de scripts maliciosos (XSS)**, alteración del sitio web o la distribución invisible de malware. | Configurar el servidor para enviar el encabezado `Content-Security-Policy` declarando los orígenes permitidos. |
+| **Falta Atributo de Integridad (SRI)** <br>*(Riesgo Medio)* | Si comprometen los servidores de un proveedor externo (ej. Google Fonts), pueden **inyectar código malicioso en tu web**. | Añadir el atributo `integrity` con el hash criptográfico correcto en las etiquetas `<link>` y `<script>` externas. |
+| **Falta de Cabecera Anti-Clickjacking** <br>*(Riesgo Medio)* | Permite incrustar tu web en un marco oculto para **engañar al usuario y robar sus clics o acciones dentro del sistema**. | Implementar la directiva `frame-ancestors` en el CSP o añadir el encabezado HTTP `X-Frame-Options` (`DENY` o `SAMEORIGIN`). |
+| **Falta Encabezado X-Content-Type-Options** <br>*(Riesgo Bajo)* | Permite el *MIME-sniffing*, haciendo que el navegador **ejecute archivos de texto, errores o imágenes como si fuesen scripts**. | Configurar el servidor web para que devuelva obligatoriamente el encabezado `X-Content-Type-Options: nosniff`. |
+| **Información Sensible en la URL** <br>*(Informativo)* | Datos críticos (como `?token=...`) **quedan expuestos en el historial del navegador**, servidores proxy y registros de red. | Modificar la lógica para enviar tokens o datos confidenciales mediante el cuerpo de peticiones seguras (POST/PUT) o cabeceras HTTP. |
+| **Comentarios Sospechosos en el Código** <br>*(Informativo)* | Textos con etiquetas como `TODO`, `DEBUG` o lógicas internas **dan pistas a los atacantes** sobre vulnerabilidades futuras. | Configurar el proceso de construcción (*build/bundling*) para minificar el código y remover automáticamente los comentarios en producción. |
 
 Este documento reúne el análisis realizado sobre la seguridad del proyecto y sirve como referencia para identificar posibles riesgos y definir mejoras.
 
